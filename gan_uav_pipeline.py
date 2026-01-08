@@ -49,8 +49,8 @@ def load_user_params(path: str) -> Dict:
 def discrete_indices(problem: DroneCommProblem) -> Tuple[np.ndarray, np.ndarray]:
     d = int(problem.num_drones)
     m = int(problem.num_interference)
-    type_idx = np.arange(2 * d, 2 * d + m)
-    loc_idx = np.arange(2 * d + 2 * m, 2 * d + 3 * m)
+    type_idx = np.arange(4 * d, 4 * d + m)
+    loc_idx = np.arange(4 * d + 2 * m, 4 * d + 3 * m)
     return type_idx, loc_idx
 
 

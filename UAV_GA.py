@@ -626,6 +626,10 @@ class DroneCommProblem(ea.Problem):
         self.building_height_max = float(user_params['building_height_max'])  # 建筑物最大高度
         self.building_density = float(user_params['building_density'])  # 建筑物密度
         self.drone_speed_max = float(user_params['drone_speed_max'])  # 无人机最大速度
+        # 无人机水平位置约束（避免落入建筑内部）
+        self.drone_xy_avoid_buildings = bool(user_params.get('drone_xy_avoid_buildings', True))
+        self.drone_xy_snap_eps_m = float(user_params.get('drone_xy_snap_eps_m', 0.5))
+        self.drone_xy_project_max_iter = int(user_params.get('drone_xy_project_max_iter', 8))
 
         # ITU 城市统计参数（用于建筑分布与 LoS 概率）
         # α：建筑覆盖率（0~1），β：建筑密度（buildings/km^2），γ：建筑高度 Rayleigh 分布尺度参数（m）
@@ -692,18 +696,20 @@ class DroneCommProblem(ea.Problem):
         # 染色体包括：
         # 1. 无人机高度 (num_drones 个)
         # 2. 无人机速度 (num_drones 个，0到最大速度)
-        # 3. 干扰源类型 (num_interference 个)
-        # 4. 干扰源功率 (num_interference 个)
-        # 5. 干扰源位置类型 (num_interference 个，0=地面，1=建筑物)
-        # 6. 干扰源在建筑物上的位置偏移或地面位置 (num_interference * 2 个)
+        # 3. 无人机水平位置 (num_drones * 2 个)
+        # 4. 干扰源类型 (num_interference 个)
+        # 5. 干扰源功率 (num_interference 个)
+        # 6. 干扰源位置类型 (num_interference 个，0=地面，1=建筑物)
+        # 7. 干扰源在建筑物上的位置偏移或地面位置 (num_interference * 2 个)
 
         # 计算维度
-        dim = (self.num_drones * 2 +  # 无人机高度和速度
+        dim = (self.num_drones * 4 +  # 无人机高度、速度、水平位置(x,y)
                self.num_interference * 5)  # 干扰源类型、功率、位置类型、位置(x,y)
 
         # 变量类型
         var_types = ([0] * self.num_drones +  # 无人机高度: 连续
                      [0] * self.num_drones +  # 无人机速度: 连续
+                     [0] * self.num_drones * 2 +  # 无人机水平位置: 连续
                      [1] * self.num_interference +  # 干扰源类型: 离散
                      [0] * self.num_interference +  # 干扰源功率: 连续
                      [1] * self.num_interference +  # 干扰源位置类型: 离散 (0=地面, 1=建筑物)
@@ -712,6 +718,7 @@ class DroneCommProblem(ea.Problem):
         # 变量下界
         lb = ([10] * self.num_drones +  # 无人机高度下限
               [0.0] * self.num_drones +  # 无人机速度下限（允许悬停 V=0）
+              [0.0] * self.num_drones * 2 +  # 无人机水平位置下限
               [0] * self.num_interference +  # 干扰源类型下限
               [0] * self.num_interference +  # 干扰源功率下限
               [0] * self.num_interference +  # 干扰源位置类型下限
@@ -720,6 +727,7 @@ class DroneCommProblem(ea.Problem):
         # 变量上界
         ub = ([self.drone_height_max] * self.num_drones +  # 无人机高度上限
               [self.drone_speed_max] * self.num_drones +  # 无人机速度上限
+              [self.area_size] * self.num_drones * 2 +  # 无人机水平位置上限
               [7] * self.num_interference +  # 干扰源类型上限（0-7）
               [70] * self.num_interference +  # 干扰源功率上限
               [1] * self.num_interference +  # 干扰源位置类型上限 (0-1)
@@ -1675,6 +1683,50 @@ class DroneCommProblem(ea.Problem):
             xy[i, 1] = y
         self.drone_xy_positions = xy
 
+    def _project_drone_xy_outside_buildings(self, xy: np.ndarray) -> np.ndarray:
+        """将无人机水平位置从建筑内部投影到外部（确定性）。"""
+        if xy is None:
+            return xy
+        buildings = getattr(self, 'buildings', []) or []
+        if not buildings:
+            return np.clip(np.asarray(xy, dtype=float), 0.0, self.area_size)
+
+        out = np.array(xy, dtype=float, copy=True)
+        eps = max(float(self.drone_xy_snap_eps_m), 1e-3)
+        max_iter = max(int(self.drone_xy_project_max_iter), 1)
+
+        for i in range(out.shape[0]):
+            x = float(out[i, 0])
+            y = float(out[i, 1])
+            for _ in range(max_iter):
+                best_move = None
+                for b in buildings:
+                    if not b.contains_point(x, y):
+                        continue
+                    xmin = float(b.x - b.width / 2)
+                    xmax = float(b.x + b.width / 2)
+                    ymin = float(b.y - b.length / 2)
+                    ymax = float(b.y + b.length / 2)
+                    candidates = [
+                        (abs(x - xmin), xmin - eps, y),
+                        (abs(xmax - x), xmax + eps, y),
+                        (abs(y - ymin), x, ymin - eps),
+                        (abs(ymax - y), x, ymax + eps),
+                    ]
+                    local = min(candidates, key=lambda item: item[0])
+                    if best_move is None or local[0] < best_move[0]:
+                        best_move = local
+                if best_move is None:
+                    break
+                x = float(best_move[1])
+                y = float(best_move[2])
+            x = float(np.clip(x, 0.0, self.area_size))
+            y = float(np.clip(y, 0.0, self.area_size))
+            out[i, 0] = x
+            out[i, 1] = y
+
+        return out
+
     @staticmethod
     def _is_segment_blocked_by_buildings_naive(p0: np.ndarray,
                                                p1: np.ndarray,
@@ -1698,7 +1750,7 @@ class DroneCommProblem(ea.Problem):
         print(f"Geatpy维度: {self.Dim}")
 
         # 验证各个部分的维度
-        total_vars = (self.num_drones * 2 +  # 无人机高度和速度
+        total_vars = (self.num_drones * 4 +  # 无人机高度、速度、水平位置(x,y)
                       self.num_interference * 5)  # 干扰源类型、功率、位置类型、位置(x,y)
         print(f"计算总维度: {total_vars}")
 
@@ -1721,24 +1773,31 @@ class DroneCommProblem(ea.Problem):
         drone_speeds = x[idx:idx + self.num_drones]
         idx += self.num_drones
 
+        # 3. 无人机水平位置
+        drone_xy = x[idx:idx + self.num_drones * 2].reshape(self.num_drones, 2)
+        idx += self.num_drones * 2
+        drone_xy = np.clip(drone_xy, 0.0, self.area_size)
+        if self.drone_xy_avoid_buildings:
+            drone_xy = self._project_drone_xy_outside_buildings(drone_xy)
+
         # 无人机完整位置
         drone_positions = np.zeros((self.num_drones, 3))
-        drone_positions[:, :2] = self.drone_xy_positions
+        drone_positions[:, :2] = drone_xy
         drone_positions[:, 2] = drone_heights
 
-        # 3. 干扰源类型
+        # 4. 干扰源类型
         interference_types = [int(t) for t in x[idx:idx + self.num_interference]]
         idx += self.num_interference
 
-        # 4. 干扰源功率
+        # 5. 干扰源功率
         interference_powers = x[idx:idx + self.num_interference]
         idx += self.num_interference
 
-        # 5. 干扰源位置类型 (0=地面, 1=建筑物)
+        # 6. 干扰源位置类型 (0=地面, 1=建筑物)
         interference_location_types = [int(t) for t in x[idx:idx + self.num_interference]]
         idx += self.num_interference
 
-        # 6. 干扰源位置
+        # 7. 干扰源位置
         interference_positions = x[idx:idx + self.num_interference * 2]
 
         # 生成“受控干扰源”（由染色体控制）
@@ -4830,6 +4889,15 @@ def print_optimization_results(best_x: np.ndarray, best_fitness: float, problem)
     idx += problem.num_drones
     print(f"\n无人机速度 (平均: {np.mean(drone_speeds):.1f}m/s):")
 
+    # 无人机水平位置
+    drone_xy = best_x[idx:idx + problem.num_drones * 2].reshape(problem.num_drones, 2)
+    idx += problem.num_drones * 2
+    print(f"\n无人机水平位置 (前{min(5, problem.num_drones)}个):")
+    for i, (x_pos, y_pos) in enumerate(drone_xy[:5]):
+        print(f"  无人机{i}: ({x_pos:.1f}, {y_pos:.1f})")
+    if problem.num_drones > 5:
+        print(f"  ... 还有{problem.num_drones - 5}个")
+
     # 干扰源类型
     interference_types = [int(t) for t in best_x[idx:idx + problem.num_interference]]
     idx += problem.num_interference
@@ -5011,12 +5079,12 @@ def quick_demo():
     preset_x = np.random.uniform(problem.lb, problem.ub)
 
     # 整数参数取整
-    preset_x[problem.num_drones * 2:problem.num_drones * 2 + problem.num_interference] = \
-        np.round(preset_x[problem.num_drones * 2:problem.num_drones * 2 + problem.num_interference])
-    preset_x[problem.num_drones * 2 + problem.num_interference * 2:
-             problem.num_drones * 2 + problem.num_interference * 3] = \
-        np.round(preset_x[problem.num_drones * 2 + problem.num_interference * 2:
-                          problem.num_drones * 2 + problem.num_interference * 3])
+    type_start = problem.num_drones * 4
+    preset_x[type_start:type_start + problem.num_interference] = \
+        np.round(preset_x[type_start:type_start + problem.num_interference])
+    loc_start = problem.num_drones * 4 + problem.num_interference * 2
+    preset_x[loc_start:loc_start + problem.num_interference] = \
+        np.round(preset_x[loc_start:loc_start + problem.num_interference])
 
     # 生成并可视化场景
     visualize_optimized_scenario(preset_x, problem, user_params)
