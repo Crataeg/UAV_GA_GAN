@@ -594,6 +594,15 @@ class DroneCommProblem(ea.Problem):
         'highrise_urban': {'eta_los_db': 2.3, 'eta_nlos_db': 34.0, 'los_C': 27.23, 'los_B': 0.08},
     }
 
+
+    # EARTH reference (Section 4.3 / Table 4-3) for BS power model
+    EARTH_BS_PARAMS = {
+        'macro': {'p_max_w': 20.0, 'n_trx': 6, 'p0_w': 130.0, 'delta_p': 4.7, 'p_sleep_w': 75.0},
+        'micro': {'p_max_w': 6.3, 'n_trx': 2, 'p0_w': 56.0, 'delta_p': 2.6, 'p_sleep_w': 39.0},
+        'pico': {'p_max_w': 0.13, 'n_trx': 2, 'p0_w': 6.8, 'delta_p': 4.0, 'p_sleep_w': 4.3},
+        'femto': {'p_max_w': 0.05, 'n_trx': 2, 'p0_w': 4.8, 'delta_p': 8.0, 'p_sleep_w': 2.9},
+    }
+
     # Al-Hourani 2014: Surface polynomial coefficients mapping (αβ, γ) -> a,b in Eq.(5)/(6)
     # z = Σ_{j=0..3} Σ_{i=0..3-j} C_ij * (αβ)^i * γ^j
     # Table I: coefficients for a
@@ -626,6 +635,21 @@ class DroneCommProblem(ea.Problem):
         self.building_height_max = float(user_params['building_height_max'])  # 建筑物最大高度
         self.building_density = float(user_params['building_density'])  # 建筑物密度
         self.drone_speed_max = float(user_params['drone_speed_max'])  # 无人机最大速度
+
+        # EARTH time-domain BS power model (dynamic energy)
+        self.energy_model = str(user_params.get('energy_model', 'earth')).strip().lower()
+        self.bs_energy_enabled = bool(user_params.get('bs_energy_enabled', self.energy_model == 'earth'))
+        self.bs_type = str(user_params.get('bs_type', 'micro')).strip().lower()
+        self.bs_params_override = dict(user_params.get('bs_params_override', {}))
+        self.bs_capacity_max = float(user_params.get('bs_capacity_max', user_params.get('capacity_max', 100.0)))
+        self.bs_users_total = float(user_params.get('bs_users_total', user_params.get('users_total', float(self.num_stations) * 20.0)))
+        self.bs_users_per_station = float(user_params.get('bs_users_per_station', self.bs_users_total / max(float(self.num_stations), 1.0)))
+        self.bs_time_origin_s = float(user_params.get('bs_time_origin_s', 0.0))
+        self.bs_sleep_enabled = bool(user_params.get('bs_sleep_enabled', True))
+        self.bs_load_floor = float(user_params.get('bs_load_floor', 0.0))
+        self.include_bs_energy_in_ee = bool(user_params.get('include_bs_energy_in_ee', True))
+        self.bs_traffic_profile_hourly = user_params.get('bs_traffic_profile_hourly', None)
+        self.bs_traffic_profile_points = user_params.get('bs_traffic_profile_points', None)
         # 无人机水平位置约束（避免落入建筑内部）
         self.drone_xy_avoid_buildings = bool(user_params.get('drone_xy_avoid_buildings', True))
         self.drone_xy_snap_eps_m = float(user_params.get('drone_xy_snap_eps_m', 0.5))
@@ -772,6 +796,17 @@ class DroneCommProblem(ea.Problem):
         # 可选：在 shot-noise 中加入小尺度衰落 h_i（Rayleigh 功率增益 ~ Exp(1)），并用稳定伪随机保证可复现
         self.interference_fading_enabled = bool(user_params.get('interference_fading_enabled', False))
         self.signal_fading_enabled = bool(user_params.get('signal_fading_enabled', False))
+
+        # Interference aggregation: Nakagami-m moment matching vs linear sum
+        self.interference_aggregation_model = str(user_params.get('interference_aggregation_model', 'nakagami')).strip().lower()
+        self.nakagami_m_default = float(user_params.get('nakagami_m_default', 1.0))
+        self.nakagami_m_by_type = dict(user_params.get('nakagami_m_by_type', {}))
+        self.nakagami_m_los = user_params.get('nakagami_m_los', None)
+        self.nakagami_m_nlos = user_params.get('nakagami_m_nlos', None)
+        self.nakagami_sample_mode = str(user_params.get('nakagami_sample_mode', 'sample')).strip().lower()
+        self.nakagami_mu4_mode = str(user_params.get('nakagami_mu4_mode', 'fast')).strip().lower()
+        self.nakagami_m_min = float(user_params.get('nakagami_m_min', 0.5))
+        self.nakagami_m_max = float(user_params.get('nakagami_m_max', 20.0))
 
         # 大纲式“功率主导”最终评估参数（概率型输出）
         self.objective_model = str(user_params.get('objective_model', 'power_score')).strip().lower()
@@ -1925,8 +1960,18 @@ class DroneCommProblem(ea.Problem):
             dc = float(np.clip(max(0.0, traffic_dc) + beacon_dc, 0.0, 1.0))
             return dc
 
-        if type_key == 'cellular_5g':
-            return float(np.clip(float(cal.get('activity_factor', 1.0)), 0.0, 1.0))
+        if type_key in ('cellular_4g', 'cellular_5g'):
+            alpha_avg = float(self._traffic_profile_alpha_avg())
+            cap = float(getattr(self, 'bs_capacity_max', 100.0))
+            users = float(getattr(self, 'bs_users_per_station', 0.0))
+            load = 0.0 if cap <= 0.0 else float(np.clip(users / cap, 0.0, 1.0))
+            load = float(np.clip(load * alpha_avg, 0.0, 1.0))
+            if load > 0.0:
+                load = max(load, float(getattr(self, 'bs_load_floor', 0.0)))
+            if type_key == 'cellular_5g':
+                base_act = float(np.clip(float(cal.get('activity_factor', 1.0)), 0.0, 1.0))
+                return float(np.clip(load * base_act, 0.0, 1.0))
+            return float(np.clip(load, 0.0, 1.0))
 
         return 1.0
 
@@ -2200,7 +2245,17 @@ class DroneCommProblem(ea.Problem):
         if not interference_sources:
             return np.zeros((len(drone_positions),), dtype=float)
 
+        model = str(getattr(self, 'interference_aggregation_model', 'linear')).strip().lower()
         totals = np.zeros((len(drone_positions),), dtype=float)
+        if model in ('nakagami', 'nakagami_m', 'moment', 'mm'):
+            for drone_idx, drone_pos in enumerate(drone_positions):
+                totals[drone_idx] = float(self._nakagami_aggregate_interference_mw(
+                    drone_pos=np.asarray(drone_pos, dtype=float),
+                    interference_sources=interference_sources,
+                    buildings=buildings,
+                    drone_idx=int(drone_idx),
+                ))
+            return totals
 
         source_cache = []
         for src_idx, source in enumerate(interference_sources):
@@ -2527,6 +2582,122 @@ class DroneCommProblem(ea.Problem):
         rx_dbm = float(tx_power_dbm - pl_db - float(extra_loss_db) + 10.0 * np.log10(fade) + act_db)
         return rx_dbm, float(p_los)
 
+    def _stable_gamma_sample(self, shape_k: float, scale_theta: float, key_values: Tuple[float, ...]) -> float:
+        if shape_k <= 0.0 or scale_theta <= 0.0:
+            return 0.0
+        # deterministic sampling via seeded RNG
+        u = self._stable_unit_float(*key_values)
+        seed = int(max(0.0, min(1.0 - 1e-12, float(u))) * (2**31 - 1))
+        rng = np.random.RandomState(seed)
+        return float(rng.gamma(shape_k, scale_theta))
+
+    def _nakagami_m_for_source(self, source: 'InterferenceSource', p_los: Optional[float] = None) -> float:
+        type_id = int(getattr(source, 'type_id', -1))
+        type_key = self.interference_config.type_mapping.get(type_id, 'unknown')
+        m_by_type = getattr(self, 'nakagami_m_by_type', {}) if hasattr(self, 'nakagami_m_by_type') else {}
+        m_default = float(getattr(self, 'nakagami_m_default', 1.0))
+        m = float(m_by_type.get(type_key, m_default)) if isinstance(m_by_type, dict) else m_default
+        m_los = getattr(self, 'nakagami_m_los', None)
+        m_nlos = getattr(self, 'nakagami_m_nlos', None)
+        if p_los is not None and (m_los is not None or m_nlos is not None):
+            ml = float(m_los) if m_los is not None else m
+            mn = float(m_nlos) if m_nlos is not None else m
+            m = float(np.clip(float(p_los), 0.0, 1.0)) * ml + (1.0 - float(np.clip(float(p_los), 0.0, 1.0))) * mn
+        m_min = float(getattr(self, 'nakagami_m_min', 0.5))
+        m_max = float(getattr(self, 'nakagami_m_max', 20.0))
+        return float(np.clip(m, m_min, m_max))
+
+    def _nakagami_aggregate_interference_mw(self,
+                                            drone_pos: np.ndarray,
+                                            interference_sources: List['InterferenceSource'],
+                                            buildings: Optional[List['Building']] = None,
+                                            drone_idx: Optional[int] = None) -> float:
+        if not interference_sources:
+            return 0.0
+        p1 = np.asarray(drone_pos, dtype=float)
+        buildings_list = buildings if buildings is not None else []
+        omegas = []
+        ms = []
+        for src_idx, source in enumerate(interference_sources):
+            p0 = np.array([source.x, source.y, source.height], dtype=float)
+            distance = float(np.linalg.norm(p0 - p1))
+            path_loss_db, p_los = self._interference_path_loss_db(
+                source=source,
+                uav_pos=p1,
+                buildings=buildings_list,
+                p0=p0,
+                distance_m=distance,
+                blocked=None,
+            )
+            effective_power_dbm = float(source.power - float(path_loss_db))
+            if distance > float(source.coverage_radius) and float(source.coverage_radius) > 0.0:
+                excess_ratio = float(distance / float(source.coverage_radius))
+                effective_power_dbm -= float(20.0 * np.log10(max(excess_ratio, 1e-6)))
+            freq_coupling = self._spectral_coupling_factor(
+                tx_freq_hz=float(source.frequency),
+                rx_freq_hz=float(self.communication_freq),
+                rx_bw_hz=float(getattr(self, 'bandwidth_hz', 20e6)),
+                interferer_type_id=int(getattr(source, 'type_id', -1)),
+            )
+            activity = float(getattr(source, 'activity', 1.0))
+            omega = float(self._dbm_to_mw(effective_power_dbm)) * float(freq_coupling) * float(activity)
+            if omega <= 0.0:
+                continue
+            m_i = self._nakagami_m_for_source(source, p_los=p_los)
+            omegas.append(float(omega))
+            ms.append(float(m_i))
+        if not omegas:
+            return 0.0
+        omega_sum = float(np.sum(omegas))
+        if omega_sum <= 0.0:
+            return 0.0
+        var_sum = 0.0
+        for omega_i, m_i in zip(omegas, ms):
+            m_i = max(float(m_i), 1e-6)
+            var_sum += float(omega_i) ** 2 / m_i
+        if var_sum <= 0.0:
+            return omega_sum
+        m_eq = float(omega_sum ** 2 / var_sum)
+        m_eq = float(np.clip(m_eq, getattr(self, 'nakagami_m_min', 0.5), getattr(self, 'nakagami_m_max', 20.0)))
+        if str(getattr(self, 'nakagami_sample_mode', 'sample')).strip().lower() in ('mean', 'avg', 'expectation'):
+            return omega_sum
+        scale = float(omega_sum / max(m_eq, 1e-12))
+        key = (
+            23.0,
+            float(drone_idx if drone_idx is not None else 0.0),
+            float(p1[0]), float(p1[1]), float(p1[2]),
+            float(omega_sum), float(m_eq),
+        )
+        return float(self._stable_gamma_sample(m_eq, scale, key))
+
+    def _bs_power_total_w_static(self, scenario: Dict) -> float:
+        if not bool(getattr(self, 'bs_energy_enabled', False)):
+            return 0.0
+        n = int(getattr(self, 'num_stations', 1))
+        if n <= 0:
+            return 0.0
+        alpha = float(self._traffic_profile_alpha_avg())
+        users_list = self._resolve_users_per_station(scenario, 0, 0.0)
+        caps = self._resolve_capacity_per_station(scenario)
+        bs_types = scenario.get('bs_types', None)
+        total_w = 0.0
+        for i in range(n):
+            bs_type = self.bs_type
+            if isinstance(bs_types, (list, tuple)) and len(bs_types) == n:
+                bs_type = str(bs_types[i])
+            params = self._get_bs_params(bs_type)
+            cap_i = float(caps[i]) if i < len(caps) else float(caps[-1])
+            u_i = float(users_list[i]) if i < len(users_list) else float(users_list[-1])
+            cap_i = max(cap_i, 1e-9)
+            load = max(0.0, (u_i / cap_i) * alpha)
+            load = min(1.0, load)
+            if load > 0.0:
+                load = max(load, float(getattr(self, 'bs_load_floor', 0.0)))
+            p_out = float(load) * float(params.get('p_max_w', 0.0))
+            total_w += float(self._bs_power_input_w(p_out, params))
+        return float(total_w)
+
+
     def calculate_interference_power_mw(self,
                                         drone_pos: np.ndarray,
                                         interference_sources: List[InterferenceSource],
@@ -2534,6 +2705,15 @@ class DroneCommProblem(ea.Problem):
                                         drone_idx: Optional[int] = None) -> float:
         if not interference_sources:
             return 0.0
+
+        model = str(getattr(self, 'interference_aggregation_model', 'linear')).strip().lower()
+        if model in ('nakagami', 'nakagami_m', 'moment', 'mm'):
+            return float(self._nakagami_aggregate_interference_mw(
+                drone_pos=drone_pos,
+                interference_sources=interference_sources,
+                buildings=buildings,
+                drone_idx=drone_idx,
+            ))
 
         total_mw = 0.0
         p1 = np.asarray(drone_pos, dtype=float)
@@ -2927,8 +3107,156 @@ class DroneCommProblem(ea.Problem):
             sum_rate_bps += mean_rate_bps
             sum_prop_w += self._rotor_propulsion_power_w(v)
 
+        bs_power_w = 0.0
+        if bool(getattr(self, 'include_bs_energy_in_ee', False)):
+            bs_power_w = float(self._bs_power_total_w_static(scenario))
+        sum_prop_w += float(bs_power_w)
         ee_bpj = float(sum_rate_bps / max(sum_prop_w, 1e-12))
         return {'sum_rate_bps': float(sum_rate_bps), 'sum_propulsion_w': float(sum_prop_w), 'EE_bpj': ee_bpj}
+
+
+    def _get_bs_params(self, bs_type: str) -> Dict[str, float]:
+        params = dict(self.EARTH_BS_PARAMS.get(str(bs_type).lower(), self.EARTH_BS_PARAMS.get('micro')))
+        override = dict(getattr(self, 'bs_params_override', {}))
+        if str(bs_type).lower() in override and isinstance(override.get(str(bs_type).lower()), dict):
+            params.update(override.get(str(bs_type).lower(), {}))
+        else:
+            for k in ('p_max_w', 'n_trx', 'p0_w', 'delta_p', 'p_sleep_w'):
+                if k in override:
+                    params[k] = override[k]
+        return params
+
+    def _traffic_profile_alpha(self, t_s: float) -> float:
+        # t_s in seconds, mapped to hour-of-day
+        hour = (float(t_s) + float(getattr(self, 'bs_time_origin_s', 0.0))) / 3600.0
+        hour = hour % 24.0
+        hourly = getattr(self, 'bs_traffic_profile_hourly', None)
+        points = getattr(self, 'bs_traffic_profile_points', None)
+        if isinstance(hourly, (list, tuple)) and len(hourly) >= 2:
+            h0 = int(math.floor(hour)) % len(hourly)
+            h1 = (h0 + 1) % len(hourly)
+            frac = hour - math.floor(hour)
+            a = (1.0 - frac) * float(hourly[h0]) + float(frac) * float(hourly[h1])
+            return float(np.clip(a, 0.0, 1.0))
+        if isinstance(points, (list, tuple)) and len(points) >= 2:
+            pts = []
+            for p in points:
+                if isinstance(p, (list, tuple)) and len(p) >= 2:
+                    pts.append((float(p[0]) % 24.0, float(p[1])))
+            pts = sorted(pts, key=lambda x: x[0])
+            if len(pts) >= 2:
+                # wrap around 24h
+                pts_wrap = pts + [(pts[0][0] + 24.0, pts[0][1])]
+                for i in range(len(pts_wrap) - 1):
+                    h0, a0 = pts_wrap[i]
+                    h1, a1 = pts_wrap[i + 1]
+                    h = hour if hour >= h0 else hour + 24.0
+                    if h0 <= h <= h1:
+                        frac = 0.0 if h1 == h0 else (h - h0) / (h1 - h0)
+                        a = (1.0 - frac) * a0 + frac * a1
+                        return float(np.clip(a, 0.0, 1.0))
+        # default daily profile (normalized)
+        default_hourly = [
+            0.15, 0.12, 0.10, 0.08, 0.08, 0.12,
+            0.25, 0.45, 0.60, 0.70, 0.75, 0.80,
+            0.85, 0.80, 0.75, 0.70, 0.80, 0.95,
+            1.00, 0.90, 0.70, 0.50, 0.35, 0.25,
+        ]
+        h0 = int(math.floor(hour)) % 24
+        h1 = (h0 + 1) % 24
+        frac = hour - math.floor(hour)
+        a = (1.0 - frac) * float(default_hourly[h0]) + float(frac) * float(default_hourly[h1])
+        return float(np.clip(a, 0.0, 1.0))
+
+    def _traffic_profile_alpha_avg(self) -> float:
+        hourly = getattr(self, 'bs_traffic_profile_hourly', None)
+        if isinstance(hourly, (list, tuple)) and len(hourly) > 0:
+            vals = [float(v) for v in hourly]
+            return float(np.clip(float(np.mean(vals)), 0.0, 1.0))
+        points = getattr(self, 'bs_traffic_profile_points', None)
+        if isinstance(points, (list, tuple)) and len(points) >= 2:
+            # sample 24 points
+            vals = []
+            for h in range(24):
+                vals.append(self._traffic_profile_alpha(float(h) * 3600.0))
+            return float(np.clip(float(np.mean(vals)), 0.0, 1.0))
+        return float(np.clip(float(np.mean([
+            0.15, 0.12, 0.10, 0.08, 0.08, 0.12,
+            0.25, 0.45, 0.60, 0.70, 0.75, 0.80,
+            0.85, 0.80, 0.75, 0.70, 0.80, 0.95,
+            1.00, 0.90, 0.70, 0.50, 0.35, 0.25,
+        ])), 0.0, 1.0))
+
+    def _resolve_users_per_station(self, scenario: Dict, t_idx: int, t_s: float) -> List[float]:
+        n = int(getattr(self, 'num_stations', 1))
+        if n <= 0:
+            return [0.0]
+        users_ts = scenario.get('users_per_station_time_series', None)
+        if isinstance(users_ts, (list, tuple)) and len(users_ts) > 0:
+            u = users_ts[min(int(t_idx), len(users_ts) - 1)]
+            if isinstance(u, (list, tuple)) and len(u) == n:
+                return [float(x) for x in u]
+            if isinstance(u, (int, float)):
+                return [float(u)] * n
+        users_total_ts = scenario.get('users_time_series', None)
+        if isinstance(users_total_ts, (list, tuple)) and len(users_total_ts) > 0:
+            u_total = float(users_total_ts[min(int(t_idx), len(users_total_ts) - 1)])
+            return [float(u_total) / max(float(n), 1.0)] * n
+        users_per_station = scenario.get('users_per_station', None)
+        if isinstance(users_per_station, (list, tuple)) and len(users_per_station) == n:
+            return [float(x) for x in users_per_station]
+        if isinstance(users_per_station, (int, float)):
+            return [float(users_per_station)] * n
+        users_total = scenario.get('users_total', None)
+        if isinstance(users_total, (int, float)):
+            return [float(users_total) / max(float(n), 1.0)] * n
+        return [float(getattr(self, 'bs_users_per_station', 0.0))] * n
+
+    def _resolve_capacity_per_station(self, scenario: Dict) -> List[float]:
+        n = int(getattr(self, 'num_stations', 1))
+        cap_ts = scenario.get('capacity_per_station', None)
+        if isinstance(cap_ts, (list, tuple)) and len(cap_ts) == n:
+            return [float(x) for x in cap_ts]
+        cap = scenario.get('bs_capacity_max', scenario.get('capacity_max', getattr(self, 'bs_capacity_max', 100.0)))
+        if isinstance(cap, (int, float)):
+            return [float(cap)] * max(n, 1)
+        return [float(getattr(self, 'bs_capacity_max', 100.0))] * max(n, 1)
+
+    def _bs_power_input_w(self, p_out_w: float, params: Dict[str, float]) -> float:
+        n_trx = float(params.get('n_trx', 1))
+        p0_w = float(params.get('p0_w', 0.0))
+        delta_p = float(params.get('delta_p', 0.0))
+        p_sleep_w = float(params.get('p_sleep_w', 0.0))
+        if float(p_out_w) <= 0.0 and bool(getattr(self, 'bs_sleep_enabled', True)):
+            return float(n_trx * p_sleep_w)
+        return float(n_trx * (p0_w + delta_p * float(p_out_w)))
+
+    def _bs_power_total_w_at_time(self, scenario: Dict, t_idx: int, t_s: float) -> float:
+        if not bool(getattr(self, 'bs_energy_enabled', False)):
+            return 0.0
+        n = int(getattr(self, 'num_stations', 1))
+        if n <= 0:
+            return 0.0
+        alpha = float(self._traffic_profile_alpha(float(t_s)))
+        users_list = self._resolve_users_per_station(scenario, int(t_idx), float(t_s))
+        caps = self._resolve_capacity_per_station(scenario)
+        bs_types = scenario.get('bs_types', None)
+        total_w = 0.0
+        for i in range(n):
+            bs_type = self.bs_type
+            if isinstance(bs_types, (list, tuple)) and len(bs_types) == n:
+                bs_type = str(bs_types[i])
+            params = self._get_bs_params(bs_type)
+            cap_i = float(caps[i]) if i < len(caps) else float(caps[-1])
+            u_i = float(users_list[i]) if i < len(users_list) else float(users_list[-1])
+            cap_i = max(cap_i, 1e-9)
+            load = max(0.0, (u_i / cap_i) * alpha)
+            load = min(1.0, load)
+            if load > 0.0:
+                load = max(load, float(getattr(self, 'bs_load_floor', 0.0)))
+            p_out = float(load) * float(params.get('p_max_w', 0.0))
+            total_w += float(self._bs_power_input_w(p_out, params))
+        return float(total_w)
 
     def _build_time_grid(self) -> Tuple[np.ndarray, float]:
         """
@@ -3013,6 +3341,12 @@ class DroneCommProblem(ea.Problem):
 
         total_bits = 0.0
         total_energy_j = 0.0
+        # BS energy over time (EARTH model)
+        if bool(getattr(self, 'include_bs_energy_in_ee', False)) and bool(getattr(self, 'bs_energy_enabled', False)):
+            bs_energy_j = 0.0
+            for n_idx, t_s in enumerate(t):
+                bs_energy_j += float(self._bs_power_total_w_at_time(scenario, int(n_idx), float(t_s))) * float(dt)
+            total_energy_j += float(bs_energy_j)
         station_bits = np.zeros((len(stations),), dtype=float)
 
         # 轨迹评估不复用静态“每无人机干扰缓存”，避免位置变化导致口径错误
