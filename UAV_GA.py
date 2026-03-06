@@ -16,6 +16,7 @@ from matplotlib.patches import Rectangle
 from matplotlib.lines import Line2D
 import os
 import json
+import sys
 from typing import List, Dict, Tuple, Optional
 
 # 创建输出目录
@@ -771,10 +772,10 @@ class DroneCommProblem(ea.Problem):
             'speed_energy_efficiency': 0.3
         }
 
-        # 通信劣化评估模型：
-        # - legacy：沿用“基准功率 + 干扰/信号比”的启发式
-        # - cdi：按你给的公式，只用“损耗Λ + 干扰强度I(shot-noise)”合成 CDI（默认）
-        self.degradation_model = str(user_params.get('degradation_model', 'margin')).strip().lower()
+        # 通信劣化评估模型：统一使用 margin（功率裕量）模型
+        # 注：legacy/CDI 分支已停用（保留代码以便回溯/对照）
+        # NOTE: 统一使用 margin（功率裕量）模型；CDI/legacy 分支停用。
+        self.degradation_model = 'margin'
 
         # 功率域参数：噪声功率 Ny = N0·B·F（线性域 mW 累加）
         self.bandwidth_hz = float(user_params.get('bandwidth_hz', 20e6))
@@ -784,13 +785,14 @@ class DroneCommProblem(ea.Problem):
         self.margin_threshold_db = float(user_params.get('margin_threshold_db', 0.0))
         self.margin_slope_db = float(user_params.get('margin_slope_db', 3.0))
 
-        # CDI 参数（单位约定：路径损耗 dB；干扰强度 I 用 mW 累加，再映射到 dB-like）
+        # CDI 参数（已停用，仅为兼容旧配置文件）
+        # CDI 参数已停用（保留字段以兼容旧的 params JSON）。
         self.cdi_pl_max_db = float(user_params.get('cdi_pl_max_db', 125.0))
         self.cdi_w_link = float(user_params.get('cdi_w_link', 1.0))
         self.cdi_w_int = float(user_params.get('cdi_w_int', 1.0))
         # g(I) = 10log10(1 + I/I_ref)，I_ref 用 mW（默认 -30 dBm = 1e-3 mW）
         self.cdi_int_ref_mw = float(user_params.get('cdi_int_ref_mw', 1e-3))
-        # 将 CDI 映射到 [0,1] 的尺度（越大越“饱和”得慢）
+        # 将 CDI 映射到 [0,1] 的尺度（已停用）
         self.cdi_scale_db = float(user_params.get('cdi_scale_db', 20.0))
 
         # 可选：在 shot-noise 中加入小尺度衰落 h_i（Rayleigh 功率增益 ~ Exp(1)），并用稳定伪随机保证可复现
@@ -2931,9 +2933,7 @@ class DroneCommProblem(ea.Problem):
                                    scenario: Dict,
                                    drone_idx: Optional[int] = None) -> float:
         """
-        通信劣化程度 ∈[0,1]：
-        - legacy：原始启发式（基准功率 + 干扰/信号）
-        - cdi：按公式 CDI 计算，并用 1-exp(-CDI/scale) 映射到 [0,1]
+        通信劣化程度 ∈[0,1]：统一使用功率裕量（margin）模型计算。
         """
         model = str(getattr(self, 'degradation_model', 'margin')).strip().lower()
         if model in ('legacy', 'heuristic', 'old', 'power_ratio'):
@@ -2949,10 +2949,13 @@ class DroneCommProblem(ea.Problem):
             comm_deg = 1.0 / (1.0 + np.exp((m_db - theta) / slope))
             return float(self._blend_u2u_comm_degradation(float(np.clip(comm_deg, 0.0, 1.0)), scenario, drone_idx=drone_idx))
 
-        _, _, cdi = self.calculate_cdi_components(drone_pos, station_pos, scenario, drone_idx=drone_idx)
-        scale = max(float(getattr(self, 'cdi_scale_db', 1.0)), 1e-6)
-        base = float(np.clip(1.0 - np.exp(-float(cdi) / scale), 0.0, 1.0))
-        return float(self._blend_u2u_comm_degradation(base, scenario, drone_idx=drone_idx))
+        # CDI 分支停用：兜底也统一回落到 margin（功率裕量）模型
+        comp = self.calculate_power_margin_components(drone_pos, station_pos, scenario, drone_idx=drone_idx)
+        m_db = float(comp['M_db'])
+        theta = float(getattr(self, 'margin_threshold_db', 0.0))
+        slope = max(float(getattr(self, 'margin_slope_db', 1.0)), 1e-6)
+        comm_deg = 1.0 / (1.0 + np.exp((m_db - theta) / slope))
+        return float(self._blend_u2u_comm_degradation(float(np.clip(comm_deg, 0.0, 1.0)), scenario, drone_idx=drone_idx))
 
     def _comm_deg_from_margin_db(self, m_db: float) -> float:
         """将功率裕量 M[dB] 映射为通信劣化程度∈[0,1]（越大越差）。"""
@@ -3663,13 +3666,11 @@ class DroneCommProblem(ea.Problem):
                 'outage_prob': 0.0,
                 'avg_rate_mbps': 0.0,
                 'avg_sinr_db': -np.inf,
-                'model': str(getattr(self, 'degradation_model', 'cdi')),
+                'model': str(getattr(self, 'degradation_model', 'margin')),
             }
 
         comm_degs = []
         total_degs = []
-        d_links = []
-        cdis = []
         int_mws = []
         margins = []
         outages = []
@@ -3716,14 +3717,13 @@ class DroneCommProblem(ea.Problem):
                 if u2u_d is not None:
                     u2u_comm_degs.append(float(u2u_d))
 
-                d_link, i_mw, cdi = self.calculate_cdi_components(
-                    drones[drone_idx],
-                    stations[station_idx],
-                    scenario,
+                # CDI 指标已停用：只记录干扰强度用于可视化/统计
+                i_mw = float(self.calculate_interference_power_mw(
+                    drone_pos=np.asarray(drones[drone_idx], dtype=float),
+                    interference_sources=scenario.get('interference_sources', []),
+                    buildings=scenario.get('buildings', []),
                     drone_idx=int(drone_idx),
-                )
-                d_links.append(float(d_link))
-                cdis.append(float(cdi))
+                ))
                 int_mws.append(float(i_mw))
                 comm_degs.append(float(self.calculate_comm_degradation(
                     drones[drone_idx],
@@ -3755,9 +3755,9 @@ class DroneCommProblem(ea.Problem):
             'avg_comm_deg': float(np.mean(comm_degs)) if comm_degs else 0.0,
             'avg_speed_deg': float(np.mean(speed_degs)) if speed_degs else 0.0,
             'avg_total_deg': float(np.mean(total_degs)) if total_degs else 0.0,
-            'avg_d_link_db': float(np.mean(d_links)) if d_links else 0.0,
+            'avg_d_link_db': 0.0,
             'avg_interference_dbm': avg_i_dbm,
-            'avg_cdi': float(np.mean(cdis)) if cdis else 0.0,
+            'avg_cdi': 0.0,
             'avg_margin_db': float(np.mean(margins)) if margins else 0.0,
             'outage_prob': float(np.mean(outages)) if outages else 0.0,
             'avg_rate_mbps': float(np.mean(rates_mbps)) if rates_mbps else 0.0,
@@ -3774,7 +3774,7 @@ class DroneCommProblem(ea.Problem):
             'avg_iy_dbm': float(np.mean([v for v in iy_dbms if np.isfinite(v)])) if any(np.isfinite(v) for v in iy_dbms) else -np.inf,
             'avg_i_aer_dbm': float(np.mean([v for v in i_aer_dbms if np.isfinite(v)])) if i_aer_dbms and any(np.isfinite(v) for v in i_aer_dbms) else -np.inf,
             'avg_u2u_comm_deg': float(np.mean(u2u_comm_degs)) if u2u_comm_degs else 0.0,
-            'model': str(getattr(self, 'degradation_model', 'cdi')),
+            'model': str(getattr(self, 'degradation_model', 'margin')),
         }
         for k in ('D_total', 'D_comm', 'D_thr', 'D_EE', 'D_penalty'):
             if k in outline:
@@ -4777,7 +4777,7 @@ class EnhancedVisualizer:
         model = str(analysis.get('model', '')).strip().lower()
 
         if analysis:
-            comm_label = 'CDI通信劣化' if model not in ('legacy', 'heuristic', 'old') else '通信功率强度变化'
+            comm_label = 'margin通信劣化（功率裕量）'
             categories = [comm_label, '速度导致的能效劣化']
             comm_deg = float(np.clip(analysis.get('avg_comm_deg', 0.0), 0.0, 1.0))
             speed_deg = float(np.clip(analysis.get('avg_speed_deg', 0.0), 0.0, 1.0))
@@ -5260,7 +5260,7 @@ def visualize_optimized_scenario(best_x: np.ndarray, problem, user_params: Dict)
 
     # 生成场景
     scenario = problem.generate_scenario(best_x)
-    # 为可视化附加通信分析（CDI/干扰强度/链路裕量等）
+    # 为可视化附加通信分析（干扰强度/链路裕量等；已统一使用 margin 劣化模型）
     try:
         scenario['analysis'] = problem.analyze_scenario_metrics(scenario)
     except Exception as e:
@@ -5433,7 +5433,17 @@ if __name__ == "__main__":
     print("2. 快速演示（使用预设参数）")
     print("3. 退出")
 
-    choice = input("请输入选择 (1-3): ")
+    if sys.stdin is None or not sys.stdin.isatty():
+        print("\n(未检测到可交互输入，默认运行：快速演示)")
+        choice = "2"
+    else:
+        try:
+            choice = input("请输入选择 (1-3): ")
+        except (EOFError, KeyboardInterrupt):
+            # Non-interactive stdin (some IDE runners / piping) can't read input().
+            # Fall back to quick demo so the script can still run.
+            print("\n(未检测到可交互输入，默认运行：快速演示)")
+            choice = "2"
 
     if choice == "1":
         main()

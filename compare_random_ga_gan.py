@@ -11,6 +11,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from UAV_GA import DroneCommProblem, EnhancedVisualizer
+from evaluate import evaluate_groups_from_samples, EvaluateConfig
 
 
 def default_user_params() -> Dict:
@@ -311,6 +312,21 @@ def main():
     plot_comparison(ga_metrics, gan_metrics, rnd_metrics, base_output)
     plot_total_deg_focus(ga_metrics, gan_metrics, rnd_metrics, base_output)
 
+    # 新增：独立 KPI/BLER/吞吐验证层（不依赖综合退化评分）
+    kpi_out = os.path.join(base_output, "kpi")
+    try:
+        evaluate_groups_from_samples(
+            problem,
+            groups=[("ga", ga_samples), ("gan", gan_samples), ("random", rnd_samples)],
+            out_dir=kpi_out,
+            cfg=EvaluateConfig(),
+            gen_bler_a=False,
+            gen_bler_b=False,
+            bler_b_csv="",
+        )
+    except Exception as e:
+        print(f"[WARN] KPI evaluation failed (non-fatal): {e}")
+
     viz_count = int(max(args.viz_count, 0))
     if viz_count > 0:
         viz_count = min(viz_count, len(ga_samples), len(gan_samples), len(rnd_samples))
@@ -337,6 +353,7 @@ def main():
           os.path.join(base_output, "comparison_means.png"),
           os.path.join(base_output, "comparison_total_deg_overview.png"),
           os.path.join(base_output, "comparison_total_deg_density.png"))
+    print("KPI outputs:", os.path.join(base_output, "kpi"))
     if viz_count > 0:
         print("Scenario visualizations:",
               os.path.join(visuals_output, "ga"),
