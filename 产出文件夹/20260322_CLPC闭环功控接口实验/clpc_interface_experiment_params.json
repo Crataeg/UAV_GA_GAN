@@ -1,0 +1,33 @@
+{
+  "base_user_params": {
+    "num_drones": 4,
+    "num_stations": 2,
+    "area_size": 600,
+    "drone_height_max": 220,
+    "building_height_max": 90,
+    "building_density": 0.35,
+    "itu_alpha": 0.35,
+    "itu_beta": 100.0,
+    "itu_gamma": 30.0,
+    "drone_speed_max": 16,
+    "num_controlled_interference": 8,
+    "background_interference_enabled": false,
+    "interference_aggregation_model": "nakagami",
+    "nakagami_sample_mode": "mean",
+    "los_indicator_mode": "deterministic_if_map",
+    "scene_consistency_mode": "project",
+    "margin_threshold_db": 0.0,
+    "margin_slope_db": 3.0,
+    "p1238_enabled": true,
+    "p2109_bel_enabled": false,
+    "spectral_mode": "cochannel_only"
+  },
+  "samples_n": 24,
+  "controlled_interferer_type": "cellular_ue_ul",
+  "closed_loop_cases_db": [
+    0.0,
+    3.0,
+    -3.0
+  ],
+  "note": "±3 dB is a mechanism-demonstration setting for the retained f(ΔTPC) interface, not a calibrated field value."
+}

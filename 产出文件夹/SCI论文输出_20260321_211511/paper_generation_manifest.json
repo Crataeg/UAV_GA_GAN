@@ -1,0 +1,43 @@
+{
+  "generated_at": "2026-03-21T21:15:12",
+  "document": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\基于GA-GAN的城市无人机通信劣化评估论文.docx",
+  "knowledge_base": {
+    "n_files": 11,
+    "categories": {
+      "00_项目总览.md": 1,
+      "10_成果节点": 5,
+      "20_参考节点": 3,
+      "30_写作基础": 1,
+      "40_代码级技术解析": 1
+    },
+    "total_links": 28
+  },
+  "sources": {
+    "comparison": "D:\\论文无人机\\成果本身\\代码工程\\12\\__upstream_UAV_GA_GAN\\output\\demo_20260103_162012\\compare\\comparison_summary.json",
+    "corner_case": "D:\\论文无人机\\成果本身\\代码工程\\12\\output\\measured_corner_compare\\corner_case_summary.json"
+  },
+  "figure_sources": {
+    "optimized_scene": "D:\\论文无人机\\成果本身\\代码工程\\12\\__upstream_UAV_GA_GAN\\output\\3d_scene_optimized_20260108_161255.png",
+    "aerpaw_spatial": "D:\\论文无人机\\成果本身\\代码工程\\12\\output\\measured_corner_compare\\aerpaw\\aerpaw_spatial_compare.png",
+    "dryad_spatial": "D:\\论文无人机\\成果本身\\代码工程\\12\\output\\measured_corner_compare\\dryad\\dryad_spatial_compare.png"
+  },
+  "generated_figures": {
+    "framework": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\figures\\figure_01_framework.png",
+    "ga_gan_summary": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\figures\\figure_03_ga_gan_summary.png",
+    "measured_gap": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\figures\\figure_06_measured_gap.png",
+    "optimized_scene": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\figures\\optimized_scene.png",
+    "aerpaw_spatial": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\figures\\aerpaw_spatial.png",
+    "dryad_spatial": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\figures\\dryad_spatial.png",
+    "eq_1": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_01.png",
+    "eq_2": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_02.png",
+    "eq_3": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_03.png",
+    "eq_4": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_04.png",
+    "eq_5": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_05.png",
+    "eq_6": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_06.png",
+    "eq_7": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_07.png",
+    "eq_8": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_08.png",
+    "eq_9": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_09.png",
+    "eq_10": "D:\\论文无人机\\产出文件夹\\SCI论文输出_20260321_211511\\equations\\eq_10.png"
+  },
+  "reference_count": 20
+}

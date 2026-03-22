@@ -1,0 +1,44 @@
+{
+  "num_drones": 6,
+  "num_stations": 4,
+  "area_size": 1200,
+  "drone_height_max": 350,
+  "building_height_max": 120,
+  "building_density": 0.45,
+  "itu_alpha": 0.45,
+  "itu_beta": 120.0,
+  "itu_gamma": 40.0,
+  "drone_speed_max": 18,
+  "num_controlled_interference": 8,
+  "clpc_enabled": true,
+  "clpc_hour_of_day": 19.0,
+  "clpc_blend_alpha": 0.65,
+  "clpc_sleep_threshold": 0.12,
+  "clpc_full_threshold": 0.88,
+  "clpc_users_by_type": {
+    "wifi_2_4g": 12,
+    "wifi_5_8g": 9,
+    "cellular_4g": 65,
+    "cellular_5g": 80
+  },
+  "clpc_capacity_by_type": {
+    "wifi_2_4g": 20,
+    "wifi_5_8g": 18,
+    "cellular_4g": 100,
+    "cellular_5g": 100
+  },
+  "clpc_pmin_frac_by_type": {
+    "wifi_2_4g": 0.18,
+    "wifi_5_8g": 0.18,
+    "cellular_4g": 0.28,
+    "cellular_5g": 0.25
+  },
+  "background_interference_enabled": true,
+  "background_interference_density_scale": 1.0,
+  "los_indicator_mode": "deterministic_if_map",
+  "interference_aggregation_model": "nakagami",
+  "nakagami_sample_mode": "sample",
+  "scene_consistency_mode": "project",
+  "margin_threshold_db": 0.0,
+  "margin_slope_db": 3.0
+}

@@ -1,0 +1,65 @@
+interference_source,factor,evidence_screenshots,interference_source_cn,interference_source_en,factor_cn,factor_en
+wifi_2_4g,frequency,fcc_15_247_24ghz_band.png; wifi_variability_band_and_4s.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),频率/频段,Frequency / band
+wifi_2_4g,power_range,fcc_15_247_1watt.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+wifi_2_4g,coverage_radius,wifi_ap_nominal_range_100m.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),覆盖/影响半径,Coverage / influence radius
+wifi_2_4g,path_loss_factor,a2g_fspl_formula.png; itu_p1238_N.png; itu_p1238_model.png; stochastic_sir_alpha.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+wifi_2_4g,activity,uav_rc_wifi_beacon_102_4ms.png; wifi_variability_band_and_4s.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),活动度/占空比/业务模型,Activity / duty cycle / traffic model
+wifi_2_4g,background_PPP,stochastic_ppp_3d.png; wifi_ap_table2_grove_park_46.png; wifi_ap_table2_manhattan_1854.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+wifi_2_4g,power_calibration_generation,a2g_fspl_formula.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),功率标定/生成功率模型,Power calibration / power generation model
+wifi_2_4g,height_distribution,stochastic_ppp_3d.png,Wi‑Fi 2.4 GHz 接入点,Wi‑Fi 2.4 GHz access point (AP),高度分布/安装高度,Height distribution / installation height
+wifi_5_8g,frequency,fcc_15_247_58ghz_band.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),频率/频段,Frequency / band
+wifi_5_8g,power_range,fcc_15_247_1watt.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+wifi_5_8g,coverage_radius,wifi_ap_nominal_range_100m.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),覆盖/影响半径,Coverage / influence radius
+wifi_5_8g,path_loss_factor,a2g_fspl_formula.png; itu_p1238_N.png; itu_p1238_model.png; stochastic_sir_alpha.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+wifi_5_8g,activity,uav_rc_wifi_beacon_102_4ms.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),活动度/占空比/业务模型,Activity / duty cycle / traffic model
+wifi_5_8g,background_PPP,stochastic_ppp_3d.png; wifi_ap_table2_grove_park_46.png; wifi_ap_table2_manhattan_1854.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+wifi_5_8g,power_calibration_generation,a2g_fspl_formula.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),功率标定/生成功率模型,Power calibration / power generation model
+wifi_5_8g,height_distribution,stochastic_ppp_3d.png,Wi‑Fi 5.8 GHz 接入点,Wi‑Fi 5.8 GHz access point (AP),高度分布/安装高度,Height distribution / installation height
+cellular_4g,frequency,3gpp_tr36777_table_params.png; emf_table_II.png,4G LTE 基站（eNB）,4G LTE base station (eNB),频率/频段,Frequency / band
+cellular_4g,power_range,3gpp_tr36777_table_params.png; emf_table_II.png,4G LTE 基站（eNB）,4G LTE base station (eNB),功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+cellular_4g,coverage_radius,3gpp_tr36777_table_params.png,4G LTE 基站（eNB）,4G LTE base station (eNB),覆盖/影响半径,Coverage / influence radius
+cellular_4g,path_loss_factor,a2g_fspl_formula.png; emf_table_II.png; stochastic_sir_alpha.png,4G LTE 基站（eNB）,4G LTE base station (eNB),路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+cellular_4g,activity,springer_full_buffer_definition.png,4G LTE 基站（eNB）,4G LTE base station (eNB),活动度/占空比/业务模型,Activity / duty cycle / traffic model
+cellular_4g,background_PPP,emf_table_II.png; stochastic_ppp_3d.png,4G LTE 基站（eNB）,4G LTE base station (eNB),背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+cellular_4g,power_calibration_generation,a2g_fspl_formula.png,4G LTE 基站（eNB）,4G LTE base station (eNB),功率标定/生成功率模型,Power calibration / power generation model
+cellular_4g,height_distribution,3gpp_tr36777_table_params.png; stochastic_ppp_3d.png,4G LTE 基站（eNB）,4G LTE base station (eNB),高度分布/安装高度,Height distribution / installation height
+cellular_5g,frequency,dominance_n78_midband.png; joint_emf_f_3_6ghz.png,5G NR 基站（gNB）,5G NR base station (gNB),频率/频段,Frequency / band
+cellular_5g,power_range,tr138913_p27_power_46dBm_23dBm.png,5G NR 基站（gNB）,5G NR base station (gNB),功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+cellular_5g,coverage_radius,tr138913_p12_isd200m.png; tr138913_p15_isd1732m.png,5G NR 基站（gNB）,5G NR base station (gNB),覆盖/影响半径,Coverage / influence radius
+cellular_5g,path_loss_factor,a2g_fspl_formula.png; stochastic_sir_alpha.png,5G NR 基站（gNB）,5G NR base station (gNB),路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+cellular_5g,activity,springer_full_buffer_definition.png,5G NR 基站（gNB）,5G NR base station (gNB),活动度/占空比/业务模型,Activity / duty cycle / traffic model
+cellular_5g,background_PPP,stochastic_ppp_3d.png,5G NR 基站（gNB）,5G NR base station (gNB),背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+cellular_5g,power_calibration_generation,a2g_fspl_formula.png,5G NR 基站（gNB）,5G NR base station (gNB),功率标定/生成功率模型,Power calibration / power generation model
+cellular_5g,height_distribution,dominance_rooftop_4g5g.png; stochastic_ppp_3d.png,5G NR 基站（gNB）,5G NR base station (gNB),高度分布/安装高度,Height distribution / installation height
+cellular_ue_ul,frequency,emf_table_II.png,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),频率/频段,Frequency / band
+cellular_ue_ul,power_range,emf_table_II.png; tr138913_p27_power_46dBm_23dBm.png,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+cellular_ue_ul,coverage_radius,MISSING,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),覆盖/影响半径,Coverage / influence radius
+cellular_ue_ul,path_loss_factor,a2g_fspl_formula.png; emf_table_II.png; stochastic_sir_alpha.png,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+cellular_ue_ul,activity,springer_full_buffer_definition.png,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),活动度/占空比/业务模型,Activity / duty cycle / traffic model
+cellular_ue_ul,background_PPP,emf_table_II.png; stochastic_ppp_3d.png,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+cellular_ue_ul,power_calibration_generation,a2g_fspl_formula.png; emf_ul_power_control.png,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),功率标定/生成功率模型,Power calibration / power generation model
+cellular_ue_ul,height_distribution,3gpp_tr36777_aerial_ue_height.png; stochastic_ppp_3d.png,蜂窝终端上行（UE UL）,Cellular user equipment uplink (UE UL),高度分布/安装高度,Height distribution / installation height
+gnss_jammer,frequency,isgps_l1_1575_42.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),频率/频段,Frequency / band
+gnss_jammer,power_range,jammertest23_power_settings.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+gnss_jammer,coverage_radius,gpsworld_jammer_max_effective_range_results.png; gpsworld_jammer_table4_ranges.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),覆盖/影响半径,Coverage / influence radius
+gnss_jammer,path_loss_factor,a2g_fspl_formula.png; stochastic_sir_alpha.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+gnss_jammer,activity,jammertest23_power_settings.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),活动度/占空比/业务模型,Activity / duty cycle / traffic model
+gnss_jammer,background_PPP,stochastic_ppp_3d.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+gnss_jammer,power_calibration_generation,a2g_fspl_formula.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),功率标定/生成功率模型,Power calibration / power generation model
+gnss_jammer,height_distribution,stochastic_ppp_3d.png,GNSS 干扰器（以 GPS L1 为例）,GNSS jammer (GPS L1 as example),高度分布/安装高度,Height distribution / installation height
+industrial_device,frequency,fcc_15_247_902_928_band.png; lora_rp002_eu863_txpower_eirp.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,频率/频段,Frequency / band
+industrial_device,power_range,fcc_15_247_1watt.png; lora_rp002_eu863_txpower_eirp.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+industrial_device,coverage_radius,nature_lora_deployment_area_2_6km2.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,覆盖/影响半径,Coverage / influence radius
+industrial_device,path_loss_factor,a2g_fspl_formula.png; itu_p1238_N.png; itu_p1238_model.png; stochastic_sir_alpha.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+industrial_device,activity,cfr15_247_dwell_time_0_4s.png; lora_rp002_eu863_txpower_eirp.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,活动度/占空比/业务模型,Activity / duty cycle / traffic model
+industrial_device,background_PPP,stochastic_ppp_3d.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+industrial_device,power_calibration_generation,a2g_fspl_formula.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,功率标定/生成功率模型,Power calibration / power generation model
+industrial_device,height_distribution,nature_lora_aerial_gateway_heights_50_100_150m.png; nature_lora_height_advantage_area_statement.png; stochastic_ppp_3d.png,工业/物联网 ISM 设备发射机,Industrial/IoT ISM transmitter,高度分布/安装高度,Height distribution / installation height
+satellite_ground,frequency,ku_buc_14ghz_power.png,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,频率/频段,Frequency / band
+satellite_ground,power_range,ku_buc_14ghz_power.png,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,功率范围（Tx/EIRP）,Power range (Tx/EIRP)
+satellite_ground,coverage_radius,MISSING,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,覆盖/影响半径,Coverage / influence radius
+satellite_ground,path_loss_factor,a2g_fspl_formula.png; stochastic_sir_alpha.png,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,路径损耗参数（指数/模型系数）,Path-loss parameter (exponent/model coefficient)
+satellite_ground,activity,MISSING,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,活动度/占空比/业务模型,Activity / duty cycle / traffic model
+satellite_ground,background_PPP,stochastic_ppp_3d.png,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,背景 PPP 强度（λ）/空间密度,Background PPP intensity (λ) / spatial density
+satellite_ground,power_calibration_generation,a2g_fspl_formula.png,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,功率标定/生成功率模型,Power calibration / power generation model
+satellite_ground,height_distribution,stochastic_ppp_3d.png,卫星地面终端/VSAT 上行,Satellite ground terminal / VSAT uplink,高度分布/安装高度,Height distribution / installation height
