@@ -1,0 +1,2421 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:fb="//www.facebook.com/2008/fbml" xmlns:og="//opengraphprotocol.org/schema/" lang="en" xml:lang="en"  class="no-touch no-js">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="rei" content="3/2/2022 10.39am est" />
+
+    
+        <script tyle="text/javascript" src="/content/dam/cdc/j/cdcrSwitch.js"></script>
+        <script type="text/javascript"> 
+            if (typeof cdc === "undefined"){
+                cdc = {};
+            }
+            cdc.localizedLang="en/us";
+
+            if (window.cdcext === undefined) { window.cdcext = {}; }
+            cdcext.customEnvironment = "prod";
+            if (window.cdclocale === undefined) { window.cdclocale = {}; }
+            cdclocale.locale = cdc.localizedLang=="en/us"?"en_us":cdc.localizedLang;
+
+        </script> 
+         
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/c/dam/cdc/t/ctm-core.js"></script>
+<script>
+    window['adrum-start-time'] = new Date().getTime();
+    window.environ = "prod" ;
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    if (window.cpe === undefined) {
+        window.cpe = {};
+    }
+
+    cpe.accountName = "prod";
+    cpe.config = ["cinf","dsc","pps"];
+    cpe.hideMethod = "elements";
+
+    window.targetGlobalSettings = JSON.parse('{\x22timeout\x22:4000}');
+    window.targetPageParamsAll = () => JSON.parse('{\x22entity\x22:\x22{\\\x22id\\\x22:\\\x221607460519144955\\\x22,\\\x22categoryId\\\x22:\\\x22Technologies,Wireless %2F Mobility,TSD Technologies Tech Note\\\x22}\x22}');
+
+    
+    const bullseyeLibrary = `/etc.clientlibs/cisco-cdc/clientlibs/clientlib-external/resources/external/bullseye.js`;
+
+    import(bullseyeLibrary);
+</script>
+<script src="/etc.clientlibs/cisco-cdc/clientlibs/clientlib-external/resources/regional-mbox/regional-mbox.js"></script>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+        <title>Radio Resource Management under Unified Wireless Networks - Cisco</title>
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="format-detection" content="telephone=no">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"  />
+    <meta name="description" content="This document details the functionality and operation of Radio Resource Management (RRM) and provides an in-depth discussion of the algorithms behind this feature."  />
+    <meta name="title" content="Radio Resource Management under Unified Wireless Networks"  />
+    <meta name="documentId" content="71113"  />
+    <meta name="templateName" content="eot"  />
+    <meta property="fb:app_id" content="156494687694418"  />
+    <meta name="ioContentSource" content="support"  />
+    <meta name="concept" content="Wireless, LAN (WLAN)"  />
+    <meta name="docType" content="TSD Technologies Tech Note"  />
+    <meta name="iaPath" content="cisco.com#Technologies#Wireless / Mobility#Wireless, LAN (WLAN)"  />
+    <meta name="contentType" content="cisco.com#US#postSales"  />
+    <meta name="locale" content="US"  />
+    <meta name="language" content="en"  />
+    <meta name="country" content="US"  />
+    <meta name="CCID_Page" content="cc001773"  />
+    <meta name="date" content="Fri Nov 01 15:17:04 PDT 2024"  />
+    <meta name="contentArea" content="Wireless"  />
+    <meta name="accessLevel" content="Customer"  />
+    <meta name="accessLevel" content="Guest"  />
+    <meta name="accessLevel" content="Partner"  />
+    <meta name="entitlementExpression" content="contains( &quot;0,1,2,3,4,7&quot; , $profileField[3] )"  />
+    <meta property="og:site_name" content="Cisco"  />
+    <meta property="og:type" content="website"  />
+    <meta property="og:title" content="Radio Resource Management under Unified Wireless Networks"  />
+    <meta property="og:description" content="This document details the functionality and operation of Radio Resource Management (RRM) and provides an in-depth discussion of the algorithms behind this feature."  />
+    <meta property="og:url" content="https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"  />
+    <link rel="canonical" href="https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+	<link rel="alternate" hreflang="x-default" href="https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="pt-br" href="https://www.cisco.com/c/pt_br/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="es-mx" href="https://www.cisco.com/c/es_mx/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="ko-kr" href="https://www.cisco.com/c/ko_kr/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="it-it" href="https://www.cisco.com/c/it_it/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="ja-jp" href="https://www.cisco.com/c/ja_jp/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="de-de" href="https://www.cisco.com/c/de_de/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="fr-ca" href="https://www.cisco.com/c/fr_ca/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="ar-ae" href="https://www.cisco.com/c/ar_ae/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="nl-nl" href="https://www.cisco.com/c/nl_nl/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="zh-tw" href="https://www.cisco.com/c/zh_tw/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="zh-cn" href="https://www.cisco.com/c/zh_cn/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+<link rel="alternate" hreflang="en-us" href="https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html"/>
+
+
+    
+ 
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/etc.clientlibs/clientlibs/granite/jquery.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/utils.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/jquery/granite.min.js"></script>
+<script src="/etc.clientlibs/foundation/clientlibs/jquery.min.js"></script>
+<script src="/etc.clientlibs/foundation/clientlibs/shared.min.js"></script>
+<script src="/etc.clientlibs/cq/personalization/clientlib/underscore.min.js"></script>
+<script src="/etc.clientlibs/cq/personalization/clientlib/personalization/kernel.min.js"></script>
+<script src="/etc.clientlibs/cq/personalization/clientlib/personalization/kernel.min.js"></script>
+<script type="text/javascript">
+    $CQ(function() {
+        CQ_Analytics.SegmentMgr.loadSegments("\/etc\/segmentation");
+        CQ_Analytics.ClientContextUtils.init("\/c\/dnc\/etc\/clientcontext\/default", "\/content\/en\/us\/support\/docs\/wireless\u002Dmobility\/wireless\u002Dlan\u002Dwlan\/71113\u002Drrm\u002Dnew");
+
+        
+    });
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <link rel="stylesheet" href="/etc/designs/cdc/clientlibs/responsive/css/cisco-sans.min.css" type="text/css">
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/etc/designs/cdc/clientlibs/responsive/js/foundation.min.js"></script>
+
+    <link rel="stylesheet" href="/etc/designs/cdc/fw/b/responsive/css/eot.min.css" type="text/css">
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+    <script>
+        sessionStorage.setItem("logOutIntermediateMessage", 'You are being logged out.');
+    </script>
+    
+    
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Custom JSON LD For Products Type -->
+
+    
+    <script type="application/ld+json">
+        [
+           
+            {
+          "@context": "http://www.schema.org",                                                                        
+          "@type": "WebPage",
+          "name": "Radio Resource Management under Unified Wireless Networks",  		  
+          "url": "https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html",
+          "description": "This document details the functionality and operation of Radio Resource Management (RRM) and provides an in-depth discussion of the algorithms behind this feature.",
+          "publisher": {
+              "@type": "Corporation",
+                 "name": "Cisco"
+            }
+        }]
+    </script>
+<!-- End Custom JSON LD For Products Type -->
+
+<!-- Video JSON LD -->
+
+
+
+
+<!-- End Video JSON LD -->
+
+    
+
+                              <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="GKZXC-NS3SU-A7VFH-HKBHM-U7LKH",function(){function e(){if(!o){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,i.parentNode.appendChild(e),o=!0}}function t(e){o=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(i.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",i.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"GKZXC-NS3SU-A7VFH-HKBHM-U7LKH";var i=document.currentScript||document.getElementsByTagName("script")[0],o=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!o)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),i.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="fwa6i5axfesho2octo7q-f-22250d2fe-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,o={"ak.v":"39","ak.cp":"61004","ak.ai":parseInt("271834",10),"ak.ol":"0","ak.cr":0,"ak.ipv":4,"ak.proto":"http/1.1","ak.rid":"5cafe68b","ak.r":50555,"ak.a2":n,"ak.m":"dsca","ak.n":"essl","ak.bpcip":"45.129.228.0","ak.cport":36851,"ak.gh":"23.193.164.179","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1774361535","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==ZZYughVMCxGCPqZtxoL3VlVxuUXKbEseK0z4Gr84f/YxkCmp/gYGX1xfO7/uHhTkar/RB0/EOp/Z31V+NkFEf/smgEmv72mK2cCspgTBcokqUV3ZmHHfpC4MV7rtfHtT1DHegX0Elk8y6Xz0AF7b58UjGZIjxvjj4Vsbw/fYRDIpqEWD+owTf98UNCrQn9BZBl2HqMA6Z7OviJEgxNY+MmGoN+kiSY8ozwLSf0Sjo2nPqVsCIEgQDgzjijOJ6wRSseexadJ8DFEdYeTPMgL6u4QuLQD8qnSzn+7Dbh9QsjldAzP6g9yK6MfGq7K7/FOySN8PGJzAwm/2Gd4zmHFtvoBVqCoitMJOIYc8YH8goPK7fzocGfx7aL7ydxA3Cj6iRNW2zHRqOVbVDcB8/U0tnARcb4qE37ggKiIdvsS5tFE=","ak.pv":"540","ak.dpoabenc":"","ak.tf":i};if(""!==t)o["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))o["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(o)},rv:function(){var e=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:o,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+
+<body id="wcq" class="fw-res cdc-support cdc-eot cdc-high-density cdc-full-width cdc-transform
+">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-skiplinks">
+    <ul class="container">
+        <li><a id="skiplink-content" href="#fw-content">Skip to content</a></li>
+        <li><a id="skiplink-search" href="#">Skip to search</a></li>
+        <li><a id="skiplink-footer" href="#fw-footer-v2" class="last">Skip to footer</a></li>
+    </ul>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="module" src="/site/web-components/us/en/cdc-header.js"></script>
+    <cdc-header></cdc-header>
+    <nav class="fw-c-header__seo-links" aria-hidden="true" style="display:none">
+        <ul>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/index.html">Cisco.com Worldwide</a></li>
+            <li><a tabindex="-1" href="/site/us/en/products/index.html">Products and Services</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/solutions/index.html">Solutions</a></li>
+            <li><a tabindex="-1" href="/c/en/us/support/index.html">Support</a></li>
+            <li><a tabindex="-1" href="/site/us/en/learn/index.html">Learn</a></li>
+            <li><a tabindex="-1" href="/site/us/en/about/sitemap.html">Explore Cisco</a></li>
+            <li><a tabindex="-1" href="/site/us/en/buy/index.html">How to Buy</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/index.html">Partners Home</a></li>                
+            <li><a tabindex="-1" href="/site/us/en/partners/360-partner-program/partner-program/index.html">Partner Program</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/support-help/index.html">Support</a></li>
+            <li><a tabindex="-1" href="/site/us/en/partners/360-partner-program/tools-training/index.html">Tools</a></li>
+            <li><a tabindex="-1" href="https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/">Find a Cisco Partner</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/connect-with-a-partner/index.html">Meet our Partners</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/index.html">Become a Cisco Partner</a></li>
+
+        </ul>
+    </nav>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-content" class="container grid">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+<div class="row full blowout" data-owner="ID">
+	<div class="col full ">
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav id="fw-breadcrumb" class="data-based" aria-label="breadcrumbs" data-owner="ID">
+
+   
+    <ul itemscope itemtype="//schema.org/BreadcrumbList">
+        <li aria-hidden="true"><a href='#' class="skip"><span></span></a></li>
+        <li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/support/index.html'><span itemprop='name'>Support</span><meta itemprop='position' content='1' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/tech/index.html'><span itemprop='name'>Technology Support</span><meta itemprop='position' content='2' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/tech/wireless-2f-mobility/wireless-lan-wlan/index.html'><span itemprop='name'>Wireless, LAN (WLAN)</span><meta itemprop='position' content='3' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/tech/wireless-2f-mobility/wireless-lan-wlan/tsd-technology-support-troubleshooting-technotes-list.html'><span itemprop='name'>Troubleshooting TechNotes</span><meta itemprop='position' content='4' /></a><span class='caret'></span></li>
+    </ul>
+</nav>
+<script>
+    if (window.cdc === undefined) { window.cdc = {}; }
+    if (cdc.breadcrumb === undefined) {
+        cdc.breadcrumb = (function () {
+            let clone = document.querySelector('#fw-breadcrumb').cloneNode(true);
+
+            let appendClone = function () {
+                let hasBreadcrumb = document.querySelector('#fw-breadcrumb') !== null,
+                    firstMarquee = document.querySelectorAll('.dmc-mq')[0];
+
+                if (!hasBreadcrumb && firstMarquee !== undefined) {
+                    firstMarquee.querySelector('.frame .inset').insertBefore(this.clone, firstMarquee.querySelector('.frame .inset').firstElementChild);
+                }
+            };
+
+            return {
+                clone: clone,
+                appendClone: appendClone
+            }
+        }());
+    }
+    //DE380224
+    var anchorChild = document.getElementsByTagName("a");
+    for(var i=0; i<anchorChild.length; i++){ 
+        if(anchorChild[i].getAttribute("itemprop")=="item")  {  
+            if ( anchorChild[i].href.includes("%3Clocale%3E") ){
+                let anchorChildHREF = anchorChild[i].href;
+                let docLocale = document.querySelector('meta[name="locale"]').getAttribute('content');
+                let docLanguage = document.querySelector('meta[name="language"]').getAttribute('content');
+                
+                var docSeparator;
+                
+                if ((docLocale.toLowerCase() == "us") && (docLanguage.toLowerCase() == "en")) {
+                    docSeparator="/";
+                } else {
+                    docSeparator="_";
+                }
+                
+                let anchorURLReplace = docLanguage.toLowerCase() + docSeparator + docLocale.toLowerCase();
+                anchorChildHREF = anchorChildHREF.replace("%3Clocale%3E", anchorURLReplace);
+                anchorChild[i].setAttribute('href', anchorChildHREF);
+            }
+        }
+    }
+</script>
+
+        
+		        <h1 id="fw-pagetitle" class="" data-owner="ID">Radio Resource Management under Unified Wireless Networks</h1>
+		
+	</div>
+</div>
+     <!--googleon: index--><!--googleon: snippet-->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="row blowout wide-narrow-v2 visitedlinks">
+    <div class="col wide-v2">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    if (typeof(cdc) == "undefined") cdc={};
+    if (typeof(cdc.translations) == "undefined") cdc.translations={};
+
+</script>
+
+        <div class="docHeaderComponent base-blowout">
+        <div class="linksRow">
+            
+            
+            <div class="toolbar">
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="noprint" id="saveModule">
+
+<script type="text/javascript">
+    cdc.util.ensureNamespace("cdc.rc.savedoc");
+    cdc.rc.savedoc.isLoggedIn = false;
+    cdc.rc.savedoc.save = "Save";
+    cdc.rc.savedoc.saved = "Saved";
+</script>
+
+    <button class="save" aria-expanded="false" aria-label="Save">
+        <label>Save</label>
+    </button>    
+
+</div> 
+    <div class="saveDocumentMessage login cdc-expandPanel"  role="region" aria-live="polite">
+        <a href="/c/login/index.html?referer=/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html">Log in</a> to Save Content
+    </div>
+
+
+            <!-- Translation Selctor -->
+            <!-- Translation Selector is used on EOT and Books pages. if a page has a locale of en_US then it will provide a list of avaible translations, if its a translated page (non english locale) then provide the link to the english locale. -->
+
+
+
+                                <div class="noprint translations">
+                                        <a href="#" tabindex="-1">
+                                                <button type="button" class="translations translations-link anchor translationOptions simpleOverlay-trigger" aria-haspopup="dialog" aria-labelledby="translationLabel3">
+                                                        <div class="toolbarIcon translationsIcon"></div><label class="iconLabel" id="translationLabel3">Translations</label>
+                                                </button>
+                                        </a>
+                                </div>
+           
+
+
+
+            
+                <div class="noprint downloadDocument"><button type="button" class="view-download-list-link anchor" aria-expanded="false"><div class="toolbarIcon downloadIcon"></div><label class="iconLabel">Download</label></button></div>
+            
+            
+                <div class="noprint printDocument js-only"><button type="button" class="anchor printPage" aria-label="Print"><div class="toolbarIcon printIcon"></div><label class="iconLabel">Print</label></button></div>
+            
+            </div>
+
+        </div>
+            <!-- Where translation selector list of available languages is set up for EOT pages, for the javascript to work must have <ul id="translationsList"> </ul> -->
+            
+                    <script language="javascript">
+                        cdc.translations.map = "{pt-br=https://www.cisco.com/c/pt_br/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, es-mx=https://www.cisco.com/c/es_mx/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, ko-kr=https://www.cisco.com/c/ko_kr/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, it-it=https://www.cisco.com/c/it_it/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, ja-jp=https://www.cisco.com/c/ja_jp/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, de-de=https://www.cisco.com/c/de_de/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, fr-ca=https://www.cisco.com/c/fr_ca/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, ar-ae=https://www.cisco.com/c/ar_ae/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, nl-nl=https://www.cisco.com/c/nl_nl/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, zh-tw=https://www.cisco.com/c/zh_tw/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, zh-cn=https://www.cisco.com/c/zh_cn/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, en-us=https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html, x-default=https://www.cisco.com/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.html}";//storing the map for use in the JS
+                        cdc.translations.locale="en_us";
+                    </script>
+                    <div class="availableLanguagesList">
+                        <h3>Available Languages</h3>
+                        <ul id="translationsList">
+                
+                          </ul>
+                </div>
+           
+            
+            <div id="download-list-container" class="noprint panelRow"  role="region" aria-live="polite">
+                <div class='download-list' aria-label="Download Options">
+                    <h3>Download Options</h3>
+                    <ul>
+                    
+                        <li>
+                            <div class="fileText">
+                                <a href="/c/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new.pdf" class="download-pdf"><div class="fileIcon pdfIcon"></div>PDF</a>
+                                
+                                <span class="docSize">(516.1 KB)</span>
+                                
+                                <br />
+                                <span class="description">View with Adobe Reader on a variety of devices</span>
+                            </div>
+                        </li>
+                    
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div class="infobarClearFix">
+            <div class="infobar">
+				
+                    <div class="updatedDate"><span>Updated:</span>May 17, 2010</div>
+                                
+                
+                            <div class="documentId"><span>Document ID:</span>71113</div>
+                      
+
+                  </div> 
+
+                      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <div class="disclaimers support">
+        
+        <div class="disclaimerButtons">
+        <div class="aboutBias">
+            <button aria-expanded="false" >Bias-Free Language</button>
+        </div>
+        
+        </div>
+        
+        <div class="biasfreeContent panel">
+            <h3>Bias-Free Language</h3>
+            <p>The documentation set for this product strives to use bias-free language. For the purposes of this documentation set, bias-free is defined as language that does not imply discrimination based on age, disability, gender, racial identity, ethnic identity, sexual orientation, socioeconomic status, and intersectionality. Exceptions may be present in the documentation due to language that is hardcoded in the user interfaces of the product software, language used based on RFP documentation, or language that is used by a referenced third-party product. <a href="https://www.cisco.com/site/us/en/about/purpose/social-impact/inclusive-language-policy.html">Learn more</a> about how Cisco is using Inclusive Language.</p>
+        </div>
+        
+    </div><!-- disclaimers -->
+
+                  
+        </div>
+    </div>
+
+
+<script>
+jQuery(document).ready(function(){
+    if(jQuery("body").hasClass("cdc-eot-toc") && jQuery(".cdc-eot-toc").find(".DocumentHistory").length > 0){
+        jQuery(".cdc-eot-toc .seeRevisions").show();
+        if(jQuery(window).width() >= 768){
+            jQuery(".cdc-eot-toc .updatedDate").nextAll(".bullet").show();
+        }
+    }else{
+      jQuery(".cdc-eot-toc .infobar .bullet").hide();
+      jQuery(".cdc-eot-toc .seeRevisions");
+      jQuery(".cdc-eot-toc .updatedDate");
+    }
+
+
+})
+</script>
+<script src="/etc/designs/cdc/fw/clientlibs/granite-utils.min.js"></script>
+
+
+
+    <script>
+        if (window.cdc === "undefined") window.cdc={};
+        if (typeof cdc.rc  === "undefined") cdc.rc={};
+        // initialize dictionary for i18n
+        cdc.util.ensureNamespace("cdc.rc");
+        cdc.rc.eotkeys = {
+            showOnly5Products : "Show Only 5 Products",       
+            showAllRowsProducts : "Show All nRows Products",
+            supportCommunityUrl : "https://community.cisco.com/t5/technology-and-support/ct-p/technology-support",
+            supportCommunity : "Cisco Community",
+            thankYou : "Thank You",
+            viewersAlso : "Customers Also Viewed", 
+            show : "Show", 
+            more : "More", 
+            showOnly3Documents: "Show Only 3 Documents"
+        };
+    </script>
+
+	
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="eot-doc-wrapper">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+ <head>
+                              <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="GKZXC-NS3SU-A7VFH-HKBHM-U7LKH",function(){function e(){if(!o){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,i.parentNode.appendChild(e),o=!0}}function t(e){o=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(i.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",i.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"GKZXC-NS3SU-A7VFH-HKBHM-U7LKH";var i=document.currentScript||document.getElementsByTagName("script")[0],o=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!o)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),i.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="fwa6i5axfesho2octo7q-f-22250d2fe-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,o={"ak.v":"39","ak.cp":"61004","ak.ai":parseInt("271834",10),"ak.ol":"0","ak.cr":0,"ak.ipv":4,"ak.proto":"http/1.1","ak.rid":"5cafe68b","ak.r":50555,"ak.a2":n,"ak.m":"dsca","ak.n":"essl","ak.bpcip":"45.129.228.0","ak.cport":36851,"ak.gh":"23.193.164.179","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1774361535","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==ZZYughVMCxGCPqZtxoL3VlVxuUXKbEseK0z4Gr84f/YxkCmp/gYGX1xfO7/uHhTkar/RB0/EOp/Z31V+NkFEf/smgEmv72mK2cCspgTBcokqUV3ZmHHfpC4MV7rtfHtT1DHegX0Elk8y6Xz0AF7b58UjGZIjxvjj4Vsbw/fYRDIpqEWD+owTf98UNCrQn9BZBl2HqMA6Z7OviJEgxNY+MmGoN+kiSY8ozwLSf0Sjo2nPqVsCIEgQDgzjijOJ6wRSseexadJ8DFEdYeTPMgL6u4QuLQD8qnSzn+7Dbh9QsjldAzP6g9yK6MfGq7K7/FOySN8PGJzAwm/2Gd4zmHFtvoBVqCoitMJOIYc8YH8goPK7fzocGfx7aL7ydxA3Cj6iRNW2zHRqOVbVDcB8/U0tnARcb4qE37ggKiIdvsS5tFE=","ak.pv":"540","ak.dpoabenc":"","ak.tf":i};if(""!==t)o["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))o["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(o)},rv:function(){var e=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:o,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+ <body bgcolor="#FFFFFF" id="libra">
+  <link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/support-docs.css"/> 
+  <!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie7.css">
+<![endif]--> 
+  <!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie8.css">
+<![endif]--> 
+  <!--googleoff: all--> 
+  <!-- AddThis Button BEGIN --> 
+  <script language="JavaScript"> loadjscssfile('/c/dam/en/us/support/docs/common/support-docs.css','css');</script> 
+  <script type="text/javascript">var addthis_config = {"data_track_clickback":true};</script> 
+  <!--googleon: all-->
+  <!--PAWS:EndOFRelatedDocumentsSection--> 
+  <div id="tg-body">
+   <div id="support-toc"> 
+    <h2>Contents</h2> 
+    <div class="toc-h2"> 
+     <a href="#intro">Introduction</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#prereq">Prerequisites</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#req">Requirements</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#hw">Components Used</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#conv">Conventions</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#wlcs">Upgrading to 4.1.185.0 or Later: What to Change or Verify?</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#tips">Radio Resource Management: Tips and Best Practices</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tip1">RF Grouping and Tx Power Threshold</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tip2">Coverage Profile and Client SNR Cut-Off</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tip3">Neighbor Message Frequency (RF Group Formation)</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tip4">Use of On-Demand Option</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tip5">Load Balancing Window</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#rrm">Radio Resource Management: Introduction</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#concepts">Radio Resource Management: Concepts</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#kt">Key Terms</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#bev">A Bird’s-Eye View of RRM</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#rf-alg">RF Grouping Algorithm </a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#dcaa">Dynamic Channel Assignment Algorithm</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tpca">Transmit Power Control Algorithm </a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#chd-ca">Coverage Hole Detection and Correction Algorithm </a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#topic6">Radio Resource Management: Configuration Parameters</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#rf-gui">RF Grouping Settings via the WLC GUI </a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#rf-gui2">RF Channel Assignment Settings via the WLC GUI</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tx-gui">Tx Power Level Assignment Settings via the WLC GUI</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#pt-gui">Profile Thresholds: WLC GUI </a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#rrm-ts">Radio Resource Management: Troubleshooting</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#ver-dca">Verifying Dynamic Channel Assignment</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#ver-tpcc">Verifying Transmit Power Control Changes</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#tpca-ex">Transmit Power Control Algorithm Workflow Example</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#chdca-ex">Coverage Hole Detection and Correction Algorithm Workflow Example</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#debug">Debug and Show Commands</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#appendix">APPENDIX A: WLC Release 4.1.185.0 – RRM Enhancements</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#app1">RF Grouping Algorithm</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#app2">Dynamic Channel Assignment Algorithm</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#app3">Tx Power Control Algorithm</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#app4">Coverage Hole Algorithm</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#app5">SNMP Trap Enhancements</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#app6">Cosmetic/Other Enhancements</a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#app7">Load-Balancing Changes</a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#EnhancementsWLC6">APPENDIX B: WLC Release 6.0.188.0 – RRM Enhancements </a> 
+    </div> 
+    <div class="toc-h3"> 
+     <a href="#RRMMedical">RRM Fixes for Medical Devices </a> 
+    </div> 
+    <div class="toc-h2"> 
+     <a href="#related">Related Information</a>
+    </div> 
+   </div> 
+   <h2> <a name="intro">Introduction</a> </h2> 
+   <p>This document details the functionality and operation of Radio Resource Management (RRM) and provides an in-depth discussion of the algorithms behind this feature.</p> 
+   <h2> <a name="prereq">Prerequisites</a> </h2> 
+   <h3> <a name="req">Requirements</a> </h3> 
+   <p>Cisco recommends that you have knowledge of these topics:</p> 
+   <ul> 
+    <li> <p>Lightweight Access Point Protocol (LWAPP)</p> </li> 
+    <li> <p>Common wireless LAN (WLAN)/radio frequency (RF) design considerations (knowledge comparable to that of the Planet 3 Wireless CWNA certification)</p> </li> 
+   </ul> 
+   <p> <b>Note:&nbsp;</b>Client Aggressive Load-Balancing and Rogue Detection/Containment (and other Cisco Intrusion Detection System [IDS]/Cisco IOS&reg; Intrusion Prevention System [IPS] features) are not functions of RRM and are beyond the scope of this document.</p> 
+   <h3> <a name="hw">Components Used</a> </h3> 
+   <p>This document is not restricted to specific software and hardware versions.</p> 
+   <h3> <a name="conv">Conventions</a> </h3> 
+   <p>Refer to <a href="//www.cisco.com/en/US/tech/tk801/tk36/technologies_tech_note09186a0080121ac5.shtml">Cisco Technical Tips Conventions</a> for more information on document conventions.</p> 
+   <h2> <a name="wlcs">Upgrading to 4.1.185.0 or Later: What to Change or Verify?</a> </h2> 
+   <ol type="1"> 
+    <li> <p>From the CLI, check:</p> 
+     <blockquote> 
+      <pre>show advanced [802.11b|802.11a] txpower</pre> 
+     </blockquote> <p>The new default value is -70dbm. If it has been modified, revert to the defaults since this new value has been shown to be optimal under a range of conditions. This value needs to be the same on all the controllers in an RF group. Remember to save the configuration after making changes.</p> <p>In order to change this value, issue this command:</p> 
+     <blockquote> 
+      <pre>config advanced [802.11b|802.11a] tx-power-control-thresh 70</pre> 
+     </blockquote> </li> 
+    <li> <p>From the CLI, check:</p> 
+     <blockquote> 
+      <pre>show advanced [802.11a|802.11b] profile global</pre> 
+     </blockquote> <p>The results should be:</p> 
+     <blockquote> 
+      <pre>802.11b Global coverage threshold.............. 12 dB for 802.11b
+802.11a Global coverage threshold.............. 16 dB for 802.11a</pre> 
+     </blockquote> <p>If the results are different, then you use these commands:</p> 
+     <blockquote> 
+      <pre>config advanced 802.11b profile coverage global 12
+config advanced 802.11a profile coverage global 16</pre> 
+     </blockquote> <p>The client SNR cut-off parameter that determines if the client is in violation, and if the Coverage Hole algorithm’s mitigation kicks in, called Coverage should be reverted back to the defaults for optimum results.</p> </li> 
+    <li> <p>From the CLI, check:</p> 
+     <blockquote> 
+      <pre>show load-balancing</pre> 
+     </blockquote> <p>The default state of load-balancing is now <i>Disabled</i>. If enabled, the default window is now 5. This is the amount of clients that need to be associated to a radio before load-balancing upon association will take place. Load-balancing can be very useful in a high density client environment, and the use of this feature must be a decision from the administrator so client association and distribution behavior is understood.</p> </li> 
+   </ol> 
+   <h2> <a name="tips">Radio Resource Management: Tips and Best Practices</a> </h2> 
+   <h3> <a name="tip1">RF Grouping and Tx Power Threshold</a> </h3> 
+   <p> <b>TIPS:</b> </p> 
+   <ul> 
+    <li> <p>Ensure that the Tx power threshold is configured the same on all controllers that share the RF Group Name.</p> </li> 
+    <li> <p>In versions earlier than 4.1.185.0, the default Tx power threshold was -65dBM, but this threshold value of -65dBm can be too “hot” for most deployments. Better results have been observed with this threshold set between -68dBm and -75dBm. With Version 4.1.185.0, the default Tx power threshold is now -70dBm. With 4.1.185.0 or later, it is strongly advised that users change the Tx power threshold to -70 and verify if the results are satisfactory. This is a strong recommendation since various RRM enhancements can cause your current setting to be sub-optimal now.</p> </li> 
+   </ul> 
+   <p> <b>WHY:</b> </p> 
+   <p>The RF Group Name is an ASCII string configured per wireless LAN controller (WLC). The grouping algorithm elects the RF Group leader that, in turn, calculates the Transmit Power Control (TPC) and Dynamic Channel Assignment (DCA) for the entire RF Group. The exception is Coverage Hole algorithm (CHA), which is run per WLC. Because RF Grouping is dynamic, and the algorithm runs at 600-second intervals by default, there might be an instance where new neighbors are heard (or existing neighbors are no longer heard). This causes a change in the RF Group that could result in the election of a new Leader (for one or multiple logical RF Groups). At this instance, the Tx Power Threshold of the new group leader is used in the TPC algorithm. If the value of this threshold is inconsistent across multiple controllers that share the same RF Group Name, this can result in discrepancies in resultant Tx power levels when the TPC is run.</p> 
+   <h3> <a name="tip2">Coverage Profile and Client SNR Cut-Off</a> </h3> 
+   <p> <b>TIP:</b> </p> 
+   <ul> 
+    <li> <p>Set the Coverage measurement (defaults to 12dB) to 3dB for most deployments.</p> <p> <b>Note:&nbsp;</b>With Version 4.1.185.0, enhancements such as the Tx Power Up Control and User-configurable number of SNR profile threshold-violating clients, the defaults of 12dB for 802.11b/g and 16dB for 802.11a should work fine in most environments.</p> </li> 
+   </ul> 
+   <p> <b>WHY:</b> </p> 
+   <p>The Coverage measurement, 12 dB by default, is used to arrive at the maximum tolerable SNR per client. If the client SNR exceeds this value, and if even one client exceeds this value, the CHA is triggered by the WLC whose access point (AP) detects the client with poor SNR. In cases where legacy clients are present (who often have poor roaming logic), tuning the tolerable noise floor down to 3dB results provides a short-term fix (this fix is not required in 4.1.185.0 or later).</p> 
+   <p>This is further described under <i>Sticky Client Power-up Consideration</i> in the <a href="#chd-ca">Coverage Hole Detection and Correction Algorithm</a> section.</p> 
+   <h3> <a name="tip3">Neighbor Message Frequency (RF Group Formation)</a> </h3> 
+   <p> <b>TIPS:</b> </p> 
+   <ul> 
+    <li> <p>The longer the configured interval between transmitting neighbor messages, the slower convergence/stabilization time will be throughout the system.</p> </li> 
+    <li> <p>If an existing neighbor is not heard for 20 minutes, the AP is pruned out of the neighbor list.</p> <p> <b>Note:&nbsp;</b>With Version 4.1.185.0, the neighbor list pruning interval is now extended to keep the neighbor from whom a neighbor packet has not been heard for up to 60 minutes.</p> </li> 
+   </ul> 
+   <p> <b>WHY:</b> </p> 
+   <p>Neighbor messages, by default, are sent every 60 seconds. This frequency is controlled by the Signal Measurement (termed Neighbor Packet Frequency in 4.1.185.0 and later) under the Monitor Intervals section on the Auto RF page (see <a href="#fig15">Figure 15</a> for reference). It is important to understand that neighbor messages communicate the list of neighbors that an AP hears, which is then communicated to their respective WLCs, who in turn form the RF Group (this assumes that the RF Group name is configured the same). The RF convergence time entirely depends on the frequency of neighbor messages and this parameter must be appropriately set.</p> 
+   <h3> <a name="tip4">Use of On-Demand Option</a> </h3> 
+   <p> <b>TIP:</b> </p> 
+   <ul> 
+    <li> <p>Use the On-Demand button for finer control, and deterministic RRM behavior.</p> <p> <b>Note:&nbsp;</b>With Version 4.1.185.0, predictability can be achieved via the usage of DCA’s anchor-time, interval and sensitivity configuration.</p> </li> 
+   </ul> 
+   <p> <b>WHY:</b> </p> 
+   <p> For users that desire predictability on algorithmic changes throughout the system, RRM can be run in on-demand mode. When used, RRM algorithms compute optimum channel and power settings to be applied at the next 600-second interval. The algorithms are then dormant until the next time on-demand option is used; the system is in a freeze state. See <a href="#fig11">Figure 11</a> and <a href="#fig12">Figure 12</a>, and the respective descriptions for more information.</p> 
+   <h3> <a name="tip5">Load Balancing Window</a> </h3> 
+   <p> <b>TIP:</b> </p> 
+   <ul> 
+    <li> <p>The default setting for load-balancing is ON, with the load-balancing window set to 0. This window should be changed to a higher number, such as 10 or 12.</p> <p> <b>Note:&nbsp;</b>In release 4.1.185.0 and later, the default setting for load-balancing is OFF and if enabled, the window size defaults to 5.</p> </li> 
+   </ul> 
+   <p> <b>WHY:</b> </p> 
+   <p>Although not related to RRM, aggressive load-balancing can result in sub-optimal client roaming results for legacy clients with poor roaming logic, which makes them sticky clients. This can have adverse effects on the CHA. The default load-balancing window setting on the WLC is set to 0, which is not a good thing. This is interpreted as the minimum number of clients that should be on the AP before the load-balancing mechanism kicks in. Internal research and observation has shown that this default should be changed to a more practical value, such as 10 or 12. Naturally, every deployment presents a different need and the window should therefore be set appropriately. This is the command-line syntax:</p> 
+   <blockquote> 
+    <pre>(WLC) &gt;config load-balancing window ?            
+&lt;client count&gt; Number of clients (0 to 20)</pre> 
+   </blockquote> 
+   <p>In dense production networks, the controllers have been verified to function optimally with load-balancing ON and window size set at 10. In practical terms, this means load-balancing behavior is only enabled when, for example, a large group of people congregate in a conference room or open area (meeting or class). Load-balancing is very useful to spread these users between various available APs in such scenarios.</p> 
+   <p> <b>Note:&nbsp;</b>Users are never “thrown off” the wireless network. Load-balancing only occurs upon association and the system will try to encourage a client towards a more lightly loaded AP. If the client is persistent, it will be allowed to join and never left stranded.</p> 
+   <h2> <a name="rrm">Radio Resource Management: Introduction</a> </h2> 
+   <p>Along with the marked increase in the adoption of WLAN technologies, deployment issues have similarly risen. The 802.11 specification was originally architected primarily with a home, single-cell use in mind. The contemplation of the channel and power settings for a single AP was a trivial exercise, but as pervasive WLAN coverage became one of users’ expectations, determining each AP’s settings necessitated a thorough site survey. Thanks to the shared nature of 802.11’s bandwidth, the applications that are now run over the wireless segment are pushing customers to move to more capacity-oriented deployments. The addition of capacity to a WLAN is an issue unlike that of wired networks where common practice is to throw bandwidth at the problem. Additional APs are required to add capacity, but if configured incorrectly, can actually lower system capacity due to interference and other factors. As large-scale, dense WLANs have become the norm, administrators have continuously been challenged with these RF configuration issues that can increase operating costs. If handled improperly, this can lead to WLAN instability and a poor end user experience. </p> 
+   <p>With finite spectrum (a limited number of non-overlapping channels) to play with and given RF’s innate desire to bleed through walls and floors, designing a WLAN of any size has historically proven to be a daunting task. Even given a flawless site survey, RF is ever-changing and what might be an optimal AP channel and power schema one moment, might prove to be less-than-functional the next. </p> 
+   <p>Enter Cisco’s RRM. RRM allows Cisco’s Unified WLAN Architecture to continuously analyze the existing RF environment, automatically adjusting APs’ power levels and channel configurations to help mitigate such things as co-channel interference and signal coverage problems. RRM reduces the need to perform exhaustive site surveys, increases system capacity, and provides automated self-healing functionality to compensate for RF dead zones and AP failures.</p> 
+   <h2> <a name="concepts">Radio Resource Management: Concepts</a> </h2> 
+   <h3> <a name="kt">Key Terms</a> </h3> 
+   <p>Readers should fully understand these terms used throughout this document:</p> 
+   <ul> 
+    <li> <p>Signal: any airborne RF energy.</p> </li> 
+    <li> <p>dBm: an absolute, logarithmic mathematical representation of the strength of an RF signal. dBm is directly correlated to milliwatts, but is commonly used to easily represent output power in the very low values common in wireless networking. For example, the value of -60 dBm is equal to 0.000001 milliwatts.</p> </li> 
+    <li> <p>Received Signal Strength Indicator (RSSI): an absolute, numeric measurement of the strength of the signal. Not all 802.11 radios report RSSI the same, but for the purposes of this document, RSSI is assumed to directly correlate with received signal as indicated in dBm.</p> </li> 
+    <li> <p>Noise: any signal that cannot be decoded as an 802.11 signal. This can either be from a non-802.11 source (such as a microwave or Bluetooth device) or from an 802.11 source whose signal has been invalidated due to collision or any other retarding of the signal.</p> </li> 
+    <li> <p>Noise floor: the existing signal level (expressed in dBm) below which received signals are unintelligible.</p> </li> 
+    <li> <p>SNR: the ratio of signal strength to noise floor. This value is a relative value and as such is measured in decibels (dB).</p> </li> 
+    <li> <p>Interference: unwanted RF signals in the same frequency band that can lead to a degradation or loss of service. These signals can either be from 802.11 or non-802.11 sources.</p> </li> 
+   </ul> 
+   <h3> <a name="bev">A Bird’s-Eye View of RRM</a> </h3> 
+   <p>Before getting into the details of how RRM algorithms work, it is important to first understand a basic work-flow of how an RRM system collaborates to form an RF Grouping, as well as understand what RF computations happen where. This is an outline of the steps that Cisco’s Unified Solution goes through in learning, grouping, and then computing all RRM features:</p> 
+   <ol type="1"> 
+    <li> <p>Controllers (whose APs need to have RF configuration computed as a single group) are provisioned with the same RF Group Name. An RF Group Name is an ASCII string each AP will use to determine if the other APs they hear are a part of the same system.</p> </li> 
+    <li> <p>APs periodically send out Neighbor Messages, sharing information about themselves, their controllers, and their RF Group Name. These neighbor messages can then be authenticated by other APs sharing the same RF Group Name.</p> </li> 
+    <li> <p>APs that can hear these Neighbor Messages and authenticate them based on the shared RF Group Name, pass this information (consisting primarily of controller IP address and information on the AP transmitting the neighbor message) up to the controllers to which they are connected.</p> </li> 
+    <li> <p>The controllers, now understanding which other controllers are to be a part of the RF Group, then form a logical group to share this RF information and subsequently elect a group leader.</p> </li> 
+    <li> <p>Equipped with information detailing the RF environment for every AP in the RF Group, a series of RRM algorithms aimed at optimizing AP configurations related to the following are run at the RF Group Leader (with the exception of Coverage Hole Detection and Correction algorithm which is run at the controller local to the APs):</p> 
+     <ul> 
+      <li> <p>DCA</p> </li> 
+      <li> <p> TPC</p> </li> 
+     </ul> </li> 
+   </ol> 
+   <p> <b>Note:&nbsp;</b>RRM (and RF Grouping) is a separate function from inter-controller mobility (and Mobility Grouping). The only similarity is the use of a common ASCII string assigned to both group names during the initial controller configuration wizard. This is done for a simplified setup process and can be changed later.</p> 
+   <p> <b>Note:&nbsp;</b>It is normal for multiple logical RF groups to exist. An AP on a given controller will help join their controller with another controller only if an AP can hear another AP from another controller. In large environments and college campuses it is normal for multiple RF groups to exist, spanning small clusters of buildings but not across the entire domain.</p> 
+   <p>This is a graphical representation of these steps:</p> 
+   <b>Figure 1: Neighbor Messages from APs give WLCs a system-wide RF view to make channel and power adjustments.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new1.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new1.gif" usemap=""/> </p> 
+   <a name="table1"></a> 
+   <b>Table 1: Functionality Breakdown Reference</b>
+   <p></p>
+   <table bgcolor="#FFFFFF" cellpadding="3" cellspacing="1" border="1" width="60%">   
+    <tbody>
+     <tr> 
+      <th height="" width="" bgcolor="#CCCCFF" colspan="1" rowspan="1"> Functionality</th> 
+      <th height="" width="" bgcolor="#CCCCFF" colspan="1" rowspan="1"> Performed at/by:</th> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> RF Grouping</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> WLCs elect the Group Leader</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Dynamic Channel Assignment </td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Group Leader</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Transmit Power Control</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Group Leader</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Coverage Hole Detection and Correction</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> WLC</td> 
+     </tr> 
+    </tbody>
+   </table> 
+   <p></p> 
+   <h3> <a name="rf-alg">RF Grouping Algorithm </a> </h3> 
+   <p>RF Groups are clusters of controllers who not only share the same RF Group Name, but whose APs hear each other.</p> 
+   <p>AP logical collocation, and thus controller RF Grouping, is determined by APs receiving other APs’ Neighbor Messages. These messages include information about the transmitting AP and its WLC (along with additional information detailed in <a href="#table1">Table 1</a>) and are authenticated by a hash.</p> 
+   <b>Table 2: Neighbor Messages contain a handful of information elements that give receiving controllers an understanding of the transmitting APs and the controllers to which they are connected.</b>
+   <p></p>
+   <table bgcolor="#FFFFFF" cellpadding="3" cellspacing="1" border="1" width="60%">   
+    <tbody>
+     <tr> 
+      <th height="" width="" bgcolor="#CCCCFF" colspan="1" rowspan="1"> Field Name</th> 
+      <th height="" width="" bgcolor="#CCCCFF" colspan="1" rowspan="1"> Description</th> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Radio Identifier</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> APs with multiple radios use this to identify which radio is being used to transmit Neighbor Messages</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Group ID</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> A Counter and MAC Address of the WLC</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> WLC IP Address</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Management IP Address of the RF Group Leader</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> AP’s Channel</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Native channel on which the AP services clients</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Neighbor Message Channel</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Channel on which the neighbor packet is transmitted</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Power</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Not currently used</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Antenna Pattern</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> Not currently used</td> 
+     </tr> 
+    </tbody>
+   </table> 
+   <p></p> 
+   <p>When an AP receives a Neighbor Message (transmitted every 60 seconds, on all serviced channels, at maximum power, and at the lowest supported data rate), it sends the frame up to its WLC to determine whether the AP is a part of the same RF Group by verifying the embedded hash. An AP that either sends undecipherable Neighbor Messages (indicating a foreign RF Group Name is being used) or sends no Neighbor Messages at all, is determined to be a rogue AP.</p> 
+   <b>Figure 2: Neighbor Messages are sent every 60 seconds to the multicast address of 01:0B:85:00:00:00.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new2.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new2.gif" usemap=""/> </p> 
+   <p>Given all controllers share the same RF Group Name, in order for an RF Group to form, a WLC need only have a single AP hear one AP from another WLC (see Figures 3 through 8 for further details).</p> 
+   <b>Figure 3: APs send and receive Neighbor Messages which are then forwarded to their controller(s) to form RF Group.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new3.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new3.gif" usemap=""/> </p> 
+   <p>Neighbor Messages are used by receiving APs and their WLCs to determine how to create inter-WLC RF Groups, as well as to create logical RF sub-Groups which consist of only those APs who can hear each other’s messages. These logical RF sub-Groups have their RRM configurations done at the RF Group Leader but independently of each other due to the fact that they do not have inter-RF sub-Group wireless connectivity (see Figures 4 and 5).</p> 
+   <b>Figure 4: All the APs are logically connected to a single WLC, but two separate logical RF sub-Groups are formed because APs 1, 2, and 3 cannot hear Neighbor Messages from APs 4, 5, and 6, and vice versa.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new4.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new4.gif" usemap=""/> </p> 
+   <b>Figure 5: APs in the same logical RF sub-Group can share a single WLC, each be on a separate WLC, or be on a mix of WLCs. RRM functionality is performed on a system-wide level, so as long as APs can hear each other, their controllers will automatically be grouped. In this example, WLCs A and B are in the same RF Group and their APs are in two different logical RF sub-Groups.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new5.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new5.gif" usemap=""/> </p> 
+   <p>In an environment with many WLCs and many APs, not all APs need to hear each other in order for the whole system to form a single RF Group. Each controller must have at least one AP hear another AP from any other WLC. As such, RF Grouping can occur across many controllers, regardless of each controller’s localized view of neighboring APs and thus, WLCs (see Figure 6).</p> 
+   <b>Figure 6: In this example, APs connected to WLCs A and C are not able to hear Neighbor Messages from each other. WLC B can hear both WLC A and C and can then share the other’s information with them so that a single RF Group is then formed. Discrete logical RF sub-Groups are created for each group of APs that can each other’s Neighbor Messages.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new6.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new6.gif" usemap=""/> </p> 
+   <p>In a scenario where multiple controllers are configured with the same RF Group Name, but their respective APs cannot hear each other’s Neighbor Messages, two separate (top-level) RF Groups are formed, as displayed in Figure 7.</p> 
+   <b>Figure 7: Although the WLCs share the same RF Group Name, their APs cannot hear each other and hence two separate RF Groups are formed.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new7.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new7.gif" usemap=""/> </p> 
+   <p>RF Grouping occurs at the controller level, which means that once APs report information on the other APs they hear (as well as the controllers to which those APs are connected) to their controllers, each respective WLC then communicates directly with the other WLCs to form a system-wide grouping. Within a single system-wide group, or RF Group, many subsets of APs would have their RF parameters set separately of each other: consider one central WLC with individual APs at remote sites. Each AP would, therefore, have its RF parameters set separately of the others, so while each AP belongs to the same controller RF Grouping, each individual AP (in this example) would be in its own logical RF sub-Group (see Figure 8).</p> 
+   <b>Figure 8: Each AP’s RF parameters are set separately of others due to their inability to hear each other’s Neighbor Messages.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new8.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new8.gif" usemap=""/> </p> 
+   <p>Each AP compiles and maintains a list of up to 34 neighboring APs (per radio) that is then reported up to their respective controllers. Each WLC maintains a list of 24 neighbors per AP radio from the Neighbor Messages sent by each AP. Once at the controller level, this per-AP, per-radio neighbor list of up to 34 APs is then pruned, which drops the ten APs with the weakest signals. WLCs then forward each AP neighbor list up to the RF Group Leader, the WLC elected by the RF Group to perform all RRM configuration decision making. </p> 
+   <p>It is very important to note here that RF Grouping works per radio type. The grouping algorithm runs separately for the 802.11a and 802.11b/g radios, meaning it runs per AP, per radio, such that each AP radio is responsible for populating a list of neighbors. In order to limit flapping, whereby APs might frequently be added and pruned from this list, WLCs will add neighbors to their lists given they are heard at greater than or equal to -80 dBm and will only then remove them once their signals dip below -85 dBm.</p> 
+   <p> <b>Note:&nbsp;</b>With Wireless LAN Controller software release 4.2.99.0 or later, RRM supports up to 20 controllers and 1000 access points in an RF group. For example, a Cisco WiSM controller supports up to 150 access points, so you can have up to six WiSM controllers in an RF group (150 access points times 6 controllers = 900 access points, which is less than 1000). Similarly, a 4404 controller supports up to 100 access points, so you can have up to ten 4404 controllers in an RF group (100 times 10 = 1000). The 2100-series-based controllers support a maximum of 25 access points, so you can have up to 20 of these controllers in an RF group. This 1000 limit of AP is not the actual number of APs associated to the controllers, but is calculated based on the maximum number of APs that can be supported by that specific controller model. For example, if there are 8 WiSM controllers (4 WiSMs), each with 70 APs, the actual number of APs is 560. However, the algorithm calculates it as 8*150= 1200 (150 being the maximum number of APs supported by each WiSM controller). Therefore, the controllers get split into two groups. One group with 6 controllers and the other with 2 controllers.</p> 
+   <p>Because the controller that functions as the RF Group Leader performs both, the DCA algorithm and the TPC algorithm for the entire system, controllers must be configured with the RF Group Name in a situation when it is anticipated that their neighbor messages will be heard by APs on another controller. If the APs (on different controllers) are geographically separated, at least to an extent that neighbor messages from them can not be heard at or better than -80dBm, configuring their controllers to be in an RF Group is not practical. </p> 
+   <p>If the upper limit for the RF Grouping algorithm is reached, the group leader controller will not allow any new controllers or APs to join the existing group or contribute to the channel and power calculations. The system will treat this situation as a new logical RF Sub-Group and new members will be added to this new logical group, configured with the same group name. If the environment happens to be dynamic, in nature where RF fluctuations change how neighbors are seen at periodic intervals, the likelihood of group member alterations and subsequent group leader elections will increase.</p> 
+   <h4> <a name="tgl">The Group Leader</a> </h4> 
+   <p>The RF Group Leader is the elected controller in the RF Group that performs the analysis of the APs' RF data, per logical RF Group, and is responsible for configuration of APs’ power levels and channel settings. Coverage hole detection and correction is based on client's SNR and is therefore the only RRM function performed at each local controller.</p> 
+   <p>Each controller determines which WLC has the highest Group Leader priority based on the Group Identifier information element in each Neighbor Message. The Group Identifier information element advertised in each Neighbor Message is comprised of a counter value (each controller maintains a 16-bit counter that starts at 0 and increments following events such as an exit from an RF Group or a WLC reboot) and controller MAC address. Each WLC will prioritize the Group Identifier values from its neighbors based first on this counter value and then, in the event of a counter value tie, on the MAC address. Each WLC will select the one controller (either a neighboring WLC or itself) with the highest Group Identifier value, after which each controller will confer with the others to determine which single controller has the highest Group ID. That WLC will then be elected the RF Group Leader. </p> 
+   <p>If the RF Group Leader goes offline, the entire group is disbanded and existing RF Group members rerun the Group Leader selection process and a new leader is chosen.</p> 
+   <p>Every 10 minutes, the RF Group leader will poll each WLC in the group for APs’ statistics, as well as all their received Neighbor Message information. From this information, the Group Leader has visibility in to the system-wide RF environment and can then use the DCA and TPC algorithms to continuously adjust APs’ channel and power configurations. The Group Leader runs these algorithms every ten minutes but, as with the Coverage Hole Detection and Correction algorithm, changes are only made if determined necessary.</p> 
+   <h3> <a name="dcaa">Dynamic Channel Assignment Algorithm</a> </h3> 
+   <p>The DCA algorithm, run by the RF Group Leader, is applied on a per-RF-Group basis to determine optimal AP channel settings for all the RF Group’s APs (each set of APs who can hear each other’s Neighbor Messages, referred to in this document as a logical RF sub-Group, has its channel configuration done independently of other logical RF sub-Groups due to the fact that signals do not overlap). With the DCA process, the leader considers a handful of AP-specific metrics that are taken into account when determining necessary channel changes. These metrics are:</p> 
+   <ul> 
+    <li> <p> <b>Load Measurement</b>—Every AP measures the percentage of total time occupied by transmitting or receiving 802.11 frames.</p> </li> 
+    <li> <p> <b>Noise</b>—APs calculate noise values on every serviced channel.</p> </li> 
+    <li> <p> <b>Interference</b>—APs report on the percentage of the medium taken up by interfering 802.11 transmissions (this can be from overlapping signals from foreign APs, as well as non-neighbors).</p> </li> 
+    <li> <p> <b>Signal Strength</b>—Every AP listens for Neighbor Messages on all serviced channels and records the RSSI values at which these messages are heard. This AP signal strength information is the most important metric considered in the DCA calculation of channel energy.</p> </li> 
+   </ul> 
+   <p>These values are then used by the Group Leader to determine if another channel schema will result in at least a bettering of the worst performing AP by 5dB (SNR) or more. Weighting is given to APs on their operating channels such that channel adjustments are made locally, dampening changes to prevent the domino effect whereby a single change would trigger system-wide channel alterations. Preference is also given to APs based on utilization (derived from each AP’s load measurement report) so that a less-used AP will have a higher likelihood of having its channel changed (as compared to a heavily utilized neighbor) in the event a change is needed.</p> 
+   <p> <b>Note:&nbsp;</b>Whenever an AP channel is changed, clients will be briefly disconnected. Clients can either reconnect to the same AP (on its new channel), or roam to a nearby AP, which depends on client roaming behavior. Fast, secure roaming (offered by both CCKM and PKC) will help reduce this brief disruption, given there are compatible clients.</p> 
+   <p> <b>Note:&nbsp;</b>When APs boot up for the first time (new out of the box), they transmit on the first non-overlapping channel in the band(s) they support (channel 1 for 11b/g and channel 36 for 11a). When APs power cycle, they use their previous channel settings (stored in the AP’s memory). DCA adjustments will subsequently occur as needed.</p> 
+   <h3> <a name="tpca">Transmit Power Control Algorithm </a> </h3> 
+   <p>The TPC algorithm, run at a fixed ten minute interval by default, is used by the RF Group Leader to determine the APs’ RF proximities and adjust each band’s transmit power level lower to limit excessive cell overlap and co-channel interference.</p> 
+   <p> <b>Note:&nbsp;</b>The TPC algorithm is only responsible for turning power levels down. The increase of transmission power is a part of the Coverage Hole Detection and Correction algorithm’s function, which is explained in the subsequent section.</p> 
+   <p>Each AP reports an RSSI-ordered list of all neighboring APs and, provided an AP has three or more neighboring APs (for TPC to work, you must have a minimum of 4 APs), the RF Group Leader will apply the TPC algorithm on a per-band, per-AP basis to adjust AP power transmit levels downward such that the third loudest neighbor AP will then be heard at a signal level of -70dBm (default value or what the configured value is) or lower and the TCP hysteresis condition is satisfied. Therefore, the TCP goes through these stages which decide if a transmit power change is necessary:</p> 
+   <ol type="1"> 
+    <li> <p>Determine if there is a third neighbor, and if that third neighbor is above the transmit power control threshold.</p> </li> 
+    <li> <p>Determine the transmit power using this equation: <tt>Tx_Max for given AP + (Tx power control thresh – RSSI of 3rd highest neighbor above the threshold)</tt>.</p> </li> 
+    <li> <p>Compare the calculation from step two with the current Tx power level and verify if it exceeds the TPC hysteresis.</p> 
+     <ul> 
+      <li> <p>If Tx power needs to be turned down: TPC hysteresis of at least 6dBm must be met. OR</p> </li> 
+      <li> <p>If Tx power needs to be increased: TPC hysteresis of 3dBm must be met. </p> </li> 
+     </ul> </li> 
+   </ol> 
+   <p>An example of the logic used in the TPC algorithm can be found in the <a href="#tpca-ex">Transmit Power Control Algorithm Workflow Example</a> section.</p> 
+   <p> <b>Note:&nbsp;</b>When all APs boot up for the first time (new out of the box), they transmit at their maximum power levels. When APs are power cycled, they use their previous power settings. TPC adjustments will subsequently occur as needed. See <a href="#table4">Table 4</a> for information on the supported AP transmit power levels.</p> 
+   <p> <b>Note:&nbsp;</b>There are two main Tx power increase scenarios that can be triggered with the TPC algorithm:</p> 
+   <ul> 
+    <li> <p>There is no third neighbor. In this case, the AP defaults back to Tx_max, and does so right away.</p> </li> 
+    <li> <p>There is a third neighbor. The TPC equation actually evaluates the recommended Tx to be somewhere in between Tx_max and Tx_current (rather than lower than Tx_current) as in, for example, when the third neighbor &quot;goes away&quot; and there is a new possible third neighbor. This results in a Tx power increase.</p> <p>TPC-induced Tx decreases take place gradually, but Tx increases can take place right away. However, extra precaution has been taken in how Tx power is increased with Coverage Hole algorithm, going up, one level at a time.</p> </li> 
+   </ul> 
+   <h3> <a name="chd-ca">Coverage Hole Detection and Correction Algorithm </a> </h3> 
+   <p>The Coverage Hole Detection and Correction algorithm is aimed at first determining coverage holes based on the quality of client signal levels and then increasing the transmit power of the APs to which those clients are connected. Because this algorithm is concerned with client statistics, it is run independently on each controller and not system-wide on the RF Group Leader. </p> 
+   <p>The algorithm determines if a coverage hole exists when clients’ SNR levels pass below a given SNR threshold. The SNR threshold is considered on an individual AP basis and based primarily on each AP transmit power level. The higher APs’ power levels, the more noise is tolerated as compared to client signal strength, which means a lower tolerated SNR value.</p> 
+   <p>This SNR threshold varies based on two values: AP transmit power and the controller Coverage profile value. In detail, the threshold is defined by each AP transmit power (represented in dBm), minus the constant value of 17dBm, minus the user-configurable Coverage profile value (this value is defaulted to 12 dB and is detailed on page 20). The client SNR threshold value is the absolute value (positive number) of the result of this equation.</p> 
+   <p> <b>Coverage Hole SNR Threshold Equation:</b> </p> 
+   <p>Client SNR Cutoff Value (|dB|) = [AP Transmit Power (dBm) – Constant (17 dBm) – Coverage Profile (dB)]</p> 
+   <p>Once the configured number of clients’ average SNR dips below this SNR threshold for at least 60 seconds, those clients’ AP transmit power will be increased to mitigate the SNR violation, therefore correcting the coverage hole. Each controller runs the Coverage Hole Detection and Correction algorithm for each radio on each of its APs every three minutes (the default value of 180 seconds can be changed). It is important to note that volatile environments can result in the TPC algorithm turning the power down at subsequent algorithm runs.</p> 
+   <p> <b>“Sticky Client” Power-up Consideration:</b> </p> 
+   <p>Roaming implementations in legacy client drivers can result in clients “sticking” to an existing AP even in the presence of another AP that is better when it comes to RSSI, throughput and overall client experience. In turn, such behavior can have systemic impact on the wireless network whereby clients are perceived to experience poor SNR (because they have failed to roam) eventually resulting in a coverage hole detection. In such a situation, the algorithm powers up the AP’s transmit power (to provide coverage for clients behaving badly) which results in undesirable (and higher than normal) transmit power. </p> 
+   <p>Until the roaming logic is inherently improved, such situations can be mitigated by increasing the Client Min. Exception Level to a higher number (default is 3) and also increasing the tolerable client SNR value (default is 12 dB and improvements are seen when changed to 3 dB). If code version 4.1.185.0 or later is used, the default values provide optimum results in most environments.</p> 
+   <p> <b>Note:&nbsp;</b>Although these suggestions are based on internal testing and can vary for individual deployments, the logic behind modifying these still applies.</p> 
+   <p>See the <a href="#chdca-ex">Coverage Hole Detection and Correction Algorithm Example</a> section for an example of the logic involved in the triggering.</p> 
+   <p> <b>Note:&nbsp;</b>The Coverage Hole Detection and Correction algorithm is also responsible for detecting lapses in coverage due to AP failure and powering nearby APs up as needed. This allows the network to heal around service outages.</p> 
+   <h2> <a name="topic6">Radio Resource Management: Configuration Parameters</a> </h2> 
+   <p>Once RRM and the algorithms are understood, the next step is to learn how to interpret and modify necessary parameters. This section details configuration operations of RRM and outlines basic reporting settings, as well. </p> 
+   <p>The very first step to configure RRM is to ensure each WLC has the same RF Group Name configured. This can be done through the controller web interface if you select <b>Controller | General</b> and then input a common Group Name value. IP connectivity between WLCs in the same RF Group is a necessity, as well. </p> 
+   <b>Figure 9: RF Groups are formed based on the user-specified value of “RF-Network Name,” also called RF Group Name in this document. All WLCs that are required to participate in system-wide RRM operations should share this same string.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new9.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new9.gif" usemap=""/> </p> 
+   <p>All configuration explanations and examples in the next sections are performed through the WLC graphical interface. In the WLC GUI, go to the main heading of Wireless and select the <b>RRM</b> option for the WLAN standard of choice on the left side. Next, select the <b>Auto RF</b> in the tree. The subsequent sections reference the resulting page [Wireless | 802.11a or 802.11b/g  RRM | Auto RF…].</p> 
+   <h3> <a name="rf-gui">RF Grouping Settings via the WLC GUI </a> </h3> 
+   <ul> 
+    <li> <p> <b>Group Mode</b>—The Group Mode setting allows RF Grouping to be disabled. Disabling this feature prevents the WLC from grouping with other controllers to perform system-wide RRM functionality. Disabled, all RRM decisions will be local to the controller. RF Grouping is enabled by default and the MAC addresses of other WLCs in the same RF Group are listed to the right of the Group Mode checkbox.</p> </li> 
+    <li> <p> <b>Group Update Interval</b>—The group update interval value indicates how often the RF Grouping algorithm is run. This is a display-only field and cannot be modified.</p> </li> 
+    <li> <p> <b>Group Leader</b>—This field displays the MAC Address of the WLC that is currently the RF Group Leader. Because RF Grouping is performed per-AP, per-radio, this value can be different for the 802.11a and 802.11b/g networks.</p> </li> 
+    <li> <p> <b>Is this controller a Group Leader</b>—When the controller is the RF Group Leader, this field value will be &quot;yes.&quot; If the WLC is not the leader, the previous field will indicate which WLC in the group is the leader. </p> </li> 
+    <li> <p> <b>Last Group Update</b>—The RF Grouping algorithm runs every 600 seconds (10 minutes). This field only indicates the time (in seconds) since the algorithm last ran and not necessarily the last time a new RF Group Leader was elected.</p> </li> 
+   </ul> 
+   <b>Figure 10: The RF Group’s status, updates, and membership details are highlighted at the top of the Auto RF page.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new10.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new10.gif" usemap=""/> </p> 
+   <h3> <a name="rf-gui2">RF Channel Assignment Settings via the WLC GUI</a> </h3> 
+   <ul> 
+    <li> <p> <b>Channel Assignment Method</b>—The DCA algorithm can be configured in one of three ways: </p> 
+     <ul> 
+      <li> <p> <b>Automatic</b>—This is the default configuration. When RRM is enabled, the DCA algorithm runs every 600 seconds (ten minutes) and, if necessary, channel changes will be made at this interval. This is a display-only field and cannot be modified. Please note the 4.1.185.0 options in Appendix A.</p> </li> 
+      <li> <p> <b>On Demand</b>—This prevents the DCA algorithm from being run. The algorithm can be manually triggered by clicking on &quot;Invoke Channel Update now&quot; button. </p> <p> <b>Note:&nbsp;</b>If you select <b>On Demand</b> and then click <b>Invoke Channel Update Now</b>, assuming channel changes are necessary, the DCA algorithm is run and the new channel plan is applied at the next 600 second interval.</p> </li> 
+      <li> <p> <b>Off</b>—This option disables all DCA functions, and is not recommended. This is typically disabled upon performing a manual site survey and subsequently configuring each AP channel settings individually. Though unrelated, this is often done alongside fixing the TPC algorithm, as well.</p> </li> 
+     </ul> </li> 
+    <li> <p> <b>Avoid Foreign AP Interference</b>—This field allows the co-channel interference metric to be included in DCA algorithm calculations. This field is enabled by default.</p> </li> 
+    <li> <p> <b>Avoid Cisco AP Load</b>—This field allows the utilization of APs to be considered when determining which APs’ channels need changing. AP Load is a frequently changing metric and its inclusion might not be always desired in the RRM calculations. As such, this field is disabled by default.</p> </li> 
+    <li> <p> <b>Avoid non-802.11b Noise</b>—This field allows each AP’s non-802.11 noise level to be a contributing factor to the DCA algorithm. This field is enabled by default.</p> </li> 
+    <li> <p> <b>Signal Strength Contribution</b>—Neighboring APs’ signal strengths are always included in DCA calculations. This is a display-only field and cannot be modified.</p> </li> 
+    <li> <p> <b>Channel Assignment Leader</b>—This field displays the MAC address of the WLC that is currently the RF Group Leader. Because RF Grouping is performed per-AP, per-radio, this value can be different for the 802.11a and 802.11b/g networks.</p> </li> 
+    <li> <p> <b>Last Channel Assignment</b>—The DCA algorithm runs every 600 seconds (10 minutes). This field only indicates the time (in seconds) since the algorithm last ran and not necessarily the last time a new channel assignment was made.</p> </li> 
+   </ul> 
+   <a name="fig11"></a> 
+   <b>Figure 11: Dynamic Channel Assignment Algorithm Configuration</b> 
+   <p></p> 
+   <p> <img alt="rrm-new11.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new11.gif" usemap=""/> </p> 
+   <h3> <a name="tx-gui">Tx Power Level Assignment Settings via the WLC GUI</a> </h3> 
+   <ul> 
+    <li> <p> <b>Power Level Assignment Method</b>—The TPC algorithm can be configured in one of three ways:</p> 
+     <ul> 
+      <li> <p> <b>Automatic</b>—This is the default configuration. When RRM is enabled, the TPC algorithm runs every ten minutes (600 seconds) and, if necessary, power setting changes will be made at this interval. This is a display-only field and cannot be modified.</p> </li> 
+      <li> <p> <b>On Demand</b>—This prevents the TPC algorithm from being run. The algorithm can be manually triggered if you click the <b>Invoke Channel Update Now</b> button.</p> <p> <b>Note:&nbsp;</b>If you select <b>On Demand</b> and then click <b>Invoke Power Update Now</b>, assuming power changes are necessary, the TPC algorithm is run and new power settings are applied at the next 600 second interval.</p> </li> 
+      <li> <p> <b>Fixed</b>—This option disables all TPC functions, and is not recommended. This is typically disabled upon performing a manual site survey and subsequently configuring each AP power settings individually. Though unrelated, this is often done alongside disabling the DCA algorithm, as well.</p> </li> 
+     </ul> </li> 
+    <li> <p> <b>Power Threshold</b>—This value (in dBm) is the cutoff signal level at which the TPC algorithm will adjust power levels downward, such that this value is the strength at which an AP’s third strongest neighbor is heard. In certain rare occasions where the RF environment has been deemed too “hot”, in the sense that the APs in a probable high-density scenario are transmitting at higher-than-desired transmit power levels, the <b>config advanced 802.11b tx-power-control-thresh</b> command can be used to allow downward power adjustments. This enables the APs to hear their third neighbor with a greater degree of RF separation, which enables the neighboring AP to transmit at a lower power level. This has been an un-modifiable parameter until software release 3.2. The new configurable value ranges from -50dBm to -80dBm and can only be changed from the controller’s CLI.</p> </li> 
+    <li> <p> <b>Power Neighbor Count</b>—The minimum number of neighbors an AP must have for the TPC algorithm to run. This is a display-only field and cannot be modified.</p> </li> 
+    <li> <p> <b>Power Update Contribution</b>—This field is not currently in use.</p> </li> 
+    <li> <p> <b>Power Assignment Leader</b>—This field displays the MAC address of the WLC that is currently the RF Group Leader. Because RF Grouping is performed per-AP, per-radio, this value can be different for the 802.11a and 802.11b/g networks.</p> </li> 
+    <li> <p> <b>Last Power Level Assignment</b>—The TPC algorithm runs every 600 seconds (10 minutes). This field only indicates the time (in seconds) since the algorithm last ran and not necessarily the last time a new power assignment was made.</p> </li> 
+   </ul> 
+   <a name="fig12"></a> 
+   <b>Figure 12: Transmit Power Control Algorithm Configuration</b> 
+   <p></p> 
+   <p> <img alt="rrm-new12.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new12.gif" usemap=""/> </p> 
+   <h3> <a name="pt-gui">Profile Thresholds: WLC GUI </a> </h3> 
+   <p>Profile thresholds, called RRM Thresholds in wireless control systems (WCS), are used principally for alarming. When these values are exceeded, traps are sent up to WCS (or any other SNMP-based management system) for easy diagnosis of network issues. These values are used solely for the purposes of alerting and have no bearing on the functionality of the RRM algorithms whatsoever.</p> 
+   <b>Figure 13: Default alarming profile threshold values.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new13.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new13.gif" usemap=""/> </p> 
+   <ul> 
+    <li> <p> <b>Interference (0 to 100%)</b>—The percentage of the wireless medium occupied by interfering 802.11 signals before an alarm is triggered. </p> </li> 
+    <li> <p> <b>Clients (1 to 75)</b>—The number of clients per-band, per-AP above which, a controller will generate a SNMP trap.</p> </li> 
+    <li> <p> <b>Noise (-127 to 0 dBm)</b>—Used to generate a SNMP trap when the noise floor rises above the set level.</p> </li> 
+    <li> <p> <b>Coverage (3 to 50 dB)</b>—The maximum tolerable level of SNR per client. This value is used in the generation of traps for both the Coverage Exception Level and Client Minimum Exception Level thresholds. (Part of the Coverage Hole Algorithm sub-section in 4.1.185.0 and later)</p> </li> 
+    <li> <p> <b>Utilization (0 to 100%)</b>—The alarming value indicating the maximum desired percentage of the time an AP’s radio spends both transmitting and receiving. This can be helpful to track network utilization over time.</p> </li> 
+    <li> <p> <b>Coverage Exception Level (0 to 100%)</b>—The maximum desired percentage of clients on an AP’s radio operating below the desired Coverage threshold (defined above).</p> </li> 
+    <li> <p> <b>Client Min Exception Level</b>—Minimum desired number of clients tolerated per AP whose SNRs are below the Coverage threshold (defined above) (Part of the Coverage Hole Algorithm sub-section in 4.1.185.0 and later).</p> </li> 
+   </ul> 
+   <h4> <a name="nirmc">Noise / Interference / Rogue Monitoring Channels</a> </h4> 
+   <p>Cisco APs provide client data service and periodically scan for RRM (and IDS/IPS) functionality. The channels that the APs are permitted to scan are configurable.</p> 
+   <p> <b>Channel List: </b>Users can specify what channel ranges APs will periodically monitor.</p> 
+   <ul> 
+    <li> <p> <b>All Channels</b>—This setting will direct APs to include every channel in the scanning cycle. This is primarily helpful for IDS/IPS functionality (outside the scope of this document) and does not provide additional value in RRM processes compared to the Country Channels setting.</p> </li> 
+    <li> <p> <b>Country Channels</b>—APs will scan only those channels explicitly supported in the regulatory domain configuration of each WLC. This means that APs will periodically spend time listening on each and every channel allowed by the local regulatory body (this can include overlapping channels as well as the commonly used non-overlapping channels). This is the default configuration.</p> </li> 
+    <li> <p> <b>DCA Channels</b>—This restricts APs’ scanning to only those channels to which APs will be assigned based on the DCA algorithm. This means that in the United States, 802.11b/g radios would only scan on channels 1, 6, and 11 by default. This is based on the school of thought that scanning is only focused on the channels that service is being provided on, and rogue APs are not a concern.</p> <p> <b>Note:&nbsp;</b>The list of channels used by the DCA algorithm (both for channel monitoring and assignment) can be altered in WLC code version 4.0, or later. For example, in the United States, the DCA algorithm uses only the 11b/g channels of 1, 6, and 11 by default. In order to add channels 4 and 8, and remove channel 6 from this DCA list (<b>this configuration is only an example and is not recommended</b>), these commands need to be inputted in the controller CLI:</p> 
+     <blockquote> 
+      <pre>(Cisco Controller) &gt;<b>config advanced 802.11b channel add 4</b>
+(Cisco Controller) &gt;<b>config advanced 802.11b channel add 8</b>
+(Cisco Controller) &gt;<b>config advanced 802.11b channel delete 6</b>
+</pre> 
+     </blockquote> </li> 
+   </ul> 
+   <p>By scanning more channels, such as the All Channels selection, the total amount of time spent servicing data clients is slightly lessened (as compared to when fewer channels are included in the scanning process). However, information on more channels can be garnered (as compared to the DCA Channels setting). The default setting of Country Channels should be used unless IDS/IPS needs necessitate selecting All Channels, or detailed information on other channels is not needed for both threshold profile alarming and RRM algorithm detection and correction. In this case, DCA Channels is the appropriate choice.</p> 
+   <b>Figure 14: While “Country Channels” is the default selection, RRM monitoring channels can be set to either “All” or “DCA” channels.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new14.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new14.gif" usemap=""/> </p> 
+   <h4> <a name="mi">Monitor Intervals (60 to 3600 secs) </a> </h4> 
+   <p>All Cisco LWAPP-based APs deliver data to users while periodically going off channel to take RRM measurements (as well as perform other functions such as IDS/IPS and location tasks). This off-channel scanning is completely transparent to users and only limits performance by up to 1.5%, in addition to having intelligence built-in to defer scanning until the next interval upon presence of traffic in the voice queue in the last 100ms. </p> 
+   <p>Adjusting Monitor Intervals will change how frequently APs take RRM measurements. The most important timer that controls the RF Groups formation is the Signal Measurement field (known as Neighbor Packet Frequency in 4.1.185.0 and later). The value specified is directly related to the frequency at which the neighbor messages are transmitted, except the EU, and other 802.11h domains, where the Noise Measurement interval is considered, as well. </p> 
+   <p>Regardless of the regulatory domain, the entire scanning process takes approximately 50 ms (per radio, per channel) and runs at the default interval of 180 seconds. This interval can be changed by altering the Coverage Measurement (known as Channel Scan Duration in 4.1.185.0 and later) value. The time spent listening on each channel is a function of the non-configurable 50 ms scan time (plus, the 10ms it takes to switch channels) and number of channels to be scanned. For example, in the United States, all 11 802.11b/g channels, which includes the one channel on which data is being delivered to clients, will be scanned for 50 ms each within the 180 second interval. This means that (in the United States, for 802.11b/g) every 16 seconds, 50 ms will be spent listening on each scanned channel (180/11 = ~16 seconds). </p> 
+   <a name="fig15"></a> 
+   <b>Figure 15: RRM monitoring intervals, and their default values</b> 
+   <p></p> 
+   <p> <img alt="rrm-new15.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new15.gif" usemap=""/> </p> 
+   <p>Noise, Load, Signal, and Coverage Measurement intervals can be adjusted to provide more or less granular information to the RRM algorithms. These defaults should be maintained unless otherwise instructed by Cisco TAC.</p> 
+   <p> <b>Note:&nbsp;</b>If any of these scanning values are changed to exceed the intervals at which the RRM algorithms are run (600 seconds for both DCA and TPC and 180 seconds for Coverage Hole Detection and Correction), RRM algorithms will still run, but possibly with “stale” information.</p> 
+   <p> <b>Note:&nbsp;</b>When WLCs are configured to bond multiple gigabit Ethernet interfaces using Link Aggregation (LAG), the Coverage Measurement interval is used to trigger the User Idle Timeout function. As such, with LAG enabled, User Idle Timeout is only performed as frequently as the Coverage Measurement interval dictates. This applies only to the WLCs that run firmware versions prior to 4.1 because, in release 4.1, the Idle timeout handling is moved from the controller to the access points. </p> 
+   <h4> <a name="fd">Factory Default</a> </h4> 
+   <p>In order to reset RRM values back to the default settings, click the <b>Set to Factory Default</b> button at the bottom of the page.</p> 
+   <h2> <a name="rrm-ts">Radio Resource Management: Troubleshooting</a> </h2> 
+   <p>Changes made by RRM can easily be monitored by enabling the necessary SNMP traps. These settings can be accessed from the Management --&gt; SNMP --&gt; Trap Controls heading in the WLC GUI. All other related SNMP trap settings detailed in this section are located under the Management | SNMP heading where the links for Trap Receivers, Controls, and Logs can be found. </p> 
+   <b>Figure 16: Auto RF Channel and Power update traps are enabled by default.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new16.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new16.gif" usemap=""/> </p> 
+   <h3> <a name="ver-dca">Verifying Dynamic Channel Assignment</a> </h3> 
+   <p>After the RF Group Leader (and the DCA algorithm) has suggested, applied and optimized channel schema, changes can easily be monitored via the Trap Logs sub-menu. An example of such a trap is displayed here:</p> 
+   <b>Figure 17: The channel change log entries contain the radio’s MAC address and the new channel of operation.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new17.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new17.gif" usemap=""/> </p> 
+   <p>In order to view statistics that detail how long APs retain their channel settings between DCA changes, this CLI-only command provides minimum, average, and maximum values of channel dwell time on a per-controller basis.</p> 
+   <blockquote> 
+    <pre>(Cisco Controller) &gt;<b>show advanced 802.11b channel</b> 
+
+Automatic Channel Assignment
+  Channel Assignment Mode........................ AUTO
+  Channel Update Interval........................ 600 seconds
+  Anchor time (Hour of the day).................. 0 
+  Channel Update Contribution.................... SNI.
+  Channel Assignment Leader...................... 00:16:46:4b:33:40
+  Last Run....................................... 114 seconds ago
+
+  DCA Senstivity Level: ....................... MEDIUM (15 dB)
+  Channel Energy Levels 
+    Minimum...................................... unknown
+    Average...................................... unknown
+    Maximum...................................... unknown
+  Channel Dwell Times 
+    Minimum...................................... 0 days, 09 h 25 m 19 s
+    Average...................................... 0 days, 10 h 51 m 58 s
+    Maximum...................................... 0 days, 12 h 18 m 37 s
+  Auto-RF Allowed Channel List................... 1,6,11
+  Auto-RF Unused Channel List.................... 2,3,4,5,7,8,9,10</pre> 
+   </blockquote> 
+   <h3> <a name="ver-tpcc">Verifying Transmit Power Control Changes</a> </h3> 
+   <p>Current TPC algorithm settings, which includes the tx-power-control-thresh described earlier, can be verified using this command at the controller CLI (802.11b is displayed in this example):</p> 
+   <blockquote> 
+    <pre>(Cisco Controller) &gt;<b>show advanced 802.11b txpower</b> 
+
+Automatic Transmit Power Assignment
+  Transmit Power Assignment Mode................. AUTO
+  Transmit Power Update Interval................. 600 seconds
+  Transmit Power Threshold....................... -70 dBm
+  Transmit Power Neighbor Count.................. 3 APs
+  Transmit Power Update Contribution............. SNI.
+  Transmit Power Assignment Leader............... 00:16:46:4b:33:40
+  Last Run....................................... 494 seconds ago</pre> 
+   </blockquote> 
+   <p>As indicated earlier in this document, a densely deployed area that results in increased cell-overlap, which results in high collision and frame retry rates due to high co-channel interference, effectively reducing the client throughput levels could warrant the use of the newly introduced <b>tx-power-control-thresh</b> command. In such atypical or anomalous scenarios, the APs hear each other better (assuming the signal propagation characteristics remain constant) compared to how the clients hear them. </p> 
+   <p>Shrinking coverage areas and therefore reducing co-channel interference and the noise floor can effectively improve client experience. However, this command must be exercised with careful analysis of symptoms: high retry rates, high collision counts, lower client throughput levels and overall increased co-channel interference, on the APs in the system (rogue APs are accounted for in the DCA). Internal testing has displayed that modifying the third neighbor’s perceived RSSI to -70 dBm in troubleshooting such events has been an acceptable value to begin troubleshooting.</p> 
+   <p>Similar to the traps generated when a channel change occurs, TPC changes generate traps, as well, which clearly indicates all necessary information associated with the new changes. A sample trap is displayed here:</p> 
+   <b>Figure 18: The Tx Power trap log indicates the new power-level of operation for the specified radio.</b> 
+   <p></p> 
+   <p> <img alt="rrm-new18.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new18.gif" usemap=""/> </p> 
+   <h3> <a name="tpca-ex">Transmit Power Control Algorithm Workflow Example</a> </h3> 
+   <p>Based on the three steps/conditions defined in the TPC algorithm, the example in this section explains how the calculations are made to determine whether the transmit power of an AP needs to be changed. For the purpose of this example, these values are assumed:</p> 
+   <ul> 
+    <li> <p>The Tx_Max is 20</p> </li> 
+    <li> <p>The current transmit power is 20 dBm</p> </li> 
+    <li> <p>The configured TPC threshold is -65 dBm</p> </li> 
+    <li> <p>The RSSI of the third neighbor is -55 dBm</p> </li> 
+   </ul> 
+   <p>Plugging this into the three stages of the TPC algorithm results in:</p> 
+   <ul> 
+    <li> <p>Condition one: is verified because there is a third neighbor, and it is above the transmit power control threshold.</p> </li> 
+    <li> <p>Condition two: 20 + (-65 – (-55)) = 10</p> </li> 
+    <li> <p>Condition three: Because the power has to be decreased one level, and a value of ten from condition two satisfies the TPC hysteresis, the Tx power is reduced by 3dB, which brings the new Tx power down to 17dBm.</p> </li> 
+    <li> <p>At the next iteration of the TPC algorithm, the AP’s Tx power will be lowered further to 14dBm. This assumes all other conditions remain the same. However, it is important to note that the Tx power will not be lowered further (keeping all things constant) to 11dBm because the margin at 14dBm is not 6dB or higher.</p> </li> 
+   </ul> 
+   <h3> <a name="chdca-ex">Coverage Hole Detection and Correction Algorithm Workflow Example</a> </h3> 
+   <p>In order to illustrate the decision-making process used in the Coverage Hole Detection and Correction algorithm, the example below first outlines the poor received SNR level of a single client and how the system will determine whether a change is needed, as well as what that power change might be.</p> 
+   <p>Remember the Coverage Hole SNR Threshold Equation:</p> 
+   <p>Client SNR Cutoff Value (|dB|) = [AP Transmit Power (dBm) – Constant (17 dBm) – Coverage Profile (dB)]</p> 
+   <p>Consider a situation where a client might experience signal issues in a poorly covered area of a floor. In such a scenario, these can be true:</p> 
+   <ul> 
+    <li> <p>A client has an SNR of 13dB.</p> </li> 
+    <li> <p>The AP to which it is connected is configured to transmit at 11 dBm (power level 4).</p> </li> 
+    <li> <p>That AP’s WLC has a Coverage profile threshold set to the default of 12 dB.</p> </li> 
+   </ul> 
+   <p>In order to determine if the client’s AP needs to be powered up, these numbers are plugged into the Coverage Hole Threshold Equation, which results in:</p> 
+   <ul> 
+    <li> <p>Client SNR cutoff = 11dBm (AP transmit power) – 17dBm (constant value) – 12dB (Coverage threshold) = |-18dB|.</p> </li> 
+    <li> <p>Because the client’s SNR of 13dB is in violation of the present SNR cutoff of 18dB, the Coverage Hole Detection and Correction algorithm will increase the AP’s transmit power to 17dBm.</p> </li> 
+    <li> <p>By using the Coverage Hole SNR Threshold Equation, it is evident that the new transmit power of 17dBm will yield a Client SNR cutoff value of 12dB, which will satisfy the client SNR level of 13 dBm.</p> </li> 
+    <li> <p>This is the math for the previous step: Client SNR cutoff = 17dBm (AP transmit power) – 17dBm (constant value) – 12dB (Coverage threshold) = |-12dB|.</p> </li> 
+   </ul> 
+   <p>Supported power output levels in the 802.11b/g band are outlined in Table 4. In order to determine the power level outputs for 802.11a, this CLI command can be run: </p> 
+   <blockquote> 
+    <pre>
+<b>show ap config 802.11a <span style="font-weight:normal; font-style:italic">&lt;ap name&gt;</span>
+</b>
+</pre> 
+   </blockquote> 
+   <a name="table4"></a> 
+   <b>Table 4: The 1000-series APs support power levels up to 5 whereas the 1100- and 1200-series APs support up to power level 8 in the 802.11b/g frequency band.</b>
+   <p></p>
+   <table bgcolor="#FFFFFF" cellpadding="3" cellspacing="1" border="1" width="60%">   
+    <tbody>
+     <tr> 
+      <th height="" width="" bgcolor="#CCCCFF" colspan="1" rowspan="1"> Supported Power Levels</th> 
+      <th height="" width="" bgcolor="#CCCCFF" colspan="1" rowspan="1"> Tx Power (dBm)</th> 
+      <th height="" width="" bgcolor="#CCCCFF" colspan="1" rowspan="1"> Tx Power (mW)</th> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 1</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 20</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 100</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 2</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 17</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 50</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 3</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 14</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 25</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 4</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 11</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 12.5</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 5</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 8</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 6.5</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 6</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 5</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 3.2</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 7</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 2</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 1.6</td> 
+     </tr> 
+     <tr> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 8</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> -1</td> 
+      <td height="" width="" bgcolor="#FFFFFF" colspan="1" rowspan="1"> 0.8</td> 
+     </tr> 
+    </tbody>
+   </table> 
+   <p></p> 
+   <h3> <a name="debug">Debug and Show Commands</a> </h3> 
+   <p>The <b>airewave-director</b> debug commands can be used to further troubleshoot and verify RRM behavior. The top-level command-line hierarchy of the <b>debug airewave-director</b> command is displayed here:</p> 
+   <blockquote> 
+    <pre>(Cisco Controller) &gt;<b>debug airewave-director ?</b>
+
+all       Configures debug of all Airewave Director logs
+channel   Configures debug of Airewave Director channel assignment protocol
+error     Configures debug of Airewave Director error logs
+detail    Configures debug of Airewave Director detail logs
+group     Configures debug of Airewave Director grouping protocol
+manager   Configures debug of Airewave Director manager
+message   Configures debug of Airewave Director messages
+packet    Configures debug of Airewave Director packets
+power     Configures debug of Airewave Director power assignment protocol
+radar     Configures debug of Airewave Director radar detection/avoidance protocol
+rf-change Configures logging of Airewave Director rf changes
+profile   Configures logging of Airewave Director profile events</pre> 
+   </blockquote> 
+   <p>A few important commands are explained in the next sub-sections.</p> 
+   <h4> <a name="debug1">debug airewave-director all</a> </h4> 
+   <p>Use of the <b>debug airewave-director all</b> command will invoke all RRM debugs which can help identify when RRM algorithms are run, what data they use, and what changes (if any) are made.</p> 
+   <p>In this example, (output from the <b>debug airewave-director all</b> command has been trimmed to show the Dynamic Channel Assignment Process only), the command is run on the RF Group Leader to gain insight into the inner workings of the DCA algorithm and can be broken down into these four steps:</p> 
+   <ol type="1"> 
+    <li> <p>Collect and record the current statistics that will be run through the algorithm.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Checking quality of current assignment for 802.11a
+Airewave Director: 802.11a AP 00:15:C7:A9:3D:F0(1) ch 161 (before -86.91, 
+after -128.00)
+Airewave Director: 00:15:C7:A9:3D:F0(1)( 36, -76.00)( 40, -81.75)( 44, -81.87)
+( 48, -81.87)
+Airewave Director: 00:15:C7:A9:3D:F0(1)( 52, -81.87)( 56, -81.85)( 60, -79.90)
+( 64, -81.69)
+Airewave Director: 00:15:C7:A9:3D:F0(1)(149, -81.91)(153, -81.87)(157, -81.87)
+(161, -86.91)</pre> 
+     </blockquote> </li> 
+    <li> <p>Suggest a new channel schema and store the recommended values.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Searching for better assignment for 802.11a
+Airewave Director: 802.11a AP 00:15:C7:A9:3D:F0(1) ch 161 (before -86.91, 
+after -128.00)
+Airewave Director: 00:15:C7:A9:3D:F0(1)( 36, -76.00)( 40, -81.75)( 44, -81.87)
+( 48, -81.87)
+Airewave Director: 00:15:C7:A9:3D:F0(1)( 52, -81.87)( 56, -81.85)( 60, -79.90)
+( 64, -81.69)
+Airewave Director: 00:15:C7:A9:3D:F0(1)(149, -81.91)(153, -81.87)(157, -81.87)
+(161, -86.91)</pre> 
+     </blockquote> </li> 
+    <li> <p>Compare the current values against the suggested values.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Comparing old and new assignment for 802.11a
+Airewave Director: 802.11a AP 00:15:C7:A9:3D:F0(1) ch 161 (before -86.91, 
+after -86.91)
+Airewave Director: 00:15:C7:A9:3D:F0(1)( 36, -76.00)( 40, -81.75)( 44, -81.87)
+( 48, -81.87)
+Airewave Director: 00:15:C7:A9:3D:F0(1)( 52, -81.87)( 56, -81.85)( 60, -79.90)
+( 64, -81.69)
+Airewave Director: 00:15:C7:A9:3D:F0(1)(149, -81.91)(153, -81.87)(157, -81.87)
+(161, -86.91)</pre> 
+     </blockquote> </li> 
+    <li> <p>If necessary, apply the changes for the new channel schema to take effect.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Before -- 802.11a energy worst -86.91, average -86.91,
+best -86.91
+Airewave Director: After -- 802.11a energy worst -86.91, average -86.91, 
+best -86.91</pre> 
+     </blockquote> </li> 
+   </ol> 
+   <h4> <a name="debug2">debug airewave-director detail – Explained</a> </h4> 
+   <p>This command can be used to get a detailed, real-time view of RRM functioning on the controller on which it is run. These are explanations of the relevant messages:</p> 
+   <ul> 
+    <li> <p>Keep-alive messages being sent to group members to maintain group hierarchy.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Sending keep alive packet to 802.11a group members</pre> 
+     </blockquote> </li> 
+    <li> <p>Load statistics being calculated on the neighbors reported.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Processing Load data on 802.11bg AP 00:13:5F:FA:2E:00(0)
+Airewave Director: Processing Load data on 802.11bg AP 00:0B:85:54:D8:10(1)
+Airewave Director: Processing Load data on 802.11bg AP 00:0B:85:23:7C:30(1)</pre> 
+     </blockquote> </li> 
+    <li> <p>Displays how strong the neighbor messages are being heard and through which APs.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Neighbor packet from 00:0B:85:54:D8:10(1) 
+received by 00:13:5F:FA:2E:00(0)rssi -36
+Airewave Director: Neighbor packet from 00:0B:85:23:7C:30(1) 
+received by 00:13:5F:FA:2E:00(0)rssi -43</pre> 
+     </blockquote> </li> 
+    <li> <p>Noise and Interference statistics being calculated at the reported radios.</p> 
+     <blockquote> 
+      <pre>Airewave Director: Sending keep alive packet to 
+	 802.11bg group members
+Airewave Director: Processing Interference data on 
+802.11bg AP 00:0B:85:54:D8:10(1)
+Airewave Director: Processing noise data on 
+802.11bg AP 00:0B:85:54:D8:10(1)
+Airewave Director: Processing Interference data on 
+802.11bg AP 00:0B:85:54:D8:10(1)
+Airewave Director: Processing Interference data on 
+802.11bg AP 00:0B:85:23:7C:30(1)
+Airewave Director: Processing noise data on 
+802.11bg AP 00:0B:85:23:7C:30(1)
+Airewave Director: Processing Interference data on 
+802.11bg AP 00:0B:85:23:7C:30(1)</pre> 
+     </blockquote> </li> 
+   </ul> 
+   <h4> <a name="debug3">debug airewave-director power</a> </h4> 
+   <p>The <b>debug airewave-director power</b> command must be run on the WLC local to the AP that is being monitored for Coverage Hole corrections. The output from the command has been trimmed for the purpose of this example.</p> 
+   <p> <b>Watching Coverage Hole Algorithm run for 802.11a</b> </p> 
+   <blockquote> 
+    <pre>Airewave Director: Coverage Hole Check on 
+  802.11a AP 00:0B:85:54:D8:10(0)
+Airewave Director: Found 0 failed clients on 
+802.11a AP 00:0B:85:54:D8:10(0)
+Airewave Director: Found 0 clients close to coverage edge on 
+802.11a AP 00:0B:85:54:D8:10(0)
+Airewave Director: Last power increase 549 seconds ago on 
+802.11a AP 00:0B:85:54:D8:10(0)
+Airewave Director: Set raw transmit power on 
+802.11a AP 00:0B:85:54:D8:10(0) 
+to (  20 dBm, level  1)</pre> 
+   </blockquote> 
+   <p> <b>Watching Coverage Hole Algorithm run for 802.11b/g</b> </p> 
+   <blockquote> 
+    <pre>Airewave Director: Coverage Hole Check on 802.11bg AP 00:13:5F:FA:2E:00(0)
+Airewave Director: Found 0 failed clients on 802.11bg AP 00:13:5F:FA:2E:00(0)
+Airewave Director: Found 0 clients close to coverage edge on 802.11bg 
+AP 00:13:5F:FA:2E:00(0)
+Airewave Director: Last power increase 183 seconds ago on 802.11bg 
+AP 00:13:5F:FA:2E:00(0)
+Airewave Director: Set raw transmit power on 802.11bg AP 00:13:5F:FA:2E:00(0)
+to (  20 dBm, level  1)
+Airewave Director: Set adjusted transmit power on 
+802.11bg AP 00:13:5F:FA:2E:00(0) to (  20 dBm, level  1)</pre> 
+   </blockquote> 
+   <h4> <a name="show1">show ap auto-rf</a> </h4> 
+   <p>In order to know which APs are adjacent to other APs, use the command <b>show ap auto-rf</b> from the Controller CLI. In the output of this command, there is a field called <b>Nearby RADs</b>. This field provides information on the nearby AP MAC addresses and the signal strength (RSSI) between the APs in dBm.</p> 
+   <p>This is the syntax of the command: </p> 
+   <blockquote> 
+    <pre>
+<b>show ap auto-rf {802.11a | 802.11b} Cisco_AP </b>
+</pre> 
+   </blockquote> 
+   <p>This is an example: </p> 
+   <blockquote> 
+    <pre>&gt; <b>show ap auto-rf 802.11a AP1</b>
+
+Number Of Slots.................................. 2
+Rad Name......................................... AP03
+MAC Address...................................... 00:0b:85:01:18:b7
+  Radio Type..................................... RADIO_TYPE_80211a
+  Noise Information
+    Noise Profile................................ PASSED
+    Channel 36...................................  -88 dBm
+    Channel 40...................................  -86 dBm
+    Channel 44...................................  -87 dBm
+    Channel 48...................................  -85 dBm
+    Channel 52...................................  -84 dBm
+    Channel 56...................................  -83 dBm
+    Channel 60...................................  -84 dBm
+    Channel 64...................................  -85 dBm
+  Interference Information
+    Interference Profile......................... PASSED
+    Channel 36...................................  -66 dBm @  1% busy
+    Channel 40................................... -128 dBm @  0% busy
+    Channel 44................................... -128 dBm @  0% busy
+    Channel 48................................... -128 dBm @  0% busy
+    Channel 52................................... -128 dBm @  0% busy
+    Channel 56...................................  -73 dBm @  1% busy
+    Channel 60...................................  -55 dBm @  1% busy
+    Channel 64...................................  -69 dBm @  1% busy
+  Load Information
+    Load Profile................................. PASSED
+    Receive Utilization.......................... 0%
+    Transmit Utilization......................... 0%
+    Channel Utilization.......................... 1%
+    Attached Clients............................. 1 clients
+  Coverage Information
+    Coverage Profile............................. PASSED
+    Failed Clients............................... 0 clients
+  Client Signal Strengths
+    RSSI -100 dBm................................ 0 clients
+    RSSI  -92 dBm................................ 0 clients
+    RSSI  -84 dBm................................ 0 clients
+    RSSI  -76 dBm................................ 0 clients
+    RSSI  -68 dBm................................ 0 clients
+    RSSI  -60 dBm................................ 0 clients
+    RSSI  -52 dBm................................ 0 clients
+  Client Signal To Noise Ratios
+    SNR    0 dBm................................. 0 clients
+    SNR    5 dBm................................. 0 clients
+    SNR   10 dBm................................. 0 clients
+    SNR   15 dBm................................. 0 clients
+    SNR   20 dBm................................. 0 clients
+    SNR   25 dBm................................. 0 clients
+    SNR   30 dBm................................. 0 clients
+    SNR   35 dBm................................. 0 clients
+    SNR   40 dBm................................. 0 clients
+    SNR   45 dBm................................. 0 clients
+ <b> Nearby RADs
+    RAD 00:0b:85:01:05:08 slot 0.................  -46 dBm on 10.1.30.170
+    RAD 00:0b:85:01:12:65 slot 0.................  -24 dBm on 10.1.30.170</b>
+  Channel Assignment Information
+    Current Channel Average Energy...............  -86 dBm 
+    Previous Channel Average Energy..............  -75 dBm 
+    Channel Change Count.........................  109 
+    Last Channel Change Time..................... Wed Sep 29 12:53e:34 2004
+    Recommended Best Channel..................... 44 
+  RF Parameter Recommendations
+    Power Level.................................. 1
+    RTS/CTS Threshold............................ 2347
+    Fragmentation Threshold...................... 2346
+    Antenna Pattern.............................. 0
+</pre> 
+   </blockquote> 
+   <h2> <a name="appendix">APPENDIX A: WLC Release 4.1.185.0 – RRM Enhancements</a> </h2> 
+   <h3> <a name="app1">RF Grouping Algorithm</a> </h3> 
+   <p> <b>Neighbor List “pruning timer”</b> </p> 
+   <p>Before the first maintenance release of WLC software 4.1, an AP would keep other APs in its neighbor list for up to 20 minutes from the last time they were heard. In the event of temporary changes in the RF environment, there might have been possibilities where a valid neighbor would have pruned out of a given AP’s neighbor list. In order to provide for such temporary changes to the RF environment, the pruning timer for an AP’s neighbor list (time since the last neighbor message was heard) has been increased to 60 minutes.</p> 
+   <h3> <a name="app2">Dynamic Channel Assignment Algorithm</a> </h3> 
+   <p> <b>Channel Assignment Method</b> </p> 
+   <p>While in the Automatic mode, the default behavior of DCA before 4.1.185.0 was to compute and apply (if necessary) the channel plans every 10 minutes. Volatile environments might have potentially seen numerous channel changes during the day. Therefore, the need for advanced, finer control on the frequency of DCA arose. In 4.1.185.0 and later, users wishing for finer control over the frequency have the ability to configure these:</p> 
+   <ul> 
+    <li> <p> <b>Anchor Time</b>—Users wishing to change the 10-minute default will have the option to choose an anchor time when the group leader will perform in the Start-up mode. The Start-up mode is defined as a period where the DCA operates every ten minutes for the first ten iterations (100 minutes), with the DCA sensitivity of 5dB. This is the normal mode of operation before the RRM timers were added in release 4.1. This allows for the network to stabilize initially and quickly. After the Start-up mode ends, the DCA runs at the user-defined interval. The Start-up mode operation is clearly indicated in the WLC CLI via the <b>show advanced 802.11[a|b]</b> command:</p> 
+     <blockquote> 
+      <pre>(Cisco Controller) &gt;<b>show advanced 802.11a channel</b> 
+
+Automatic Channel Assignment
+  Channel Assignment Mode........................ AUTO
+<b>  Channel Update Interval........................ 600 seconds [startup]</b>
+  Anchor time (Hour of the day).................. 0 
+  Channel Update Contribution.................... SNI.
+  Channel Assignment Leader...................... 00:16:46:4b:33:40
+  Last Run....................................... 203 seconds ago
+
+  DCA Senstivity Level: ....................... MEDIUM (5 dB)
+  Channel Energy Levels 
+    Minimum...................................... unknown
+    Average...................................... unknown
+    Maximum...................................... unknown
+  Channel Dwell Times 
+    Minimum...................................... unknown
+    Average...................................... unknown
+    Maximum...................................... unknown
+  Auto-RF Allowed Channel List................... 36,40,44,48,52,56,60,64,100,
+    ............................................. 104,108,112,116,132,136,140,
+    ............................................. 149,153,157,161
+  Auto-RF Unused Channel List.................... 165,20,26</pre> 
+     </blockquote> </li> 
+    <li> <p> <b>Interval</b>—The interval value, with the units defined in hours, allows the users to have a predictable network and the channel plan assessments are only computed at the configured intervals. For example, if the configured interval is 3 hours, the DCA computes and assesses a new channel plan every 3 hours.</p> </li> 
+    <li> <p> <b>Sensitivity</b>—As described in the <a href="#dcaa">DCA Algorithm</a> section, the 5dB hysteresis that is accounted for in the algorithm to assess if the channel plan is improved by running the algorithm is now user-tunable. Allowed configurations are Low, Medium or High Sensitivity with a setting of low indicating the algorithm being very insensitive and a setting of high indicating the algorithm being extremely sensitive. The default sensitivity level is Medium for both bands.</p> 
+     <ul> 
+      <li> <p>For 802.11a, the sensitivity values equate to: Low (35dB), Medium (20dB) and High (5dB). </p> </li> 
+      <li> <p>For 802.11b/g, the sensitivity values equate to: Low (30dB), Medium (15dB) and High (5dB)</p> </li> 
+     </ul> </li> 
+   </ul> 
+   <h3> <a name="app3">Tx Power Control Algorithm</a> </h3> 
+   <p> <b>Default Transmit Power Control Threshold</b> </p> 
+   <p>The transmit power control threshold has always carried the responsibility of how APs hear their neighbors, which, in due course is used to decide the transmit power of the AP. As a result of the overall enhancements that have been made to the RRM algorithms in WLC software’s 4.1 maintenance release, the default value of -65dBm has also been reconsidered. Therefore, the default which was deemed too hot for most deployments, has been adapted to -70dBm. This results in better cell overlap in most indoor deployments out of the box. However, this default only impacts new installations as the controller maintains the previously configured value if being upgraded from 4.1.171.0 or earlier.</p> 
+   <h3> <a name="app4">Coverage Hole Algorithm</a> </h3> 
+   <h4>Minimum Clients</h4> 
+   <p>Up until the 4.1.185.0, only one client needed to have met the condition (worse SNR threshold than the configured value, or the defaults of 16dB for 802.11a or 12dB for 802.11b/g) for a coverage hole to be detected and the mitigation mechanisms to be kicked in. The Client Minimum Exception Level field is now directly tied to the CHA (and appropriately positioned in the newly created sub-section for the CHA) where the configured value will define how many clients have to meet the SNR threshold for the coverage hole mitigation mechanisms (increasing AP Transmit power) will kick in. It must be noted that most deployments should begin with the defaults (12dB for 802.11b/g and 16dB for 802.11a, and Client minimum exception level of 3) and adjusted only if necessary.</p> 
+   <b>Figure 19: Coverage Hole Algorithm Sub-section, separated from the Profile Thresholds, with the default values that provide optimum results in most installations</b> 
+   <p></p> 
+   <p> <img alt="rrm-new19.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new19.gif" usemap=""/> </p> 
+   <h4>Tx-Power-Up Control</h4> 
+   <p>In addition to allowing the number of clients that need to be in violation for coverage hole mitigation to kick in, the algorithm has also been improved to consider AP transmit power increase in an intelligent manner. While increasing the transmit power to the maximum might have been the safe bet to ensure sufficient mitigation and overlap, it does have adverse effects with the presence of clients with poor roaming implementations. Instead of changing its association to a different AP, typically the one that provides the strongest signal, the client keeps associating to the same old AP that it has moved farther away from. As a consequence, this client is no longer receiving a good signal from the associating AP. A failed client that is a consequence of poor roaming is an example of a possible false positive coverage hole scenario. Poor roaming is not an indication that a genuine coverage hole exists. The potential coverage hole is genuine if:</p> 
+   <ul> 
+    <li> <p>It is located within the intended coverage area, and</p> </li> 
+    <li> <p>Even if the client in this coverage hole were to change its association to any other available AP, the downlink signal the client would receive and the uplink signal at such an alternative AP from the client would still be below the coverage threshold.</p> </li> 
+   </ul> 
+   <p>In order to avoid and mitigate such scenarios, the AP transmit power is only raised one level at a time (per iteration), which allows genuine coverage holes to benefit from the power increase without running the network hot (avoiding co-channel interference as a result).</p> 
+   <h3> <a name="app5">SNMP Trap Enhancements</a> </h3> 
+   <p>The SNMP trap generated in the event of a channel change has been enhanced to provide detailed information as to explain the reason for implementing a new channel plan. As evident from this image, the enhanced trap includes the before and after metrics used in the DCA algorithm and which one of those metrics contributed to the channel change for the given AP.</p> 
+   <b>Figure 20: Improved DCA Trap displays the reason behind a channel change</b> 
+   <p></p> 
+   <p> <img alt="rrm-new20.gif" border="0" src="//www.cisco.com/c/dam/en/us/support/docs/wireless-mobility/wireless-lan-wlan/71113-rrm-new20.gif" usemap=""/> </p> 
+   <h3> <a name="app6">Cosmetic/Other Enhancements</a> </h3> 
+   <ul> 
+    <li> <p>As an undertaking to simplify configuration and improve usability, a new sub-section for the CHA was created, which separates it from the Profile Thresholds sub-section that directly controls the triggers for SNMP Trap generation.</p> </li> 
+    <li> <p>The terms Signal and Coverage measurements under the Monitor Intervals sub-sections have also been modified to reflect their appropriate meanings: Neighbor Packet Frequency and Channel Scan Duration respectively.</p> </li> 
+   </ul> 
+   <h3> <a name="app7">Load-Balancing Changes</a> </h3> 
+   <p>The default setting for load-balancing with 4.1.185.0 and later is OFF. When enabled, the load-balancing window will default to 5 clients.</p> 
+   <blockquote> 
+    <pre>(Cisco Controller) &gt;<b>show load-balancing</b> 
+
+Aggressive Load Balancing........................ Disabled
+Aggressive Load Balancing Window................. 5 clients</pre> 
+   </blockquote> 
+   <h2> <a name="EnhancementsWLC6">APPENDIX B: WLC Release 6.0.188.0 – RRM Enhancements </a> </h2> 
+   <h3> <a name="RRMMedical">RRM Fixes for Medical Devices </a> </h3> 
+   <p>This feature improves the way that QoS interacts with the RRM scan defer feature. In deployments with certain power-save clients, you sometimes need to defer RRM normal off-channel scanning in order to avoid missing critical information from low-volume clients, such as medical devices that use power-save mode and periodically send telemetry information. </p> 
+   <p>You can use the WMM UP marking of a client in order to tell the access point to defer off-channel scanning for a configurable period of time if it receives a packet marked UP. Use this controller CLI command in order to configure this feature for a sepcific WLAN: </p> 
+   <blockquote> 
+    <pre>config wlan channel-scan defer-priority priority [enable | disable] WLAN-id</pre> 
+   </blockquote> 
+   <p>where priority = 0 through 7 for user priority. This value must be set to 6 on the client and on the WLAN. </p> 
+   <p>Use this command in order to configure the amount of time that scanning is deferred after an UP packet in the queue: </p> 
+   <blockquote> 
+    <pre>config wlan channel-scan defer-time msec WLAN-id </pre> 
+   </blockquote> 
+   <p>Enter the time value in miliseconds (ms). The valid range is 100 (default) to 60000 (60 seconds). This setting must match the requirements of the equipment on your wireless LAN. </p> 
+   <p>You can also configure this feature on the controller GUI. Select WLANs, and either edit an existing WLAN or create a new one. On the WLANs &gt; Edit page, click the <b>Advanced</b> tab. Under Off Channel Scanning Defer, select the scan defer priorities, and enter the defer time in milliseconds. </p> 
+   <p> <b>Note:&nbsp;</b>Off-chanel scanning is essential to the operation of RRM, which gathers information about alternate channel choices, such as noise and interference. Additionally, off-channel scanning is responsible for rogue detection. Devices that need to defer off-channel scanning must use the same WLAN as often as possible. If there are many of these devices, and the possibility exists that off-channel scanning could be completely disabled by the use of this feature, you must implement an alternative to local AP off-channel scanning, such as monitor access points or other access points in the same location that do not have this WLAN assigned. </p> 
+   <p>Assignment of a QoS policy (bronze, silver, gold, and platinum) to a WLAN affects how packets are marked on the downlink connection from the access point, regardless of how they were received on the uplink from the client. UP=1,2 is the lowest priority, and UP=0,3 is the next higher priority. These are the marking results of each QoS policy: </p> 
+   <ul> 
+    <li> <p>Bronze marks all downlink traffic to UP= 1 </p> </li> 
+    <li> <p>Silver marks all downlink traffic to UP= 0</p> </li> 
+    <li> <p>Gold marks all downlink traffic to UP=4</p> </li> 
+    <li> <p>Platinum marks all downlink traffic to UP=6</p> </li> 
+   </ul> 
+   <h2> <a name="related">Related Information</a> </h2> 
+   <ul> 
+    <li> <b> <a href="//www.cisco.com/en/US/tech/tk722/tk809/technologies_configuration_example09186a00807360fc.shtml?referring_site=bodynav">Wireless LAN Controller and IPS Integration Guide</a> </b> </li> 
+    <li> <b> <a href="//www.cisco.com/en/US/products/ps6366/products_configuration_example09186a0080665cdf.shtml?referring_site=bodynav">Wireless LAN Controller and Lightweight Access Point Basic Configuration Example</a> </b> </li> 
+    <li> <b> <a href="//www.cisco.com/cisco/web/support/index.html?referring_site=bodynav">Technical Support &amp; Documentation - Cisco Systems</a> </b> </li> 
+   </ul> 
+   <p xmlns:cal="xalan://java.util.GregorianCalendar"></p> 
+   <p xmlns:cal="xalan://java.util.GregorianCalendar"></p> 
+   <p xmlns:cal="xalan://java.util.GregorianCalendar"></p> 
+   <font xmlns:cal="xalan://java.util.GregorianCalendar" size="-1"> </font> 
+  </div>
+  <!--[if IE 7]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie7.css">
+<![endif]--> 
+  <!--[if IE 8]>
+	<link rel="stylesheet" type="text/css" href="/c/dam/en/us/support/docs/common/ie8.css">
+<![endif]--> 
+  <script type="text/javascript">
+function showfeedback(divid){
+   document.getElementById(divid).style.visibility="visible";
+   document.getElementById(divid).className = "show";
+}function hidefeedback(divid){
+   document.getElementById(divid).style.visibility="hidden";
+   document.getElementById(divid).className = "hide";
+}</script> 
+  <script type="text/javascript" src="/c/dam/en/us/support/docs/common/parseXml.js"></script> 
+  <script language="JavaScript"> loadjscssfile('/c/dam/en/us/support/docs/common/support-docs.css','css');</script> 
+  <meta http-equiv="X-UA-Compatible" content="IE=9" /> 
+  <!-- PIDLMD -->
+  <!-- PIDLMD --> 
+  <script type="text/javascript" src="/c/dam/en/us/support/docs/common/dest_pg_metricsrule.js"></script>
+  <script type="text/javascript">NTPT_PGEXTRA = 'status=Anonymous';cdc.util.checkLogin(function(val) {if ( val === "valid") {NTPT_PGEXTRA = 'status=LoggedIn';}});</script>  
+ </body>
+</html>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<cdc:do action="com.cisco.wem.framework.service.command.eotcontent.EOTResponsiveContent@49aac8f" returnTypedAs="eotResponsiveContainerVo" id="eotResponsiveContainerVo" />
+
+
+<div class="row full visitedlinks" style="padding: 0px; margin:0px">
+     <div class="col full" >
+     
+    
+            <!-- Revision History as a component now -->
+         	<div id="eot-revision-history">
+                <h3>Revision History</h3>
+                <div style="overflow-x: auto;">
+                    <table border="1" id="erh-table"> 
+                        <tbody>
+                            <tr>
+                                <th>Revision</th>
+                                <th>Publish Date</th>
+                                <th>Comments</th>
+                            </tr>
+                            <!-- Unpublished dates are only visible for author -->
+                                                
+                            
+          
+                                    <tr class="published">
+                                        <td><div align="center">1.0</div></td>
+                                        <td><div align="center">
+                                            
+                                                07-Feb-2014
+                                            
+                                        </div></td>
+                                        
+                                            <td><div align="left">Initial Release</div></td>
+                                                                    
+                                    </tr>
+          
+                            
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        
+    </div>
+</div>
+
+</div>
+<script>
+    if (window.cdc === undefined) {
+        cdc = {};
+    }
+
+    if (cdc.eot === undefined) {
+        cdc.eot = {};
+    }
+
+    cdc.eot.isEot = true;
+    cdc.eot.isToc = false;
+
+    jQuery(document).ready(function () {
+        if (jQuery('.unpublished').length > 0) {
+            let lastRel = "1.0";
+            if (jQuery('.published').length > 0) {
+                lastRel = Number(jQuery('.published td')[0].innerText) + 1 + ".0";
+            }
+            jQuery('.preview_revision').text(lastRel);
+        }
+
+        const linkItemsLen = jQuery("#eot-doc-wrapper link[rel='stylesheet']").length;
+
+        function addNewTocStyleSheet() {
+            let fileName="/etc/designs/cdc/transformation/wemdcmt_responsive.css",
+              $head = jQuery("head"),
+              linkElement = "<link rel='stylesheet' href='"+fileName+"' type='text/css' >";
+            $head.append(linkElement);
+        }
+
+        if (cdc.eot.isToc && !linkItemsLen) {
+            addNewTocStyleSheet();
+        } else if (cdc.eot.isEot) {
+            jQuery("#eot-doc-wrapper link[rel='stylesheet']").each(function () {
+                const linkTag = jQuery(this),
+                    hrefVal = jQuery(linkTag).attr("href");
+
+                if (hrefVal != undefined && hrefVal.indexOf("support-responsive.css") == -1 && hrefVal.indexOf("_responsive.css") == -1) {
+                    let fileName = hrefVal.substr(hrefVal.lastIndexOf("/") + 1, hrefVal.length).split(".css")[0];
+                    const filePath = "/etc/designs/cdc/transformation/";
+
+                    if (fileName == "ccimr") {
+                        fileName = "techdocs_responsive";
+                    } else if (fileName == "support-docs") {
+                        fileName = "support-responsive";
+                    } else if (fileName == "framework") {
+                        fileName = "responsiveframework";
+                    } else if (fileName == "dcmt") {
+                        fileName = "wemdcmt_responsive";
+                    } else if (fileName == "techdocs_85_11_word") {
+                        fileName = "techdocs_85_11_word";
+                        
+                        if (cdc.eot.isToc) {
+                            addNewTocStyleSheet();
+                        }
+                    } else {
+                        fileName += "_responsive";
+                    }
+                    jQuery(linkTag).attr("href", filePath + fileName + ".css");
+                }
+
+                if (hrefVal.indexOf("support-responsive.css") > -1) {
+                    jQuery(linkTag).attr("href", "/etc/designs/cdc/transformation/support-responsive.css");
+                }
+            });
+
+            jQuery("#eot-doc-wrapper > table").wrap("<div></div>");
+            jQuery("#eot-doc-wrapper table:not('.olh_note')").parent().css({
+                overflowX: "auto"
+            });
+        }
+    });
+</script>
+
+	
+
+
+
+
+    </div>
+
+    <div class="col narrow-v2">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rightRailComponent base-blowout">
+    
+
+    <div class="eotPersonalization">
+        <section id="eotSupportCampaign"></section>
+    </div>
+    
+    <!-- condition for support RR components -->
+     
+			<!-- TAC image component mandatory normal-->
+            <div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="tac-image">
+
+
+    
+    
+    <script type="text/javascript">
+       document.getElementsByClassName('tac-image')[0].parentElement.style.display="none";
+    </script>
+    
+
+
+
+</div>
+
+</div>
+
+            <div class="showComponent">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-authors">
+  
+  
+	  <h3 class="eot-authors-heading">Contributed by</h3>
+  
+
+  <ul>
+    <li><div class="eot-authors-name">yjamal</div><div class="eot-authors-org"> mlluis</div></li>
+    
+    
+  </ul>
+</div>
+
+
+
+            </div>
+        
+            <!-- mandatory -->
+            <div class="eot-feedback-container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-feedback">
+  <h3>Was this Document Helpful?</h3>
+  <span class="eot-feedback-btnwrap">
+    <button class="eot-feedback-btn eot-feedback-btn-yes" aria-label="Was this Document Helpful?? Yes">Yes</button>
+    <button class="eot-feedback-btn eot-feedback-btn-no" aria-label="Was this Document Helpful?? No">No</button>
+  </span>
+  <span lang="en" class="eot-feedback-olwrap">
+    
+      <a href="javascript: void(0);" class="eot-feedback-ol" onclick="window.open('https://ciscocx.qualtrics.com/jfe/form/SV_dpqK8gJRAW2GHCC?Ref=' + location.href + '&resize=false', 'feedback', 'width=650, height=460, scrollbars=1, menubar=1, resizable=1'); return false;">
+      <img id="feedback_img" border="0" style="cursor: pointer;" title="Feedback" src="//www.cisco.com/c/dam/cdc/i/Feedback_OceanBlue.png" alt="Feedback">Feedback</a>
+    
+  </span>
+</div>
+
+
+</div>
+
+            <div class="showComponent">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-vav">
+  <ul>
+  </ul>
+</div>
+            </div>
+
+            <div class="showComponent">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eotLetUsHelp">
+    <h3>Contact Cisco</h3>
+    <ul>
+        <li><a id="eotLetUsHelpProdDocUrl" href="https://mycase.cloudapps.cisco.com/start?prodDocUrl=">Open a Support Case</a><img src="/etc/designs/cdc/fw/i/icon_lock_small.png" alt="login required" tabindex="0"/></li>
+        <li>(Requires a <a href="//www.cisco.com/c/en/us/services/order-services.html">Cisco Service Contract</a>)</li>
+    </ul>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        var getURL=jQuery("#eotLetUsHelpProdDocUrl").attr("href"), 
+            domInd = location.href.indexOf('cisco.com') ;
+        if ( domInd > -1 && domInd < location.href.search(/\w\/\w/) ) {
+            getURL += encodeURI(location.href);
+        }
+		jQuery("#eotLetUsHelpProdDocUrl").attr("href",getURL);
+    });
+</script>
+
+
+            </div>
+
+            <!-- mandatory -->
+            <div id="eotRightRailMBox"><!--MBox-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- IT:components/mbox/banner-mbox:V0.0.0 -->
+
+
+
+<div>
+    <div class="mboxDefault"></div>   
+    <script type="text/javascript">
+        var test="";
+        if(test!=undefined && test.trim().length>0){
+           mboxCreate('en-us_dg_support_eot','type=default','');
+        }else{
+           mboxCreate('en-us_dg_support_eot','type=default');
+        }
+       
+    </script>
+</div>
+<!--MBox--></div>
+
+            <div class="showComponent">
+                
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <div class="eot-tdatp">
+    
+    	<h3>This Document Applies to These Products</h3>
+    
+    <ul class="eot-tdatp-list">
+       
+         <li><a href="/c/en/us/tech/wireless-2f-mobility/wireless-lan-wlan/index.html">Wireless, LAN (WLAN)</a></li>
+       
+     </ul>
+     
+  </div>
+
+    
+
+
+            </div>
+
+        
+            <div class="showClass">
+                
+            </div>
+        
+
+    
+
+    
+
+</div>
+
+
+ 
+
+    </div>
+
+</div>
+
+     <!--googleoff: index--><!--googleoff: snippet-->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end: responsive fat footer re-use wrapper-->
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script type="module" src="/site/web-components/us/en/cdc-footer.js"></script>
+        <cdc-footer></cdc-footer>
+    
+
+<script type="text/javascript">
+    if(document.querySelector('#privacy-manager')!=null){
+        document.querySelector('#privacy-manager').href='#cookies';
+    }
+  </script>   
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-overlay"></div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/etc/designs/cdc/fw/b/responsive/js/eot.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/c/dam/cdc/t/ctm.js" type="text/javascript"></script>
+
+    
+    
+
+    <!-- SiteCatalyst code version: H.24.4. -->
+    <noscript><img src="//cisco.112.2o7.net/b/ss/cisco-mobile/5/12345" width="2" height="2" border="0" alt=""/></noscript>
+
+</body>
+</html>
