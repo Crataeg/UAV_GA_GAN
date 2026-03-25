@@ -1,0 +1,43 @@
+{
+  "analysis_time": "2026-03-25 11:19:06 +08:00",
+  "project_dir": "D:\\论文无人机\\UAV_GA_GAN",
+  "stage_label": "最终工程归档 / 集成评估平台阶段",
+  "run_id": "analysis_uav_20260325_111032",
+  "main_chain": [
+    "UAV_GA.py",
+    "gan_uav_pipeline.py",
+    "compare_random_ga_gan.py",
+    "evaluate.py",
+    "kpi.py"
+  ],
+  "smoke_run_config": {
+    "ga_runs": 2,
+    "ga_maxgen": 2,
+    "ga_nind": 10,
+    "gan_epochs": 2,
+    "gan_samples": 2,
+    "random_n": 10
+  },
+  "environment": {
+    "python": "D:\\anaconda\\envs\\python36\\python.exe",
+    "compatibility_note": "Use python36 because geatpy and torch are available there; removed future-annotations imports in analysis modules for compatibility."
+  },
+  "fresh_run_metrics": {
+    "ga_avg_total_deg_mean": 0.39724964562220666,
+    "gan_avg_total_deg_mean": 0.2516817745451828,
+    "random_avg_total_deg_mean": 0.3429280382214904,
+    "ga_avg_margin_db_mean": 1.3895835521552893,
+    "gan_avg_margin_db_mean": 4.886559311124613,
+    "random_avg_margin_db_mean": 3.024395561533715,
+    "ga_kpi_mean_sinr_db": 1.3895835521552893,
+    "gan_kpi_mean_sinr_db": 4.886559311124613,
+    "random_kpi_mean_sinr_db": 3.0243955615337152,
+    "ga_kpi_mean_rate_mbps": 36.13521099992935,
+    "gan_kpi_mean_rate_mbps": 47.13606144309328,
+    "random_kpi_mean_rate_mbps": 43.403972916777155,
+    "ga_kpi_throughput_a_mbps": 25.16615466256955,
+    "gan_kpi_throughput_a_mbps": 31.208206265743423,
+    "random_kpi_throughput_a_mbps": 31.265138850164875
+  },
+  "saved_outputs_root": "D:\\论文无人机\\UAV_GA_GAN\\产出文件夹\\无人机工程状态分析_20260325_111032\\fresh_run_output"
+}
