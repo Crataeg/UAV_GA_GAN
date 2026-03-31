@@ -1,0 +1,61 @@
+{
+  "focus": "SINR-first communication degradation interpretation. Other metrics are treated as SINR-derived or SINR-monotonic evaluation layers.",
+  "synthetic_summary": {
+    "ga": {
+      "mean_sinr_db": 0.3589718847698367,
+      "mean_rate_mbps": 31.121770364967276,
+      "mean_throughput_a_mbps": 19.004726752999943,
+      "outage_at_0db": 0.6875,
+      "outage_at_5db": 0.8541666666666666
+    },
+    "gan": {
+      "mean_sinr_db": 5.6339113027061005,
+      "mean_rate_mbps": 50.246528113346464,
+      "mean_throughput_a_mbps": 32.15738314608766,
+      "outage_at_0db": 0.14583333333333334,
+      "outage_at_5db": 0.75
+    },
+    "random": {
+      "mean_sinr_db": 3.6445827701212994,
+      "mean_rate_mbps": 46.51358803508641,
+      "mean_throughput_a_mbps": 35.11578338942638,
+      "outage_at_0db": 0.5527777777777778,
+      "outage_at_5db": 0.7013888888888888
+    }
+  },
+  "measured_map_summary": {
+    "aerpaw": {
+      "ga_best_score": 1.259904963188338,
+      "gan_best_score": 0.7592699427212979,
+      "random_best_score": 0.9272061877076152,
+      "ga_hit_rate_15m": 1.0,
+      "gan_hit_rate_15m": 0.55,
+      "random_hit_rate_15m": 0.11666666666666667
+    },
+    "dryad": {
+      "ga_best_score": 1.3717567071896504,
+      "gan_best_score": 0.8631156971021268,
+      "random_best_score": 0.7505067601220013,
+      "ga_hit_rate_15m": 1.0,
+      "gan_hit_rate_15m": 0.85,
+      "random_hit_rate_15m": 0.18333333333333332
+    }
+  },
+  "ranking": {
+    "synthetic_worst_by_mean_sinr": [
+      "ga",
+      "random",
+      "gan"
+    ],
+    "synthetic_best_by_mean_rate": [
+      "gan",
+      "random",
+      "ga"
+    ],
+    "synthetic_best_by_mean_throughput_a": [
+      "random",
+      "gan",
+      "ga"
+    ]
+  }
+}

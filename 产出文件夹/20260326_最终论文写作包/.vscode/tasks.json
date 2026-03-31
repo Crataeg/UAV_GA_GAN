@@ -1,0 +1,89 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "paper: gan pipeline",
+      "type": "shell",
+      "command": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+      "args": [
+        "${workspaceFolder}\\gan_uav_pipeline.py",
+        "--run_id",
+        "run_20260326_paper_final",
+        "--ga_runs",
+        "4",
+        "--ga_maxgen",
+        "4",
+        "--ga_nind",
+        "20",
+        "--gan_epochs",
+        "8",
+        "--gan_samples",
+        "12",
+        "--gan_batch",
+        "8",
+        "--gan_latent",
+        "16"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "paper: compare and measured",
+      "type": "shell",
+      "command": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+      "args": [
+        "${workspaceFolder}\\compare_random_ga_gan.py",
+        "--run_id",
+        "run_20260326_paper_final",
+        "--random_n",
+        "30",
+        "--viz_count",
+        "2",
+        "--random_seed",
+        "2026",
+        "--corner_random_points",
+        "60",
+        "--corner_worst_top_k",
+        "20",
+        "--corner_grid_size",
+        "45"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "paper: sinr focus",
+      "type": "shell",
+      "command": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+      "args": [
+        "${workspaceFolder}\\sinr_focus_report.py",
+        "--compare_dir",
+        "${workspaceFolder}\\output\\run_20260326_paper_final\\compare"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    },
+    {
+      "label": "paper: build final bundle",
+      "type": "shell",
+      "command": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+      "args": [
+        "${workspaceFolder}\\build_final_paper_bundle.py",
+        "--run_id",
+        "run_20260326_paper_final",
+        "--out_dir",
+        "${workspaceFolder}\\产出文件夹\\20260326_最终论文写作包"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": []
+    }
+  ]
+}

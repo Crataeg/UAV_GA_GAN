@@ -20,10 +20,11 @@ except Exception:
     TensorDataset = None
 
 from UAV_GA import DroneCommProblem, save_scenario_data
+from project_defaults import apply_project_defaults
 
 
 def default_user_params() -> Dict:
-    return {
+    return apply_project_defaults({
         "num_drones": 6,
         "num_stations": 4,
         "area_size": 1200,
@@ -35,7 +36,7 @@ def default_user_params() -> Dict:
         "itu_gamma": 40.0,
         "drone_speed_max": 18,
         "num_controlled_interference": 8
-    }
+    })
 
 
 def load_user_params(path: str) -> Dict:

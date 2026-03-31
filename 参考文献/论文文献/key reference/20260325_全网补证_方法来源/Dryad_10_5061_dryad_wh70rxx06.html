@@ -1,0 +1,1139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Dryad | Data: Ericsson 5G NSA network RF and throughput measurements on AERPAW network</title>
+
+<link rel="icon" type="image/x-icon" href="/assets/favicon-9125e048b5ea19f749034c73cfd98ab27ca05da2d223d95395ea80e0836091a3.ico" />
+<link rel="apple-touch-icon" type="img/png" href="/assets/apple-touch-icon-de5ba1aa0ca1b06900e94110bbf59362b85c77a3893b7aac00140fad5e2ed2f6.png" sizes="180x180" />
+<link rel="icon" type="img/png" href="/assets/favicon-32x32-b0158e5d2cfa0fdb892d730334df820f6316af9ce824cfd8308ab178c840e241.png" sizes="32x32" />
+<link rel="icon" type="img/png" href="/assets/favicon-16x16-6e8bd0a078b9aa747d7cdfb5745db02375a5d0c447be71aeca376c51f674199a.png" sizes="16x16" />
+<link rel="mask-icon" type="img/svg" href="/assets/safari-pinned-tab-aa061282fcd757401ef5237c7d5d090ce379d430e906df07114b14b5097557c0.svg" color="#40853e" />
+<meta name="msapplication-TileColor" content="#40853e">
+<meta name="theme-color" content="#ffffff">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-6CWE0T05CC"></script>
+  <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-6CWE0T05CC');
+  </script>
+
+<!-- Matomo -->
+<script>
+  var _paq = window._paq = window._paq || [];
+  /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+  _paq.push(['trackPageView']);
+  _paq.push(['enableLinkTracking']);
+  (function() {
+    var u="https://datadryad.matomo.cloud/";
+    _paq.push(['setTrackerUrl', u+'matomo.php']);
+    _paq.push(['setSiteId', '1']);
+    var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+    g.async=true; g.src='//cdn.matomo.cloud/datadryad.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
+  })();
+</script>
+<!-- End Matomo Code -->
+
+
+
+<meta name="csrf-param" content="authenticity_token" />
+<meta name="csrf-token" content="-qZkdyd94aRhAkCgeXygX-bSQBHgnVE_mfA0YvpxIitkiKMwwruC65KOyHoVVUdgCR7R_GPaNek2fDxsEmUG5w" />
+
+  <link rel="stylesheet" href="/assets/stash_engine/application-d5c1f50cbdbf7b1165c39e4eafa53aa724bc6d02074a9f465d6c196cfa661440.css" media="all" />
+<link rel="stylesheet" href="/assets/application-dfe1ff75a2f93363df33be0ee76f26020cca179a8da3bd2f49b0b872b502fe1e.css" media="all" />
+<link rel="stylesheet" href="/assets/stash_datacite/application-7eb6b3862d4a5f73dff8312dd3c24723450795c2bb9b99d84b803d3ead9df357.css" media="all" />
+<script src="/assets/stash_engine/application-d560d6c908428e8207811f555b751f52e96c61e415c423fa134338afc2c3b151.js" data-turbolinks-track="true"></script>
+<script src="/assets/stash_datacite/application-5201309669b348a4b5862957503b1fcd69aca539c822838fb8ef7ebe6daf4cae.js" data-turbolinks-track="true"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.30.1/moment.min.js"></script>
+  <link rel="linkset" type="application/linkset" href="https://datadryad.org/dataset/doi:10.5061/dryad.wh70rxx06/linkset">
+<link rel="linkset" type="application/linkset+json" href="https://datadryad.org/dataset/doi:10.5061/dryad.wh70rxx06/linkset.json">
+<script data-autotrack="false" src="https://cdn.jsdelivr.net/npm/@datacite/datacite-tracker"></script>
+<script>
+	const { trackMetric } = DataCiteTracker.Tracker({
+		repoId: 'da-80l49bsf',
+		trackLocalhost: true,
+	});
+	let dc_download = DataCiteTracker.MetricType.Download;
+	trackMetric(DataCiteTracker.MetricType.View, { doi: '10.5061/dryad.wh70rxx06' });
+
+	document.addEventListener("DOMContentLoaded", function(){
+		// track individual downloads
+		const downloadLinks = document.querySelectorAll('a.js-individual-dl');
+		downloadLinks.forEach((link) => {
+			link.addEventListener('click', (e) => {
+				trackMetric(DataCiteTracker.MetricType.Download, { doi: '10.5061/dryad.wh70rxx06' });
+			});
+		});
+
+		const downloadFullLinks = document.querySelectorAll('button.js-download');
+		downloadFullLinks.forEach((link) => {
+			link.addEventListener('click', (e) => {
+				trackMetric(DataCiteTracker.MetricType.Download, { doi: '10.5061/dryad.wh70rxx06' });
+			});
+		});
+	});
+</script>
+<script type="text/javascript" src="https://16077a4ae659.us-west-2.captcha-sdk.awswaf.com/16077a4ae659/jsapi.js" defer></script>
+<script type="module" src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.10.38/pdf.min.mjs" defer></script>
+
+  <script type="text/javascript" src="/assets/dataload-ae6874031a7523b8dee090437f12fecbb78c2123d67e373dc59b29c711f800e3.js" defer></script>
+</head>
+<body class='landing_show'>
+  
+  
+<header class=" c-header">
+  <a class="c-skipnav" href="#maincontent">Skip to main content</a>
+  <div class="c-header__logos">
+    <a class="c-header__dash-logo-link js-nav-out" href="/">
+      <div><img class="c-header__dash-logo-svg" alt="Dryad" src="/assets/stash_engine/logo_dryad-6f4f965518feaaf16e281e106279258265ab68aa7f874b09eb6cb2d9009f5ac3.png" /></div>
+</a>  </div>
+  <nav class="c-header__nav js-header__nav" aria-label="Main">
+  <ul class="c-header__nav-group" id="mobile-nav-bar">
+    <li class="c-header__nav-item c-pot-item"><a class="js-nav-out" href="/pots">Explore</a>
+    <li class="c-header__nav-item show-mobile">
+      <form class="button_to" method="get" action="/sessions/choose_login"><button class="c-header__menu-button" title="Login and then submit a new dataset" type="submit">Submit</button></form>
+    </li>
+      <li class="c-header__nav-item hide-mobile"><a class="js-nav-out" href="/search/advanced">Advanced search</a></li>
+      <li class="c-header__nav-item last-child">
+        <form role="search" class="o-global-search c-header__global-search" action="/search" accept-charset="UTF-8" method="get">
+          <input name="utf8" value="✓" type="hidden">
+          <label class="o-global-search__label" for="search-field-input1">Search Dryad data</label>
+          <input class="o-global-search__input" id="search-field-input1" type="search" name="q" placeholder="Search">
+          <button aria-label="Submit search" class="o-global-search__submit-button" type="submit" id="search">
+            <i class="fa fa-search" aria-hidden="true"></i>
+          </button>
+        </form>
+      </li>
+    <li class="c-header__nav-item show-mobile">
+      <button id="header-menu-button" aria-haspopup="menu" class="c-header__menu-button" aria-controls="site-menu" aria-expanded="false">More <i class="fa fa-bars" aria-hidden="true"></i></button>
+    </li>
+  </ul>
+
+  <ul class="c-header__nav-group" id="site-menu">
+
+    <li class="c-header__nav-item">
+      <button class="c-header_nav-button" aria-haspopup="menu" aria-expanded="false" aria-controls="about-menu">About</button>
+      <ul class="c-header__nav-submenu" id="about-menu" hidden>
+        <li><a href="/about">Who we are</a></li>
+        <li><a href="/mission">What we do</a></li>
+      </ul>
+    </li>
+
+    <li class="c-header__nav-item">
+      <a href="/join_us">Partner with us</a>
+    </li>
+    <li class="c-header__nav-item">
+      <a href="/support_us">Support us</a>
+    </li>
+
+    <li class="c-header__nav-item"><a href="/help">Get help</a></li>
+
+    <li class="c-header__nav-item">  <a id="log-in-out" class="js-nav-out" href="/sessions/choose_login">Login</a>
+</li>
+  </ul>
+</nav>
+
+</header>
+
+  
+
+<script type="text/javascript">
+$(document).ready(function(e) {
+    $('.flash_button').click(function() {
+      $( this ).parent().remove();
+    });
+});
+</script>
+
+    <main id="maincontent">
+    <!-- Track View for COUNTER and new DataCite metrics widget -->
+<div class="c-columns">
+	<article class="t-landing__main c-columns__content">
+		<div id="display_resource">
+  	    <h1 class="o-heading__level1">Ericsson 5G NSA network RF and throughput measurements on AERPAW network</h1>
+<div class="t-landing__metadata o-metadata">
+  	<p class="o-metadata__author-list">
+  <span class="o-metadata__author">Asokan, Ram</span><a class="o-metadata__link" aria-label="Affiliation 1" href="#aff109304">1</a>; <a class="o-metadata__author" href="/search?orcid=0000-0001-9822-021X">Fahim Raouf, Amir Hossein</a><a class="o-metadata__link" aria-label="Affiliation 2" href="#aff317">2</a><a href="mailto:amirh.fraouf@ieee.org" class="o-metadata__link" aria-label="Email Amir Hossein Fahim Raouf" target="_blank" title="amirh.fraouf@ieee.org"><i class="fas fa-envelope" aria-hidden="true"></i></a><a href="https://orcid.org/0000-0001-9822-021X" class="o-metadata__link" target="_blank" aria-label="Amir Hossein Fahim Raouf ORCID profile (opens in new window)" title="ORCID: 0000-0001-9822-021X"><i class="fab fa-orcid" aria-hidden="true"></i></a>; <span class="o-metadata__author">Ozdemir, Ozgur</span><a class="o-metadata__link" aria-label="Affiliation 2" href="#aff317">2</a>; <span class="o-metadata__author">Guvenc, İsmail</span><a class="o-metadata__link" aria-label="Affiliation 2" href="#aff317">2</a>; <span class="o-metadata__author">Sichitiu, Mihail</span><a class="o-metadata__link" aria-label="Affiliation 2" href="#aff317">2</a>
+	</p>
+  <div class="o-metadata__aff-list">
+  	<p role="heading" aria-level="2"><button class="o-button__plain-text4" id="affiliation-list-button" aria-expanded="false" aria-controls="affiliation-list">Author affiliations<i class="fas fa-caret-down" aria-hidden="true"></i></button></p>
+  	<ol id="affiliation-list" hidden>
+  		<li id="aff109304">Wireless Research Center of North Carolina</li>
+  		<li id="aff317"><a href="/search?org=https%3A%2F%2Fror.org%2F04tj63d06">North Carolina State University</a></li>
+  	</ol>
+  </div>
+  <script type="text/javascript">
+  	document.getElementById('affiliation-list-button').addEventListener('click', (e) => {
+  		const list = document.getElementById('affiliation-list')
+  		const button = document.getElementById('affiliation-list-button')
+  		if (list.hasAttribute('hidden')) {
+	  		button.setAttribute('aria-expanded', 'true')
+  		} else {
+  			button.setAttribute('aria-expanded', 'false')
+	  	}
+	  	button.lastElementChild?.classList.toggle('fa-caret-down')
+	  	button.lastElementChild?.classList.toggle('fa-caret-up')
+	  	list.toggleAttribute('hidden')
+  	})
+  	const openHash = () => {
+  		const hashed = document.getElementById(window.location.hash.substring(1))
+			if (hashed && hashed.parentElement.hasAttribute('hidden')) {
+	    	document.getElementById('affiliation-list-button').click()
+	    }
+  	}
+  	if (window.location.hash) openHash()
+  	window.addEventListener('hashchange', openHash)
+  </script>
+
+  <div class="o-metadata__group2">
+  <span class="o-metadata__group2-item">Published Mar 19, 2025; Updated May 21, 2025
+  on Dryad</span>.
+    <span class="o-metadata__group2-item">
+      https://doi.org/10.5061/dryad.wh70rxx06
+    </span>
+</div>
+
+</div>
+
+
+
+  <div class="data_files_section">
+  <h2>Data files</h2>
+  <div>
+    <!-- list individual files -->
+      <details  class="c-file-group" >
+        <summary role="button" class="o-showhide__summary c-file-group__summary">
+          <span>Mar 19, 2025 version files</span>
+          <span>1.04 MB</span>
+        </summary>
+        
+        <ul class="c-file-group__list">
+            <li>
+              <span>
+                <a target="_blank" class="js-individual-dl" href="/downloads/file_stream/3963853"><i class='fas fa-download' role='img' aria-label='Download'></i>Dryad.zip</a>
+                <div style="min-width: 80px; text-align: center;">
+                    <div id="file_preview_check3963853" data-load="/data_file/preview_check/3963853.js" aria-live="polite" aria-busy="true">
+                      <i class="fas fa-spin fa-spinner" aria-hidden="true"></i>
+                    </div>
+                </div>
+              </span>
+              <div>
+                1.04 MB
+              </div>
+            </li>
+            <li>
+              <span>
+                <a target="_blank" class="js-individual-dl" href="/downloads/file_stream/3964539"><i class='fas fa-download' role='img' aria-label='Download'></i>README.md</a>
+                <div style="min-width: 80px; text-align: center;">
+                </div>
+              </span>
+              <div>
+                3.66 KB
+              </div>
+            </li>
+        </ul>
+      </details>
+      <details id="download_resource" class="c-file-group"  open>
+        <summary role="button" class="o-showhide__summary c-file-group__summary">
+          <span>May 21, 2025 version files</span>
+          <span>1.29 MB</span>
+        </summary>
+        <form id="download-select-form" ></form>
+        <ul class="c-file-group__list">
+            <li>
+              <span>
+                <a target="_blank" class="js-individual-dl" href="/downloads/file_stream/4078259"><i class='fas fa-download' role='img' aria-label='Download'></i>Ericsson_Amir.zip</a>
+                <div style="min-width: 80px; text-align: center;">
+                    <div id="file_preview_check4078259" data-load="/data_file/preview_check/4078259.js" aria-live="polite" aria-busy="true">
+                      <i class="fas fa-spin fa-spinner" aria-hidden="true"></i>
+                    </div>
+                </div>
+              </span>
+              <div>
+                1.28 MB
+                      <input class="select-file-download" data-size="1281890" type="checkbox" name="Ericsson_Amir.zip" checked hidden aria-label="Select Ericsson_Amir.zip for download" form="download-select-form">
+              </div>
+            </li>
+            <li>
+              <span>
+                <a target="_blank" class="js-individual-dl" href="/downloads/file_stream/4078303"><i class='fas fa-download' role='img' aria-label='Download'></i>README.md</a>
+                <div style="min-width: 80px; text-align: center;">
+                </div>
+              </span>
+              <div>
+                12.77 KB
+                      <input class="select-file-download" data-size="12773" type="checkbox" name="README.md" checked hidden aria-label="Select README.md for download" form="download-select-form">
+              </div>
+            </li>
+        </ul>
+      </details>
+    <div id="file_preview_box" role="status"></div>
+    <!-- full download second -->
+    <div class="o-download">
+  <form id="zip_download" action="/dataset/downloadZip/doi_10_5061_dryad_wh70rxx06__v20250521.zip" accept-charset="UTF-8" method="post"><input type="hidden" name="authenticity_token" value="1jzii0BiwAgXsvH7BGnz0vSJDOTh-Y93_4ag5Mh-Z6gGsOsxLFDr76jFpfqnUc5kGpDpu8wFmr7bOVgiKP_fUg" autocomplete="off" />
+      <div id="file_downloads"></div>
+      <p class="download-info"><span>Click names to download individual files</span>
+      <button type="button" class="o-download__files js-download" id="download_zip_button" >
+        <span id="download_icon" aria-hidden="true"></span>
+        <span role="status">Download full dataset</span>
+      </button>
+     </p>
+</form>  <div class="screen-reader-only" id="accessible-dl-msg" aria-live="assertive"></div>
+</div>
+
+  </div>
+</div>
+<script type="text/javascript">
+  const load_preview = (n) => {
+    const box = document.getElementById('file_preview_box');
+    box.innerHTML = `<div class="file_preview"><p role="heading" level="3" id="preview_file_name"><span>Preview: ${n}</span></p><p><i class="fa fa-spin fa-spinner" aria-label="Loading" role="img"></i></p></div>`;
+    box.scrollIntoView();
+  }
+  const close_preview = () => {
+    document.getElementById('file_preview_box').innerHTML = '';
+  }
+</script>
+
+
+  <h2 class="o-heading__level2">Abstract</h2>
+  <div class="t-landing__text-wall">
+    <p>This dataset provides comprehensive radio frequency (RF) and throughput measurements from an Ericsson 5G Non-Standalone (NSA) network captured during a UAV zigzag flight mission conducted by the AERPAW platform on September 15, 2023. Utilizing a Small Portable Node SPN3 equipped with a Quectel 5G Modem, measurements were taken at yaw45 and yaw315 orientation across 30 m altitude. This dataset specifically details the network's performance under two sectors operating on LTE and NR technologies, capturing essential metrics such as RSRP, SINR, CQI, MCS, and throughput under varying flight conditions. The objective of this collection is to provide a detailed empirical basis for evaluating 5G NSA deployments in dynamic UAV applications, contributing valuable insights into the network behavior under mobility and different environmental conditions. The dataset is intended for researchers and engineers focusing on 5G performance analysis, network optimization, and UAV-based communication system designs. This release complements existing AERPAW resources, enhancing our understanding of 5G technologies in aerial scenarios.</p>
+  </div>
+
+
+
+
+
+
+    <div id="landing_readme">
+      <h2 class="expand-button"><button id="readme" aria-expanded="false" aria-controls="readme-sec">README: Ericsson 5G NSA Network RF and Throughput Measurements on AERPAW Network</button></h2>
+    <div id="readme-sec" class="t-landing__text-wall" hidden>
+      
+<p><a href="https://doi.org/10.5061/dryad.wh70rxx06" target="_blank">https://doi.org/10.5061/dryad.wh70rxx06<i class="fas fa-arrow-up-right-from-square exit-icon" aria-label=" (opens in new window)" role="img"></i></a></p>
+<h3>Description of the data and file structure</h3>
+<p>This dataset contains radio frequency (RF) and throughput measurements from an Ericsson 5G Non-Standalone (NSA) network during a UAV zigzag flight mission on September 15, 2023, at yaw orientations of 45 and 315 degrees and specifically at an altitude of 30 meters. Measurements were taken using a Small Portable Node (SPN3) equipped with a Quectel 5G Modem. The data covers two sectors, focusing on both LTE and NR technologies.</p>
+<h4>Files and variables</h4>
+<h5>File: Dryad.zip</h5>
+<h4>Methodology</h4>
+<ul>
+<li>Instruments: Small Portable Node SPN3, Quectel 5G Modem</li>
+<li>Experimental Setup: UAV flight testing in zigzag patterns at specified altitude with RF and throughput logging for yaw45 and yaw315 orientations.</li>
+<li>Data Processing: Use the provided MATLAB scripts for post-processing RF measurement data, which includes calculations and visualizations such as 3D scatter plots, distance vs. time analyses, and statistical distributions (PDF and CDF).</li>
+</ul>
+<h4>Data Files Description</h4>
+<p>Detailed information for each file within the <code>yaw45</code> and <code>yaw315</code> folders:</p>
+<ul>
+<li><strong>input_throughput_with_header.csv</strong>: Time and date, Longitude, Latitude, Altitude, and Throughput (Mbps). Throughput measurements, expressed in Mbps, quantify the data transmission rate achieved during the UAV's flight, capturing performance variations due to different yaw orientations and altitudes.</li>
+<li><strong>inputf1_sinr_with_header.csv</strong> and <strong>inputf2_sinr_with_header.csv</strong>: Time and date, Longitude, Latitude, Altitude, and LTE/NR SINR (dB). SINR data, provided in dB, offers insights into the quality of the signal relative to the background noise and interference, critical for assessing communication reliability.</li>
+<li><strong>inputf1_cellid_with_header.csv</strong> and <strong>inputf2_cellid_with_header.csv</strong>: Time and date, Longitude, Latitude, Altitude, and LTE/NR Cell ID. Cell ID information helps identify the specific LTE and NR cells engaged during the UAV’s flight path, illustrating the network's cell distribution and usage.</li>
+<li><strong>inputf1_rsrp_with_header.csv</strong> and <strong>inputf2_rsrp_with_header.csv</strong>: Time and date, Longitude, Latitude, Altitude, LTE/NR RSRP (dBm). RSRP values, recorded in dBm, indicate the power level of the reference signals received from the cell, essential for evaluating signal strength and link quality.</li>
+<li><strong>inputf2_cqi_with_header.csv</strong>: Time and date, Longitude, Latitude, Altitude, and NR Channel Quality Information (CQI). CQI reports provide an evaluation of the channel quality experienced, influencing the network's adaptive modulation and coding decisions for optimized performance.</li>
+<li><strong>inputf2_mcs_with_header.csv</strong>: Time and date, Longitude, Latitude, Altitude, and NR Modulation and Coding Scheme (MCS). MCS data reveals the modulation and coding techniques applied, reflecting the efficiency of data transmission under varying channel conditions.</li>
+<li><strong>inputf2_ri_with_header.csv</strong>: Time and date, Longitude, Latitude, Altitude, and NR Rank Indicator (RI). Rank Indicator values determine the number of transmission layers used in MIMO communications, pivotal for understanding spatial multiplexing capabilities.</li>
+</ul>
+<p>Additional files included at each folders:</p>
+<ul>
+<li><strong><code>..._iperfclient_log.txt</code></strong>: Raw iperf3 log capturing throughput in real-time (interval, transfer size, and bandwidth in Mbits/sec)</li>
+<li><strong><code>..._vehicleOut.txt</code></strong>: Vehicle telemetry including geolocation, orientation, speed, and timestamp</li>
+<li><strong><code>Basic_and_Other_Params.csv</code></strong>: Configuration of LTE/NR CSI parameters (MCS, RI, CQI, PMI) for both technologies</li>
+<li><strong><code>Serving_cell_Params_ENDC.csv</code></strong>: Serving cell configurations, including LTE and NR5G-NSA parameters such as RSRP, SINR, ARFCN, band, and subcarrier spacing</li>
+</ul>
+<h3>Supporting and Advanced Files</h3>
+<h4>..._vehicleOut.txt</h4>
+<p>Vehicle telemetry log recorded during the UAV flight. This file provides time-synchronized motion and positioning data, essential for analyzing the UAV’s orientation, velocity, and location during RF measurements.</p>
+<h5>Columns and Descriptions</h5>
+<div class="table-wrapper" role="region" tabindex="0" aria-label="Table"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>num</code></td>
+<td>Frame index or line number (incremental).</td>
+</tr>
+<tr>
+<td><code>Longitude</code></td>
+<td>GPS longitude coordinate (in degrees).</td>
+</tr>
+<tr>
+<td><code>Latitude</code></td>
+<td>GPS latitude coordinate (in degrees).</td>
+</tr>
+<tr>
+<td><code>Altitude</code></td>
+<td>UAV altitude above ground (in meters).</td>
+</tr>
+<tr>
+<td><code>Pitch</code></td>
+<td>UAV pitch angle (in radians).</td>
+</tr>
+<tr>
+<td><code>Yaw</code></td>
+<td>UAV yaw angle (in radians).</td>
+</tr>
+<tr>
+<td><code>Roll</code></td>
+<td>UAV roll angle (in radians).</td>
+</tr>
+<tr>
+<td><code>VelocityX</code></td>
+<td>Velocity in the X direction (in meters/second).</td>
+</tr>
+<tr>
+<td><code>VelocityY</code></td>
+<td>Velocity in the Y direction (in meters/second).</td>
+</tr>
+<tr>
+<td><code>VelocityZ</code></td>
+<td>Velocity in the Z direction (in meters/second).</td>
+</tr>
+<tr>
+<td><code>BatteryVolts</code></td>
+<td>Battery voltage level of the UAV (in volts).</td>
+</tr>
+<tr>
+<td><code>time</code></td>
+<td>Timestamp of the telemetry data.</td>
+</tr>
+<tr>
+<td><code>GPSFix</code></td>
+<td>GPS fix status.</td>
+</tr>
+<tr>
+<td><code>NumberOfSatellites</code></td>
+<td>Number of GPS satellites in view.</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Basic_and_Other_Params.csv</h4>
+<p>Contains LTE and NR channel state information (CSI) parameters based on <code>+QNWCFG</code> AT command responses. These values reflect the physical-layer configuration and adaptation based on current channel conditions.</p>
+<h5>LTE CSI</h5>
+<div class="table-wrapper" role="region" tabindex="0" aria-label="Table"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lte_mcs</code></td>
+<td>LTE MCS index (0–31). Indicates modulation and coding scheme.</td>
+</tr>
+<tr>
+<td><code>lte_ri</code></td>
+<td>LTE Rank Indicator. Number of MIMO layers used in transmission.</td>
+</tr>
+<tr>
+<td><code>lte_cqi</code></td>
+<td>LTE Channel Quality Indicator. Assesses downlink channel quality.</td>
+</tr>
+<tr>
+<td><code>lte_pmi</code></td>
+<td>LTE Precoding Matrix Index. Indicates preferred beamforming configuration.</td>
+</tr>
+</tbody>
+</table></div>
+<h5>NR5G CSI</h5>
+<div class="table-wrapper" role="region" tabindex="0" aria-label="Table"><table>
+<thead>
+<tr>
+<th>Column</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nr5g_mcs</code></td>
+<td>NR MCS index (0–31). Reflects spectral efficiency under current conditions.</td>
+</tr>
+<tr>
+<td><code>nr5g_ri</code></td>
+<td>NR Rank Indicator. Number of spatial streams used.</td>
+</tr>
+<tr>
+<td><code>nr5g_cqi</code></td>
+<td>NR Channel Quality Indicator. Measures channel quality for NR.</td>
+</tr>
+<tr>
+<td><code>nr5g_pmi</code></td>
+<td>NR Precoding Matrix Index. Beamforming configuration indicator.</td>
+</tr>
+</tbody>
+</table></div>
+<hr>
+<h4>Serving_cell_Params_ENDC.csv</h4>
+<p>Includes detailed LTE and NR5G-NSA serving cell parameters collected using <code>+QENG</code> AT command responses. These parameters are essential for understanding the operating conditions of the serving LTE and NR cells, including signal strength, quality, band configuration, and network identifiers.</p>
+<h5>LTE Fields</h5>
+<div class="table-wrapper" role="region" tabindex="0" aria-label="Table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>is_tdd</code></td>
+<td>Duplexing mode: TDD (Time Division Duplex) or FDD (Frequency Division Duplex).</td>
+</tr>
+<tr>
+<td><code>MCC</code></td>
+<td>Mobile Country Code identifying the LTE network's country.</td>
+</tr>
+<tr>
+<td><code>MNC</code></td>
+<td>Mobile Network Code identifying the LTE operator.</td>
+</tr>
+<tr>
+<td><code>cellID</code></td>
+<td>E-UTRAN Cell Identifier (ECI), uniquely identifies the LTE cell.</td>
+</tr>
+<tr>
+<td><code>PCID</code></td>
+<td>Physical Cell ID used for LTE synchronization.</td>
+</tr>
+<tr>
+<td><code>earfcn</code></td>
+<td>Absolute RF Channel Number representing LTE frequency.</td>
+</tr>
+<tr>
+<td><code>freq_band_ind</code></td>
+<td>LTE band number (e.g., 66 for Band 66).</td>
+</tr>
+<tr>
+<td><code>UL_bandwidth</code></td>
+<td>Uplink bandwidth code (0–5; where 5 = 20 MHz).</td>
+</tr>
+<tr>
+<td><code>DL_bandwidth</code></td>
+<td>Downlink bandwidth code (0–5; where 5 = 20 MHz).</td>
+</tr>
+<tr>
+<td><code>TAC</code></td>
+<td>Tracking Area Code used for LTE mobility management.</td>
+</tr>
+<tr>
+<td><code>RSRP</code></td>
+<td>Reference Signal Received Power (in dBm), LTE signal strength.</td>
+</tr>
+<tr>
+<td><code>RSRQ</code></td>
+<td>Reference Signal Received Quality (in dB).</td>
+</tr>
+<tr>
+<td><code>RSSI</code></td>
+<td>Received Signal Strength Indicator (in dBm), total received power.</td>
+</tr>
+<tr>
+<td><code>SINR</code></td>
+<td>Signal-to-Interference-plus-Noise Ratio (in dB).</td>
+</tr>
+<tr>
+<td><code>CQI</code></td>
+<td>Channel Quality Indicator (0–15) for adaptive modulation.</td>
+</tr>
+<tr>
+<td><code>tx_power</code></td>
+<td>UE transmit power (in dBm), if available.</td>
+</tr>
+<tr>
+<td><code>srxlev</code></td>
+<td>Signal reception level used for LTE cell selection.</td>
+</tr>
+</tbody>
+</table></div>
+<h5>NR5G Fields</h5>
+<div class="table-wrapper" role="region" tabindex="0" aria-label="Table"><table>
+<thead>
+<tr>
+<th>Field</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>NR5G_MCC</code></td>
+<td>Mobile Country Code for the 5G NR network.</td>
+</tr>
+<tr>
+<td><code>NR5G_MNC</code></td>
+<td>Mobile Network Code for the 5G NR network operator.</td>
+</tr>
+<tr>
+<td><code>NR5G_PCID</code></td>
+<td>Physical Cell ID of the NR cell.</td>
+</tr>
+<tr>
+<td><code>NR5G_RSRP</code></td>
+<td>NR Reference Signal Received Power (in dBm).</td>
+</tr>
+<tr>
+<td><code>NR5G_SINR</code></td>
+<td>NR Signal-to-Interference-plus-Noise Ratio (in dB).</td>
+</tr>
+<tr>
+<td><code>NR5G_RSRQ</code></td>
+<td>NR Reference Signal Received Quality (in dB).</td>
+</tr>
+<tr>
+<td><code>NR5G_ARFCN</code></td>
+<td>Absolute RF Channel Number for NR.</td>
+</tr>
+<tr>
+<td><code>NR5G_band</code></td>
+<td>NR frequency band number (e.g., 77 for n77).</td>
+</tr>
+<tr>
+<td><code>NR5G_DL_bandwidth</code></td>
+<td>Downlink bandwidth of the NR carrier (in MHz).</td>
+</tr>
+<tr>
+<td><code>NR5G_scs</code></td>
+<td>Subcarrier spacing used in NR (in kHz; e.g., 15, 30, 60).</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Glossary of Abbreviations</h4>
+<div class="table-wrapper" role="region" tabindex="0" aria-label="Table"><table>
+<thead>
+<tr>
+<th>Abbreviation</th>
+<th>Full Term</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>LTE</td>
+<td>Long-Term Evolution (4G wireless broadband technology)</td>
+</tr>
+<tr>
+<td>NR</td>
+<td>New Radio (5G wireless communication standard)</td>
+</tr>
+<tr>
+<td>NSA</td>
+<td>Non-Standalone (5G deployment using LTE as anchor)</td>
+</tr>
+<tr>
+<td>RSRP</td>
+<td>Reference Signal Received Power (dBm)</td>
+</tr>
+<tr>
+<td>RSRQ</td>
+<td>Reference Signal Received Quality (dB)</td>
+</tr>
+<tr>
+<td>SINR</td>
+<td>Signal-to-Interference-plus-Noise Ratio (dB)</td>
+</tr>
+<tr>
+<td>RSSI</td>
+<td>Received Signal Strength Indicator (dBm)</td>
+</tr>
+<tr>
+<td>CQI</td>
+<td>Channel Quality Indicator (index indicating DL channel quality)</td>
+</tr>
+<tr>
+<td>MCS</td>
+<td>Modulation and Coding Scheme (index determining data rate and robustness)</td>
+</tr>
+<tr>
+<td>RI</td>
+<td>Rank Indicator (number of spatial MIMO layers used)</td>
+</tr>
+<tr>
+<td>PMI</td>
+<td>Precoding Matrix Indicator (preferred beamforming index)</td>
+</tr>
+<tr>
+<td>PCID</td>
+<td>Physical Cell ID (unique identifier for a radio cell)</td>
+</tr>
+<tr>
+<td>MCC</td>
+<td>Mobile Country Code (cell network country identifier)</td>
+</tr>
+<tr>
+<td>MNC</td>
+<td>Mobile Network Code (cell network operator identifier)</td>
+</tr>
+<tr>
+<td>EARFCN</td>
+<td>E-UTRA Absolute Radio Frequency Channel Number (LTE frequency index)</td>
+</tr>
+<tr>
+<td>ARFCN</td>
+<td>Absolute Radio Frequency Channel Number (NR frequency index)</td>
+</tr>
+<tr>
+<td>TAC</td>
+<td>Tracking Area Code (used for LTE mobility management)</td>
+</tr>
+<tr>
+<td>DL</td>
+<td>Downlink (network to device transmission)</td>
+</tr>
+<tr>
+<td>UL</td>
+<td>Uplink (device to network transmission)</td>
+</tr>
+<tr>
+<td>SCS</td>
+<td>Subcarrier Spacing (distance between subcarriers in NR, in kHz)</td>
+</tr>
+<tr>
+<td>TDD</td>
+<td>Time Division Duplex (uplink and downlink share same frequency)</td>
+</tr>
+<tr>
+<td>FDD</td>
+<td>Frequency Division Duplex (uplink and downlink use separate frequencies)</td>
+</tr>
+<tr>
+<td>ECI</td>
+<td>E-UTRAN Cell Identifier (LTE cell ID)</td>
+</tr>
+</tbody>
+</table></div>
+<h4>Related Documents</h4>
+<ul>
+<li>Include the MATLAB processing script (<code>example.m</code>) as a supplementary file to aid in understanding and reproducing the results.</li>
+</ul>
+<h3>Access information</h3>
+<p>Other publicly accessible locations of the data:</p>
+<ul>
+<li><a href="https://aerpaw.org/dataset/aerpaw-ericsson-5g-uav-experiment/" target="_blank">https://aerpaw.org/dataset/aerpaw-ericsson-5g-uav-experiment/<i class="fas fa-arrow-up-right-from-square exit-icon" aria-label=" (opens in new window)" role="img"></i></a></li>
+</ul>
+
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+<script type="application/ld+json">
+  {
+  "@context": "http://schema.org",
+  "@type": "Dataset",
+  "@id": "https://doi.org/10.5061/dryad.wh70rxx06",
+  "name": "Ericsson 5G NSA network RF and throughput measurements on AERPAW network",
+  "description": [
+    "This dataset provides comprehensive radio frequency (RF) and throughput measurements from an Ericsson 5G Non-Standalone (NSA) network captured during a UAV zigzag flight mission conducted by the AERPAW platform on September 15, 2023. Utilizing a Small Portable Node SPN3 equipped with a Quectel 5G Modem, measurements were taken at yaw45 and yaw315 orientation across 30 m altitude. This dataset specifically details the network's performance under two sectors operating on LTE and NR technologies, capturing essential metrics such as RSRP, SINR, CQI, MCS, and throughput under varying flight conditions. The objective of this collection is to provide a detailed empirical basis for evaluating 5G NSA deployments in dynamic UAV applications, contributing valuable insights into the network behavior under mobility and different environmental conditions. The dataset is intended for researchers and engineers focusing on 5G performance analysis, network optimization, and UAV-based communication system...",
+    "",
+    "",
+    "# Ericsson 5G NSA Network RF and Throughput Measurements on AERPAW Network\n\n[https://doi.org/10.5061/dryad.wh70rxx06](https://doi.org/10.5061/dryad.wh70rxx06)\n\n## Description of the data and file structure\n\nThis dataset contains radio frequency (RF) and throughput measurements from an Ericsson 5G Non-Standalone (NSA) network during a UAV zigzag flight mission on September 15, 2023, at yaw orientations of 45 and 315 degrees and specifically at an altitude of 30 meters. Measurements were taken using a Small Portable Node (SPN3) equipped with a Quectel 5G Modem. The data covers two sectors, focusing on both LTE and NR technologies.\n\n### Files and variables\n\n#### File: Dryad.zip\n\n### Methodology\n\n* Instruments: Small Portable Node SPN3, Quectel 5G Modem\n* Experimental Setup: UAV flight testing in zigzag patterns at specified altitude with RF and throughput logging for yaw45 and yaw315 orientations.\n* Data Processing: Use the provided MATLAB scripts for post-processing RF measurement data, w...",
+    ""
+  ],
+  "url": "http://datadryad.org/dataset/doi%253A10.5061%252Fdryad.wh70rxx06",
+  "contentUrl": [
+    "http://datadryad.org/downloads/file_stream/4078259",
+    "http://datadryad.org/downloads/file_stream/4078303"
+  ],
+  "identifier": "https://doi.org/10.5061/dryad.wh70rxx06",
+  "version": 5,
+  "isAccessibleForFree": true,
+  "keywords": [
+    "4G",
+    "5G",
+    "NSA",
+    "LTE",
+    "NR",
+    "AERPAW",
+    "RSRP",
+    "SINR"
+  ],
+  "creator": [
+    {
+      "@type": "Person",
+      "name": "Ram Asokan",
+      "givenName": "Ram",
+      "familyName": "Asokan",
+      "affiliation": {
+        "@type": "Organization",
+        "name": "Wireless Research Center of North Carolina"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Amir Hossein Fahim Raouf",
+      "givenName": "Amir Hossein",
+      "familyName": "Fahim Raouf",
+      "sameAs": "http://orcid.org/0000-0001-9822-021X",
+      "affiliation": {
+        "@type": "Organization",
+        "sameAs": "https://ror.org/04tj63d06",
+        "name": "North Carolina State University"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Ozgur Ozdemir",
+      "givenName": "Ozgur",
+      "familyName": "Ozdemir",
+      "affiliation": {
+        "@type": "Organization",
+        "sameAs": "https://ror.org/04tj63d06",
+        "name": "North Carolina State University"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "İsmail Guvenc",
+      "givenName": "İsmail",
+      "familyName": "Guvenc",
+      "affiliation": {
+        "@type": "Organization",
+        "sameAs": "https://ror.org/04tj63d06",
+        "name": "North Carolina State University"
+      }
+    },
+    {
+      "@type": "Person",
+      "name": "Mihail Sichitiu",
+      "givenName": "Mihail",
+      "familyName": "Sichitiu",
+      "affiliation": {
+        "@type": "Organization",
+        "sameAs": "https://ror.org/04tj63d06",
+        "name": "North Carolina State University"
+      }
+    }
+  ],
+  "distribution": {
+    "@type": "DataDownload",
+    "encodingFormat": "application/zip",
+    "contentUrl": "http://datadryad.org/api/v2/datasets/doi%253A10.5061%252Fdryad.wh70rxx06/download"
+  },
+  "temporalCoverage": [
+    "2025-03-03 17:30:51 UTC",
+    "2025-03-03 17:31:21 UTC",
+    "2025-03-19 00:00:00 UTC",
+    "2025-03-19 00:00:00 UTC",
+    "2025-05-21 00:00:00 UTC"
+  ],
+  "spatialCoverage": [],
+  "citation": "http://doi.org/10.1109/dyspan60163.2024.10632812",
+  "license": {
+    "@type": "CreativeWork",
+    "name": "Creative Commons Zero v1.0 Universal",
+    "license": "https://spdx.org/licenses/CC0-1.0.html"
+  },
+  "publisher": {
+    "@id": "https://datadryad.org",
+    "@type": "Organization",
+    "legalName": "Dryad Data Platform",
+    "name": "Dryad",
+    "url": "https://datadryad.org"
+  },
+  "provider": {
+    "@id": "https://datadryad.org"
+  }
+}
+</script>
+
+		</div>
+	</article>
+	<aside class="c-columns__sidebar">
+	  <div class="sidebox" id="sidebox-cite">
+  <div id="cite_section">
+  <h2><span id="expand-citation" role="button" tabindex="0" aria-expanded="false" aria-controls="dataset-citation">Citation<i class="fas fa-caret-down" aria-hidden="true"></i></span></h2>
+<button title="Copy citation" aria-label="Copy citation" class="copy-icon" data-item="Citation"><i class="fa fa-paste" role="status"></i><span>Copy</span></button>
+<p id="dataset-citation" hidden>Asokan, Ram; Fahim Raouf, Amir Hossein; Ozdemir, Ozgur et al. (2025). Ericsson 5G NSA network RF and throughput measurements on AERPAW network [Dataset]. Dryad. <a href="https://doi.org/10.5061/dryad.wh70rxx06">https://doi.org/10.5061/dryad.wh70rxx06</a></p>
+
+<script type="text/javascript">
+  const expandCitation = (e) => {
+    const citation = document.getElementById('dataset-citation')
+    const button = document.getElementById('expand-citation')
+    if (citation.hasAttribute('hidden')) {
+      button.setAttribute('aria-expanded', 'true')
+    } else {
+      button.setAttribute('aria-expanded', 'false')
+    }
+    button.lastElementChild.classList.toggle('fa-caret-down')
+    button.lastElementChild.classList.toggle('fa-caret-up')
+    citation.toggleAttribute('hidden')
+  }
+  document.getElementById('expand-citation').addEventListener('click', expandCitation)
+  document.getElementById('expand-citation').addEventListener('keydown', (e) => {
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault()
+      expandCitation(e)
+    }
+  });
+</script>
+
+  </div>
+
+  <div id="show_metrics"
+       data-load="/landing/metrics/153321" aria-live="polite" aria-busy="true">
+    <i class="fas fa-spin fa-spinner" aria-hidden="true"></i>
+  </div>
+  
+    <div id="share_section">
+      <div id="share_buttons">
+  <h2>Share:</h2>
+  <!-- LinkedIn -->
+  <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Fdatadryad.org%2Fdataset%2Fdoi%3A10.5061%2Fdryad.wh70rxx06" title="Share on LinkedIn" data-share="linkedin" target="_blank" rel="noreferrer"><i class="fab fa-linkedin" aria-label="Share on LinkedIn (opens in new window)" role="img"></i></a>
+  <!-- BlueSky -->
+  <a href="https://bsky.app/intent/compose?text=Dryad+dataset%3A+Ericsson+5G+NSA+network+RF+and+throughput+measurements+on+AERPAW+network%0Ahttps%3A%2F%2Fdatadryad.org%2Fdataset%2Fdoi%3A10.5061%2Fdryad.wh70rxx06" title="Share on Bluesky" data-share="bluesky" target="_blank" rel="noreferrer"><i class="fab fa-square-bluesky" aria-label="Share on Bluesky (opens in new window)" role="img"></i></a>
+  <!-- Reddit -->
+  <a href="https://www.reddit.com/submit?url=https%3A%2F%2Fdatadryad.org%2Fdataset%2Fdoi%3A10.5061%2Fdryad.wh70rxx06&title=Dryad+dataset%3A+Ericsson+5G+NSA+network+RF+and+throughput+measurements+on+AERPAW+network" title="Share on Reddit" data-share="reddit" target="_blank" rel="noreferrer"><i class="fab fa-reddit-square" aria-label="Share on Reddit (opens in new window)" role="img"></i></a>
+  <!-- Mastodon -->
+  <a href="https://mastodonshare.com/?url=https%3A%2F%2Fdatadryad.org%2Fdataset%2Fdoi%3A10.5061%2Fdryad.wh70rxx06&text=Dryad+dataset%3A+Ericsson+5G+NSA+network+RF+and+throughput+measurements+on+AERPAW+network" title="Share on Mastodon" data-share="mastodon" target="_blank" rel="noreferrer"><i class="fab fa-mastodon" aria-label="Share on Mastodon (opens in new window)" role="img"></i></a>
+  <!-- Facebook -->
+  <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fdatadryad.org%2Fdataset%2Fdoi%3A10.5061%2Fdryad.wh70rxx06" title="Share on Facebook" data-share="facebook" target="_blank" rel="noreferrer"><i class="fab fa-facebook-square" aria-label="Share on Facebook (opens in new window)" role="img"></i></a>
+  <!-- Email -->
+  <a href="mailto:?subject=Dryad+dataset%3A+Ericsson+5G+NSA+network+RF+and+throughput+measurements+on+AERPAW+network&body=Citation%3A+Asokan%2C+Ram%3B+Fahim+Raouf%2C+Amir+Hossein%3B+Ozdemir%2C+Ozgur+et+al.+%282025%29.+Ericsson+5G+NSA+network+RF+and+throughput+measurements+on+AERPAW+network+%5BDataset%5D.+Dryad.+https%3A%2F%2Fdoi.org%2F10.5061%2Fdryad.wh70rxx06%0A%0AAbstract%3A+" title="Share with email" data-share="email" target="_blank" rel="noreferrer"><i class="fa fa-envelope-square" aria-label="Share with email (opens in new window)" role="img"></i></a>
+  <!-- Copy -->
+  <button id="share-panel__copy-url" title="Copy link to this page"><i class="fa fa-share-square" aria-label="Copy link to this page" role="img"></i></button>
+</div>
+<div role="status">
+  <p id="copy-success" hidden><i class="fa fa-check" aria-hidden="true"></i> Link copied</p>
+</div>
+<script type="text/javascript">
+  document.getElementById('share-panel__copy-url').addEventListener('click', () => {
+    window.navigator.clipboard.writeText(window.location.href).then(async () => {
+      const flash = document.getElementById('copy-success');
+      flash.removeAttribute('hidden');
+      await new Promise(res => setTimeout(res, 3000));
+      flash.setAttribute('hidden', 'true');
+    });
+  })
+</script>
+
+    </div>
+
+    <div id="show_license"
+         data-load="/stash_datacite/licenses/details.js?resource_id=365672" aria-live="polite" aria-busy="true">
+      <i class="fas fa-spin fa-spinner" aria-hidden="true"></i>
+    </div>
+</div>
+
+<div class="sidebox" id="sidebox-search">
+  <div id="keyword_section">
+    <h2>Subject keywords</h2>
+    <div id="show_subjects"
+         data-load="/stash_datacite/subjects/landing.js?resource_id=365672" aria-live="polite" aria-busy="true">
+      <i class="fas fa-spin fa-spinner" aria-hidden="true"></i>
+    </div>
+  </div>
+    <div id="show_funding">
+  	<h2>Funding</h2>
+    <ul class="o-list">
+    	  <li>
+          <a href="/search?org=https%3A%2F%2Fror.org%2F021nxhr62">U.S. National Science Foundation</a>: <span><a href="/search?award=CNS-1939334&amp;funder=https%3A%2F%2Fror.org%2F021nxhr62">CNS-1939334</a></span>
+        </li>
+    </ul>
+  </div>
+
+</div>
+
+<div class="sidebox" id="sidebox-related_works">
+  <h2>Related works</h2>
+  <div id="show_related_works"
+       data-load="/stash_datacite/related_identifiers/show.js?resource_id=365672" aria-live="polite" aria-busy="true">
+    <p><i class="fas fa-spin fa-spinner" aria-hidden="true"></i></p>
+  </div>
+</div>
+
+	</aside>
+</div>
+
+
+    </main>
+  <footer class="c-footer" id="page-footer">
+  <div class="c-footer__link-group">
+    <div class="c-footer__policy-group">
+      <a href="/privacy">Privacy</a>
+      <a href="/accessibility" class="js-nav-out">Accessibility</a>
+      <a href="/terms">Terms of service</a>
+      <a href="/partner_terms">Partner terms</a>
+    </div>
+    <div class="c-footer__social-group">
+      <a href="/contact"><i class="far fa-envelope" aria-hidden="true"></i>Enquiries</a>
+      <a href="https://blog.datadryad.org/" class="js-nav-out"><i class="far fa-comment fa-flip-horizontal" aria-hidden="true" style="font-size: 1em"></i>Latest news</a>
+      <a href="https://blog.datadryad.org/about/subscribe" class="js-nav-out"><i class="far fa-bell" aria-hidden="true"></i>Subscribe</a>
+      <a href="https://blog.datadryad.org/jobs" class="js-nav-out"><i class="far fa-pen-to-square" aria-hidden="true"></i>Jobs &amp; opportunities</a>
+    </div>
+  </div>
+  <div class="c-footer__link-group">
+    <span>© 2026 Dryad. <a href="/terms#copyright">Content on this site is licensed for reuse</a>.</span>
+  </div>
+</footer>
+
+  <script type="text/javascript" src="/assets/interactions-460d7a03984e128351c912ed0934ad98f80a54a23a754f0ceeda5ff4145d0cea.js"></script>
+  <dialog id="railsConfirmDialog" class="modalDialog" role="alertdialog" aria-labelledby="railsConfMsg"
+  aria-describedby="railsConfMsg" aria-modal="true">
+  <div>
+    <button id="railsConfirmDialogClose" class="button-close-modal" style="float: right;" aria-label="close" type="button"></button>
+    <h1 id="railsConfMsg" class="o-heading__level2" style="width: 30ch; max-width: 100%; float: left;"></h1>    
+    <div style="clear: both;">&nbsp;</div>
+    <div style="display: flex; justify-content: flex-end; column-gap: 1rem;">
+      <button id="railsConfirmDialogYes" class="o-button__plain-text2" style="padding: .5rem 2rem;" value="default">Yes</button>
+      <button id="railsConfirmDialogNo" class="o-button__plain-text3" style="padding: .5rem 2rem;" value="cancel">No</button>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  // adds the polyfill for firefox and some other browsers that are not up to date.
+  // https://github.com/GoogleChrome/dialog-polyfill
+
+  const modal = document.getElementById('railsConfirmDialog');
+  dialogPolyfill.registerDialog(modal);
+</script>
+  <dialog id="genericModalDialog" class="modalDialog" aria-modal="true">
+  <div>
+    <div class="modalClose">
+      <button id="genericModalClose" aria-label="Close dialog" type="button"></button>
+    </div>
+    <!-- to display anything in the dialog, replace content within the genericModalContent (using Javascript) and attach any events
+      you need for what you add. The dialog comes with an event for closing and taking no action for the close button.
+
+      Open modal with <item>.showModal(); and close with <item>.close();
+      -->
+    <div id="genericModalContent" class="c-modal-content__normal">&nbsp;</div>
+  </div>
+</dialog>
+
+<script>
+  // adds the polyfill for firefox and some other browsers that are not up to date.
+  // https://github.com/GoogleChrome/dialog-polyfill
+
+  const modal2 = document.getElementById('genericModalDialog');
+  dialogPolyfill.registerDialog(modal2);
+
+  $('#genericModalClose').click(function(){
+    document.querySelector('#genericModalContent').classList.replace('c-modal-content__wide', 'c-modal-content__normal');
+    document.querySelector('#genericModalContent').classList.replace('c-modal-content__cedar','c-modal-content__normal');
+    $('#genericModalDialog')[0].close(); // uses [0] to get native object rather than jQuery object (I think)
+    $('#genericModalContent').html("");
+  });
+</script>
+
+  <script type="text/javascript" async>
+  const dlbutton = document.getElementById('download_zip_button');
+  if ("serviceWorker" in navigator) {
+    const zip_url = '/downloads/zip_assembly_info/365672';
+    const scope = '/dataset/';
+    const messageChannel = new MessageChannel();
+navigator.serviceWorker.register('/service-worker.js', { scope });
+let keepAlive = null;
+const dialog = document.getElementById('genericModalDialog');
+const dialogContent = document.getElementById('genericModalContent');
+const form = document.getElementById('zip_download');
+const inputs = document.getElementById('file_downloads');
+navigator.serviceWorker.ready.then(worker => {
+  worker.active.postMessage({type: 'PORT_INITIALIZATION', url: form.action}, [messageChannel.port2]); 
+});
+const insertFiles = async (files) => {
+  const selectForm = document.getElementById('download-select-form').elements
+  for (const f of files) {
+    if (selectForm[f.filename]?.checked) {
+      for (const k of Object.keys(f)) {
+        const i = document.createElement('input');
+        i.setAttribute('type', 'hidden');
+        i.setAttribute('name', k);
+        i.setAttribute('value', f[k]);
+        inputs.appendChild(i);
+      }
+    }
+  }
+  return true;
+}
+const loadFiles = async (files) => {
+  await insertFiles(files);
+  form.submit();
+  dlbutton.lastElementChild.innerHTML = 'Download in progress';
+  dialogContent.innerHTML = '<h1>Download in progress</h1><p>Closing this window may interrupt the dataset download. Please keep this window open until your download is complete.</p><p><span id="dl_filename"></span> <span id="dl_filesize"></span><br/><progress id="dl_progressbar" value="0" aria-label="Download progress"></progress></p>';
+  dialog.showModal();
+  keepAlive = setInterval(() => {
+    navigator.serviceWorker.ready.then(worker => {
+      worker.active.postMessage({type: 'KEEP_ALIVE'})
+    })
+  }, 10000);
+}
+const failMessage = () => {
+  if (dialog.open) dialog.close();
+  dialogContent.innerHTML = '<h1>Download error</h1><p>Please reload and try again, or download the individual files.</p>';
+  dialog.showModal();
+  dlbutton.lastElementChild.innerHTML = 'Download full dataset';
+  dlbutton.classList.add('o-download__files');
+  dlbutton.classList.remove('o-download__wait');
+  dlbutton.removeAttribute('disabled');
+}
+const checkResponse = async (response) => {
+  if (response.ok) {
+    const files = await response.json();
+    loadFiles(files);
+  } else if (response.status === 405) {
+    dialogContent.innerHTML = '<h1>Confirm you are human</h1><div id="captcha-div"></div>'
+    AwsWafCaptcha.renderCaptcha(document.getElementById('captcha-div'), {
+      apiKey: 'OqA0o1lGXgubzh918BKgrbWCLVFKb5xL3FLAIYf63QqbCTic7ynhvwViwoEdMzuKgvEHmbjbigMAdy6gLNyDRe4qhdiSwsaBMu0yVtDgS+sGd13E8WzeiysUXXKAF85+x8BVDr9VM1x/n6IT+4aLoAgYpYt51//u+wZCYal8WOXWIpkxz88GmF2JCoiEYn4GxDX9SlRyO8IiJ7Id55Fkq6zXtiZs9L9XHM4Pr/iF50wcT+/L1DgBCH+LUYGIYR04TdJQpgp0cD3kL7rMgmpLfeulydUu6ceYJPGgUVWzOguE5fsAzVbPzkNssRUo9ku0oz/ozDvUucntUEPMbrBSxC3EfoCM6aygV/riufSZm4jk9IV0pgUjvzXCrex8lTZtalefN451KiFTT9Ipa9ipjBKZuKDO2fTvsMK1xB82VsA9M9VmSLtMlkFA/LPJj/2A/mGno+kubKAkgWTRXTA0DTJ9/IQ4D+uSZsoWCidnCfUQk4/qkBZa6BOw8SB1n/IXDYTk5Uk4oDG0HuhUogJvwGKQVUSBzbcDdvmgxO8xcj6B7k7W0j64AO2sSKjAdG8BMhtouxeu71Gb76YBIrv3PswHmyESe5PYgeRuURUEZkL9OTON4lNWP4iKqP/D6e09SVWtlNpkv9aJKnsYQhOizCynKfGS/iWEvBXP70G4JOo=_0_1',
+      skipTitle: true,
+      onLoad: () => { if (!dialog.open) dialog.showModal(); },
+      onSuccess: async (token) =>  {
+        dialog.close();
+        dlbutton.focus();
+        const response = await AwsWafIntegration.fetch(zip_url);
+        checkResponse(response);
+      },
+      onError: failMessage,
+    });
+  } else {
+    failMessage();
+  }
+}
+dlbutton.addEventListener('click', async e => {
+  dlbutton.disabled = true;
+  dlbutton.classList.remove('o-download__files');
+  dlbutton.classList.add('o-download__wait');
+  dlbutton.lastElementChild.innerHTML = 'Preparing download';
+  const response = await AwsWafIntegration.fetch(zip_url);
+  checkResponse(response);
+})
+messageChannel.port1.start();
+messageChannel.port1.addEventListener("message", ({data}) => {
+  if (data.msg === 'Headers') {
+    const {filename, size} = data
+    document.getElementById('dl_filename').innerText = filename
+    document.getElementById('dl_filesize').innerText = `(${formatSizeUnits(Number(size))})`
+  } else if (data.msg == 'Streaming') {
+    document.getElementById('dl_progressbar').setAttribute('value', data.complete)
+  } else if (data.msg === 'Stream complete') {
+    inputs.innerHTML = '';
+    if (keepAlive) clearInterval(keepAlive);
+    dlbutton.classList.add('o-download__files');
+    dlbutton.classList.remove('o-download__wait');
+    dlbutton.lastElementChild.innerHTML = 'Download full dataset';
+    dlbutton.removeAttribute('disabled');
+    if (dialog.open) {
+      dialog.close();
+      dlbutton.focus();
+    }
+  }
+});
+
+  } else {
+    dlbutton.hidden = true;
+    document.getElementById('download_resource').classList.remove('large_download');
+  }
+</script>
+
+</body>
+</html>

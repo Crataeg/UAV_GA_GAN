@@ -1,0 +1,58 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Paper Final Compare",
+      "type": "python",
+      "request": "launch",
+      "python": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+      "program": "${workspaceFolder}\\compare_random_ga_gan.py",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--run_id",
+        "run_20260326_paper_final",
+        "--random_n",
+        "30",
+        "--viz_count",
+        "2",
+        "--random_seed",
+        "2026",
+        "--corner_random_points",
+        "60",
+        "--corner_worst_top_k",
+        "20",
+        "--corner_grid_size",
+        "45"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Paper SINR Focus",
+      "type": "python",
+      "request": "launch",
+      "python": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+      "program": "${workspaceFolder}\\sinr_focus_report.py",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--compare_dir",
+        "${workspaceFolder}\\output\\run_20260326_paper_final\\compare"
+      ],
+      "console": "integratedTerminal"
+    },
+    {
+      "name": "Paper Build Final Bundle",
+      "type": "python",
+      "request": "launch",
+      "python": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+      "program": "${workspaceFolder}\\build_final_paper_bundle.py",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--run_id",
+        "run_20260326_paper_final",
+        "--out_dir",
+        "${workspaceFolder}\\产出文件夹\\20260326_最终论文写作包"
+      ],
+      "console": "integratedTerminal"
+    }
+  ]
+}

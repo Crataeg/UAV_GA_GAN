@@ -1,0 +1,33 @@
+{
+  "run_id": "run_20260326_paper_final",
+  "copied_code_files": [
+    "UAV_GA.py",
+    "compare_random_ga_gan.py",
+    "compare_measured_map_search.py",
+    "gan_uav_pipeline.py",
+    "evaluate.py",
+    "kpi.py",
+    "plot_results.py",
+    "project_defaults.py",
+    "experiment_profiles.py",
+    "current_compare_rules.py",
+    "iterative_algorithm_benchmark.py",
+    "measured_dataset_loaders.py",
+    "publication_figures.py",
+    "sinr_focus_report.py",
+    "build_final_paper_bundle.py",
+    "quick_demo_pipeline.py",
+    "bler_mc.py",
+    "bler_sionna.py",
+    "model_source_registry.json",
+    "COMM_DEGRADATION_REPORT.md",
+    "INTERFERENCE_SOURCE_TABLE.md"
+  ],
+  "copied_dataset_sources": [
+    "C:\\Users\\52834\\Downloads\\aerpaw-dataset-24.zip",
+    "C:\\Users\\52834\\Downloads\\doi_10_5061_dryad_wh70rxx06__v20250521.zip"
+  ],
+  "compare_dir": "D:\\论文无人机\\output\\run_20260326_paper_final\\compare",
+  "gan_dir": "D:\\论文无人机\\output\\run_20260326_paper_final\\gan",
+  "bundle_root": "产出文件夹\\20260326_最终论文写作包"
+}

@@ -1,0 +1,1955 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html xmlns:fb="//www.facebook.com/2008/fbml" xmlns:og="//opengraphprotocol.org/schema/" lang="en" xml:lang="en"  class="no-touch no-js">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="MobileOptimized" content="320" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="rei" content="3/2/2022 10.39am est" />
+
+    
+        <script tyle="text/javascript" src="/content/dam/cdc/j/cdcrSwitch.js"></script>
+        <script type="text/javascript"> 
+            if (typeof cdc === "undefined"){
+                cdc = {};
+            }
+            cdc.localizedLang="en/us";
+
+            if (window.cdcext === undefined) { window.cdcext = {}; }
+            cdcext.customEnvironment = "prod";
+            if (window.cdclocale === undefined) { window.cdclocale = {}; }
+            cdclocale.locale = cdc.localizedLang=="en/us"?"en_us":cdc.localizedLang;
+
+        </script> 
+         
+    
+    
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/c/dam/cdc/t/ctm-core.js"></script>
+<script>
+    window['adrum-start-time'] = new Date().getTime();
+    window.environ = "prod" ;
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    if (window.cpe === undefined) {
+        window.cpe = {};
+    }
+
+    cpe.accountName = "prod";
+    cpe.config = ["cinf","dsc","pps"];
+    cpe.hideMethod = "elements";
+
+    window.targetGlobalSettings = JSON.parse('{\x22timeout\x22:4000}');
+    window.targetPageParamsAll = () => JSON.parse('{\x22entity\x22:\x22{\\\x22id\\\x22:\\\x221639750317999363\\\x22,\\\x22categoryId\\\x22:\\\x22\\\x22}\x22}');
+
+    
+    const bullseyeLibrary = `/etc.clientlibs/cisco-cdc/clientlibs/clientlib-external/resources/external/bullseye.js`;
+
+    import(bullseyeLibrary);
+</script>
+<script src="/etc.clientlibs/cisco-cdc/clientlibs/clientlib-external/resources/regional-mbox/regional-mbox.js"></script>
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+        <title>Radio Resource Management White Paper -  Transmit Power
+	 Control (TPC) Algorithm [Cisco 5500 Series Wireless Controllers] - Cisco</title>
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"  />
+    <meta name="description" content=" Transmit Power
+	 Control (TPC) Algorithm"  />
+    <meta name="title" content="Radio Resource Management White Paper -  Transmit Power
+	 Control (TPC) Algorithm [Cisco 5500 Series Wireless Controllers]"  />
+    <meta name="documentId" content="1639750317977362"  />
+    <meta name="templateName" content="book"  />
+    <meta property="fb:app_id" content="156494687694418"  />
+    <meta name="ioContentSource" content="WEM"  />
+    <meta name="docType" content="TSD Products Technical Reference Chapter"  />
+    <meta name="concept" content="Cisco 5500 Series Wireless Controllers"  />
+    <meta name="iaPath" content="cisco.com#Products#Cisco Products#Wireless#Wireless LAN Controller#Standalone Controllers#Cisco 5500 Series Wireless Controllers"  />
+    <meta name="contentType" content="cisco.com#US#preSales"  />
+    <meta name="locale" content="US"  />
+    <meta name="language" content="en"  />
+    <meta name="country" content="US"  />
+    <meta name="CCID_Page" content="cc001773"  />
+    <meta name="date" content="Tue Mar 26 23:18:41 PDT 2024"  />
+    <meta name="accessLevel" content="Customer"  />
+    <meta name="accessLevel" content="Guest"  />
+    <meta name="accessLevel" content="Partner"  />
+    <meta name="entitlementExpression" content="contains( &quot;0,1,2,3,4,7&quot; , $profileField[3] )"  />
+    <meta property="og:site_name" content="Cisco"  />
+    <meta property="og:type" content="website"  />
+    <meta property="og:title" content="Radio Resource Management White Paper -  Transmit Power
+	 Control (TPC) Algorithm [Cisco 5500 Series Wireless Controllers]"  />
+    <meta property="og:description" content=" Transmit Power
+	 Control (TPC) Algorithm"  />
+    <meta property="og:url" content="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.html"  />
+    <link rel="canonical" href="https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.html"/>
+	
+
+    
+ 
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/etc.clientlibs/clientlibs/granite/jquery.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/utils.min.js"></script>
+<script src="/etc.clientlibs/clientlibs/granite/jquery/granite.min.js"></script>
+<script src="/etc.clientlibs/foundation/clientlibs/jquery.min.js"></script>
+<script src="/etc.clientlibs/foundation/clientlibs/shared.min.js"></script>
+<script src="/etc.clientlibs/cq/personalization/clientlib/underscore.min.js"></script>
+<script src="/etc.clientlibs/cq/personalization/clientlib/personalization/kernel.min.js"></script>
+<script src="/etc.clientlibs/cq/personalization/clientlib/personalization/kernel.min.js"></script>
+<script type="text/javascript">
+    $CQ(function() {
+        CQ_Analytics.SegmentMgr.loadSegments("\/etc\/segmentation");
+        CQ_Analytics.ClientContextUtils.init("\/c\/dnc\/etc\/clientcontext\/default", "\/content\/en\/us\/td\/docs\/wireless\/controller\/technotes\/8\u002D3\/b_RRM_White_Paper\/tpc");
+
+        
+    });
+</script>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+      <link rel="stylesheet" href="/etc/designs/cdc/clientlibs/responsive/css/cisco-sans.min.css" type="text/css">
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="/etc/designs/cdc/clientlibs/responsive/js/foundation.min.js"></script>
+
+    <link rel="stylesheet" href="/etc/designs/cdc/clientlibs/responsive/css/books.min.css" type="text/css">
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+    <script>
+        sessionStorage.setItem("logOutIntermediateMessage", 'You are being logged out.');
+    </script>
+    
+    
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- Custom JSON LD For Products Type -->
+
+    
+    <script type="application/ld+json">
+        [
+           
+            {
+          "@context": "http://www.schema.org",                                                                        
+          "@type": "WebPage",
+          "name": " Transmit Power
+	 Control (TPC) Algorithm",  		  
+          "url": "https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.html",
+          "description": " Transmit Power
+	 Control (TPC) Algorithm",
+          "publisher": {
+              "@type": "Corporation",
+                 "name": "Cisco"
+            }
+        }]
+    </script>
+<!-- End Custom JSON LD For Products Type -->
+
+<!-- Video JSON LD -->
+
+
+
+
+<!-- End Video JSON LD -->
+
+    
+
+                              <script>!function(e){var n="https://s.go-mpulse.net/boomerang/";if("False"=="True")e.BOOMR_config=e.BOOMR_config||{},e.BOOMR_config.PageParams=e.BOOMR_config.PageParams||{},e.BOOMR_config.PageParams.pci=!0,n="https://s2.go-mpulse.net/boomerang/";if(window.BOOMR_API_key="GKZXC-NS3SU-A7VFH-HKBHM-U7LKH",function(){function e(){if(!o){var e=document.createElement("script");e.id="boomr-scr-as",e.src=window.BOOMR.url,e.async=!0,i.parentNode.appendChild(e),o=!0}}function t(e){o=!0;var n,t,a,r,d=document,O=window;if(window.BOOMR.snippetMethod=e?"if":"i",t=function(e,n){var t=d.createElement("script");t.id=n||"boomr-if-as",t.src=window.BOOMR.url,BOOMR_lstart=(new Date).getTime(),e=e||d.body,e.appendChild(t)},!window.addEventListener&&window.attachEvent&&navigator.userAgent.match(/MSIE [67]\./))return window.BOOMR.snippetMethod="s",void t(i.parentNode,"boomr-async");a=document.createElement("IFRAME"),a.src="about:blank",a.title="",a.role="presentation",a.loading="eager",r=(a.frameElement||a).style,r.width=0,r.height=0,r.border=0,r.display="none",i.parentNode.appendChild(a);try{O=a.contentWindow,d=O.document.open()}catch(_){n=document.domain,a.src="javascript:var d=document.open();d.domain='"+n+"';void(0);",O=a.contentWindow,d=O.document.open()}if(n)d._boomrl=function(){this.domain=n,t()},d.write("<bo"+"dy onload='document._boomrl();'>");else if(O._boomrl=function(){t()},O.addEventListener)O.addEventListener("load",O._boomrl,!1);else if(O.attachEvent)O.attachEvent("onload",O._boomrl);d.close()}function a(e){window.BOOMR_onload=e&&e.timeStamp||(new Date).getTime()}if(!window.BOOMR||!window.BOOMR.version&&!window.BOOMR.snippetExecuted){window.BOOMR=window.BOOMR||{},window.BOOMR.snippetStart=(new Date).getTime(),window.BOOMR.snippetExecuted=!0,window.BOOMR.snippetVersion=12,window.BOOMR.url=n+"GKZXC-NS3SU-A7VFH-HKBHM-U7LKH";var i=document.currentScript||document.getElementsByTagName("script")[0],o=!1,r=document.createElement("link");if(r.relList&&"function"==typeof r.relList.supports&&r.relList.supports("preload")&&"as"in r)window.BOOMR.snippetMethod="p",r.href=window.BOOMR.url,r.rel="preload",r.as="script",r.addEventListener("load",e),r.addEventListener("error",function(){t(!0)}),setTimeout(function(){if(!o)t(!0)},3e3),BOOMR_lstart=(new Date).getTime(),i.parentNode.appendChild(r);else t(!1);if(window.addEventListener)window.addEventListener("load",a,!1);else if(window.attachEvent)window.attachEvent("onload",a)}}(),"".length>0)if(e&&"performance"in e&&e.performance&&"function"==typeof e.performance.setResourceTimingBufferSize)e.performance.setResourceTimingBufferSize();!function(){if(BOOMR=e.BOOMR||{},BOOMR.plugins=BOOMR.plugins||{},!BOOMR.plugins.AK){var n=""=="true"?1:0,t="",a="fwa6i5axfesho2octobq-f-91b458ee8-clientnsv4-s.akamaihd.net",i="false"=="true"?2:1,o={"ak.v":"39","ak.cp":"61004","ak.ai":parseInt("271834",10),"ak.ol":"0","ak.cr":0,"ak.ipv":4,"ak.proto":"http/1.1","ak.rid":"5ca58ebc","ak.r":50555,"ak.a2":n,"ak.m":"dsca","ak.n":"essl","ak.bpcip":"45.129.228.0","ak.cport":42875,"ak.gh":"23.193.164.179","ak.quicv":"","ak.tlsv":"tls1.3","ak.0rtt":"","ak.0rtt.ed":"","ak.csrc":"-","ak.acc":"bbr","ak.t":"1774361475","ak.ak":"hOBiQwZUYzCg5VSAfCLimQ==YhchUIiY0uix1D9XGM595d32kV9K/RcCReeO38IssihatMx1bKI0xT809f4aeeVMMBLYOikSMWtUZatX7ZpevYhejHeIG+fi+u3wwVSEV36KRICDLdiIyEzM5Cipf8pDzAIDMSIrR8DgR7EsuMUGBV88ea0EWZZO5BTKIWko6Px5/cXe8NuBoMGpiyDVqPeR/rs0dJsnxhebFYkEuCGJosSAj6hVbEJhUJYIJRtNHG+ZJOrCgvhyi+8u0e59vZy+P8R8gpoIjmnWUQ8XD6EDPmht5ZicJnK+H/JnGU++3zRCYyTE8weo9YtGrJJmTJ9DMoNawcLSlPjNwv+G0k7r2pHRMX6NMK5PSJ2xVpp3Cu+0vOsFDRo1l6U491WgVR6qiYYw2zsuMSzb48z+/Te/vcfa2Bm08TZy0qgBOOKfpL4=","ak.pv":"540","ak.dpoabenc":"","ak.tf":i};if(""!==t)o["ak.ruds"]=t;var r={i:!1,av:function(n){var t="http.initiator";if(n&&(!n[t]||"spa_hard"===n[t]))o["ak.feo"]=void 0!==e.aFeoApplied?1:0,BOOMR.addVar(o)},rv:function(){var e=["ak.bpcip","ak.cport","ak.cr","ak.csrc","ak.gh","ak.ipv","ak.m","ak.n","ak.ol","ak.proto","ak.quicv","ak.tlsv","ak.0rtt","ak.0rtt.ed","ak.r","ak.acc","ak.t","ak.tf"];BOOMR.removeVar(e)}};BOOMR.plugins.AK={akVars:o,akDNSPreFetchDomain:a,init:function(){if(!r.i){var e=BOOMR.subscribe;e("before_beacon",r.av,null,null),e("onbeacon",r.rv,null,null),r.i=!0}return this},is_complete:function(){return!0}}}}()}(window);</script></head>
+
+<body id="wcq" class="fw-res cdc-support cdc-books cdc-high-density cdc-full-width cdc-transform
+">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-skiplinks">
+    <ul class="container">
+        <li><a id="skiplink-content" href="#fw-content">Skip to content</a></li>
+        <li><a id="skiplink-search" href="#">Skip to search</a></li>
+        <li><a id="skiplink-footer" href="#fw-footer-v2" class="last">Skip to footer</a></li>
+    </ul>
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script type="module" src="/site/web-components/us/en/cdc-header.js"></script>
+    <cdc-header></cdc-header>
+    <nav class="fw-c-header__seo-links" aria-hidden="true" style="display:none">
+        <ul>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/index.html">Cisco.com Worldwide</a></li>
+            <li><a tabindex="-1" href="/c/en/us/products/index.html">Products and Services</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/solutions/index.html">Solutions</a></li>
+            <li><a tabindex="-1" href="/c/en/us/support/index.html">Support</a></li>
+            <li><a tabindex="-1" href="/c/en/us/training-events.html">Learn</a></li>
+            <li><a tabindex="-1" href="//www.cisco.com/c/en/us/about/sitemap.html">Explore Cisco</a></li>
+            <li><a tabindex="-1" href="/c/en/us/buy.html">How to Buy</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/index.html?dtid=odicdc001129">Partners Home</a></li>                
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/cisco-partner-program/index.html?ccid=cc000864&dtid=odiprc001129">Partner Program</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/support-help/index.html">Support</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/tools/index.html?dtid=odiprc001129">Tools</a></li>
+            <li><a tabindex="-1" href="https://locatr.cloudapps.cisco.com/WWChannels/LOCATR/pf/index.jsp#/">Find a Cisco Partner</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/connect-with-a-partner/index.html?ccid=cc000864&dtid=odiprc001129">Meet our Partners</a></li>
+            <li><a tabindex="-1" href="https://www.cisco.com/site/us/en/partners/index.html?dtid=odicdc001129">Become a Cisco Partner</a></li>
+
+        </ul>
+    </nav>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-content" class="container grid">
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
+
+
+<div class="row full blowout" data-owner="ID">
+	<div class="col full ">
+        
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<nav id="fw-breadcrumb" class="data-based user-driven-nav" aria-label="breadcrumbs" data-owner="ID">
+
+   
+    <ul itemscope itemtype="//schema.org/BreadcrumbList">
+        <li aria-hidden="true"><a href='#' class="skip"><span></span></a></li>
+        <li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/index.html'><span itemprop='name'>Home</span><meta itemprop='position' content='1' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/support/index.html'><span itemprop='name'>Support</span><meta itemprop='position' content='2' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/support/all-products.html'><span itemprop='name'>Product Support</span><meta itemprop='position' content='3' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/support/wireless/index.html'><span itemprop='name'>Wireless</span><meta itemprop='position' content='4' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/support/wireless/5500-series-wireless-controllers/series.html'><span itemprop='name'>Cisco 5500 Series Wireless Controllers</span><meta itemprop='position' content='5' /></a><span class='caret'></span></li><li itemprop='itemListElement' itemscope itemtype='//schema.org/ListItem'><a itemprop='item' href='/c/en/us/support/wireless/5500-series-wireless-controllers/products-technical-reference-list.html'><span itemprop='name'>Technical References</span><meta itemprop='position' content='6' /></a><span class='caret'></span></li>
+    </ul>
+</nav>
+<script>
+    if (window.cdc === undefined) { window.cdc = {}; }
+    if (cdc.breadcrumb === undefined) {
+        cdc.breadcrumb = (function () {
+            let clone = document.querySelector('#fw-breadcrumb').cloneNode(true);
+
+            let appendClone = function () {
+                let hasBreadcrumb = document.querySelector('#fw-breadcrumb') !== null,
+                    firstMarquee = document.querySelectorAll('.dmc-mq')[0];
+
+                if (!hasBreadcrumb && firstMarquee !== undefined) {
+                    firstMarquee.querySelector('.frame .inset').insertBefore(this.clone, firstMarquee.querySelector('.frame .inset').firstElementChild);
+                }
+            };
+
+            return {
+                clone: clone,
+                appendClone: appendClone
+            }
+        }());
+    }
+    //DE380224
+    var anchorChild = document.getElementsByTagName("a");
+    for(var i=0; i<anchorChild.length; i++){ 
+        if(anchorChild[i].getAttribute("itemprop")=="item")  {  
+            if ( anchorChild[i].href.includes("%3Clocale%3E") ){
+                let anchorChildHREF = anchorChild[i].href;
+                let docLocale = document.querySelector('meta[name="locale"]').getAttribute('content');
+                let docLanguage = document.querySelector('meta[name="language"]').getAttribute('content');
+                
+                var docSeparator;
+                
+                if ((docLocale.toLowerCase() == "us") && (docLanguage.toLowerCase() == "en")) {
+                    docSeparator="/";
+                } else {
+                    docSeparator="_";
+                }
+                
+                let anchorURLReplace = docLanguage.toLowerCase() + docSeparator + docLocale.toLowerCase();
+                anchorChildHREF = anchorChildHREF.replace("%3Clocale%3E", anchorURLReplace);
+                anchorChild[i].setAttribute('href', anchorChildHREF);
+            }
+        }
+    }
+</script>
+
+        
+		        <h1 id="fw-pagetitle" class="" data-owner="ID">Radio Resource Management White Paper</h1>
+		
+	</div>
+</div>
+     <!--googleon: index--><!--googleon: snippet-->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+   <!-- have to do this for _g.I18n to be defined in preview and publish modes -->
+  
+  <script type="text/javascript">
+      // initialize dictionary for i18n
+      cdc.util.ensureNamespace("cdc.rc");
+    cdc.rc.eotkeys = {
+        showOnly5Products : "Show Only 5 Products",       
+        showAllRowsProducts : "Show All nRows Products",
+        supportCommunityUrl : "https://community.cisco.com/t5/technology-and-support/ct-p/technology-support",
+        supportCommunity : "Cisco Community",
+        thankYou : "Thank You",
+        viewersAlso : "Customers Also Viewed", 
+        show : "Show", 
+        more : "More", 
+        showOnly3Documents: "Show Only 3 Documents"
+      };
+  </script>
+
+
+
+<div class="row blowout full visitedlinks">
+    <div class="col full">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+    <div class="disclaimers techdocs">
+        
+        <div class="disclaimerButtons">
+        <div class="aboutBias">
+            <button aria-expanded="false" >Bias-Free Language</button>
+        </div>
+        
+        </div>
+        
+        <div class="biasfreeContent panel">
+            <h3>Bias-Free Language</h3>
+            <p>The documentation set for this product strives to use bias-free language. For the purposes of this documentation set, bias-free is defined as language that does not imply discrimination based on age, disability, gender, racial identity, ethnic identity, sexual orientation, socioeconomic status, and intersectionality. Exceptions may be present in the documentation due to language that is hardcoded in the user interfaces of the product software, language used based on RFP documentation, or language that is used by a referenced third-party product. <a href="https://www.cisco.com/c/en/us/about/social-justice/inclusive-language-policy.html">Learn more</a> about how Cisco is using Inclusive Language.</p>
+        </div>
+        
+    </div><!-- disclaimers -->
+ 
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    /* this is needed for the translation selector */
+    if (typeof(cdc) == "undefined") cdc={};
+    if (typeof(cdc.translations) == "undefined") cdc.translations={};
+    var bookTitle = 'Book Title Page';
+</script>
+
+<span id="actionBar-top"></span>
+<section id="actionBar" class="noprint base-blowout">
+    <span class="icons">
+        
+        <button class="bookToc simpleOverlay-trigger" id="onlyforTrigger"> <!--US140575-->
+            Book Contents
+        </button>
+            <div class="bookToc simpleOverlay-content">
+               <div role="heading" class="title">Book Contents</div>
+               <!--googleoff: index--><!--googleoff: snippet-->  
+               <div class="content">
+                  
+
+
+
+<ul id="bookToc">
+    <li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/rrm.html">Radio Resource
+	 Management</a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/rrm-concepts.html"> Radio Resource
+	 Management Concepts </a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/rrm-data-collection-activities.html"> RRM Data Collection
+	 Activities </a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/rf-grouping.html"> RF Grouping </a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/fra.html"> Flexible Radio
+	 Assignment (FRA) and Redundant Radios </a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/dca.html">Dynamic Channel Assignment (DCA)</a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.html"> Transmit Power
+	 Control (TPC) Algorithm</a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/chd.html"> Coverage Hole Detection and Mitigation Algorithm </a></li>
+<li><a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/rf-profiles.html"> RF Profiles
+	 </a></li>
+
+</ul>
+
+
+               </div>
+               <!--googleon: index--><!--googleon: snippet-->               
+            </div>
+
+        
+    
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class='versionddcontainer chapter'></div>
+<script type="text/html" class="versionstemp">
+            <div class="versionsdd">
+                <button class="versionbutton" aria-haspopup="true" aria-expanded="false" aria-labelledby="other versions" class="version"><label></label></button>
+                <ul class="versionlist" aria-labelledby="other versions">
+                <%
+                    let pageUrl = window.location.pathname.replace("/content/","/c/").toLowerCase();
+                    if (true) pageUrl = pageUrl.substring(0,pageUrl.lastIndexOf("/"))+".html";
+                    for(let i=0; i< data.length; i++) {
+                        let item = data[i],
+                            myurl = item.linkUrl,
+                            urlm = myurl.replace("/content/","/c/");;
+                            mytitle = item.linkTitle;
+                            myclass= urlm.toLowerCase() == pageUrl ? "class=\"selected\"":""; 
+%>
+                    <li><a href="${myurl}" ${myclass}>${mytitle}</a></li>
+<%
+                  }   %>
+                </ul>
+             </div>
+</script>
+    
+        <span class="utilities">
+          <button title="Search in this Book" class="mobileSearch simpleOverlay-trigger">
+            Search
+          </button>
+          <div class="mobileSearch simpleOverlay-content">
+            <div class="title">Find Matches in This Book</div>
+              <!--googleoff: index--><!--googleoff: snippet-->  
+              <div class="content">
+                <form id="mobileBooksearch" class="chapter">
+                   <input type="search" name="booksearchPhrase" placeholder='Find Matches in This Book'/><button class="submit"></button>
+                   <button class="clear"><img src="/etc/designs/cdc/fw/i/ic_clear_gray.png" alt="Clear Contents of Search"/></button>
+                </form>
+                <div id="overlayResults" role="region" aria-live="polite" >
+                   <!-- important, keep this results div begin end on same line in here -->
+                   <div class="results"></div>
+                </div>
+              </div>
+              <!--googleon: index--><!--googleon: snippet-->
+          </div>
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="noprint" id="saveModule">
+
+<script type="text/javascript">
+    cdc.util.ensureNamespace("cdc.rc.savedoc");
+    cdc.rc.savedoc.isLoggedIn = false;
+    cdc.rc.savedoc.save = "Save";
+    cdc.rc.savedoc.saved = "Saved";
+</script>
+
+    <button class="save" aria-expanded="false" aria-label="Save">
+        <label>Save</label>
+    </button>    
+
+</div> 
+    <div class="saveDocumentMessage login cdc-expandPanel"  role="region" aria-live="polite">
+        <a href="/c/login/index.html?referer=/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.html">Log in</a> to Save Content
+    </div>
+
+
+          <!-- Translation Selctor -->
+          <!-- Translation Selector is used on EOT and Books pages. if a page has a locale of en_US then it will provide a list of avaible translations, if its a translated page (non english locale) then provide the link to the english locale. -->
+
+
+ 
+
+
+ 
+          <div class="translations simpleOverlay-content" role="dialog" id="dialogt" aria-labelledby="onlyForNonEN" aria-modal="true">
+            <div role="heading" class="title">Available Languages</div>
+               <!--googleoff: index--><!--googleoff: snippet--> 
+            <script language="javascript">                    
+                cdc.translations.map = "{en-us=https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.html, x-default=https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.html}";//storing the map for use in the JS
+                cdc.translations.locale="en_us";
+            </script>
+            <div class="content">
+              <div class="availableLanguagesList">
+                  <ul id="translationsList">
+                  </ul> 
+              </div>
+            </div>
+            <!--googleon: index--><!--googleon: snippet-->
+          </div>
+          
+          
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+    // stored value for overlay label to use in js
+    var downloadOPtionLabel = 'Download Options',
+    	bookSearchlabel = 'Find Matches in This Book',
+    	translationsLabel = 'Translations',
+    	bookConentLabel= 'Book Contents';
+</script>
+
+
+        
+
+
+
+        <button title="Document Download Options" id="dwnld-button" class="downloadOptions simpleOverlay-trigger" aria-expanded="false">
+            Download
+        </button>
+        <div class="downloadOptions simpleOverlay-content" role="dialog" id="dialogd" aria-labelledby="dwnld-button" aria-modal="true" class="default_dialog">
+            <div role="heading" class="title">Download Options</div>
+            <!--googleoff: index--><!--googleoff: snippet-->  
+            <div class="content">
+                <header>
+
+                    <h3 class="h4"> Book Title</p>
+                    <p>Radio Resource Management White Paper</p>
+                    <p class="h4"> Chapter Title</p>
+                    <h3> Transmit Power
+	 Control (TPC) Algorithm</p>
+
+                </header>
+                <ul>
+
+                        <li >    
+                            <a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper.pdf" class="pdfIcon">PDF - Complete Book 
+                            <span>(5.75 MB)</span></a>
+
+                                   <a href="/c/en/us/td/docs/wireless/controller/technotes/8-3/b_RRM_White_Paper/tpc.pdf" class="chapter">PDF - This Chapter <span>(1.71 MB)</span></a>
+                                                            
+                            <p>View with Adobe Reader on a variety of devices</p>
+                        </li>                                  
+              </ul>
+            </div>
+            <!--googleon: index--><!--googleon: snippet-->
+        </div>
+
+          <button title="Print Friendly Page" class="print simpleOverlay-trigger">
+              Print
+          </button>
+        </span> 
+    </span>
+    <form id="booksearch" tabindex="0" class="chapter">
+       <input type="search" name="booksearchPhrase" placeholder='Find Matches in This Book'/><button class="submit" aria-label="Search"></button>
+       <button class="clear"><img src="/etc/designs/cdc/fw/i/ic_clear_gray.png" alt="Clear Contents of Search"/></button>
+    </form>
+      <div id="searchresult" role="region" aria-live="polite"><button class="close" title="Close Panel"><span></span><span></span></button>
+         <span class="headArrow"></span>
+         <h2>Results</h2>
+         <div class="matches">
+         </div>
+         <div class="results" tabindex="0">
+         </div>
+      </div>
+      <div id="searchResultChapterTitle"></div>
+</section>
+<script type="text/html" id="navigateMatchesTemplate">
+   <div>
+      <button class="up on" title="Previous Match"><span></span></button>
+      <button class="up off" title="Previous Match Not Available"><span></span></button>
+      <span class="matchlabel">Matches</span>
+      <button class="down on" title="Next Match"><span></span></button>
+      <button class="down off" title="Next Match Not Available"><span></span></button>
+   </div>
+</script>
+<script type="text/html" id="noChapterMatchTemplate">
+   <p>There are no Matches in this chapter.</p>
+</script>
+<script type="text/html" id="searchResultsListTemplate">
+   <p class="h3">Chapters with Matches</p>
+   <ul>
+<% var i = 0;
+    while ( modelData.links[i] ) {  %>
+      <li>
+<%     curpage = (window.location.pathname.indexOf(modelData.links[i].href) > -1 )?true:false;
+        if ( i === modelData.curpage ) {
+            if ( ! jQuery('.mobileSearch').css("display") == "block") { %>
+               <span class="currentIndicator"></span>${modelData.links[i].title}
+<%         } else {                %>
+               <span class="currentIndicator"></span><button class="curpage" data-href="${modelData.links[i].url}?bookSearch=true${modelData.wcm}">${modelData.links[i].title}</button>
+<%         }
+        } else {  %>
+            <button data-href="${modelData.links[i].url}?bookSearch=true${modelData.wcm}">${modelData.links[i].title}</button>
+<%     }  %>            
+      </li> 
+<% i++;
+    } %>
+   </ul> 
+</script>      
+<script type="text/html" id="noBookMatchTemplate">
+   <p class="head">No matches found in this book</p>
+   <p>This feature looks for an exact match of what you entered in the box.</p>
+   <p>If you entered several words, try reducing the entry to one or two and search again.</p>
+</script>
+<script type="text/html" id="errorTemplate">
+   <p>Search is currently unavailable due to technical issues. We are working to resolve the problem as quickly as possible.</p>
+</script>
+<script type="text/html" id="mobileSearchFooterTemplate">
+   <div id="mobileSearchFooter">
+      <button class="mobileSearch" title="Search in this Book"></button>
+      <button class="closeFooter"><span></span><span></span></button>
+      <div class="matches"> 
+      </div>
+   </div>   
+</script>
+ 
+    </div>
+</div>
+<div class="row blowout narrow-wide-v2 flip visitedlinks">
+    <div class="col narrow-v2">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+              <div id="documentInfo">
+                  <dl>
+                     
+                      <dt>Updated:</dt><dd> June 14, 2016</dd>
+                     
+                  </dl>
+                    
+              </div>
+
+ 
+    </div>
+    <div id="chapterTitleDiv" class="col wide-v2 indent-at-xlarge">
+        <!-- this will be chapter title for chapters or header for TOC for books -->
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="chapter-title">Chapter:  Transmit Power
+	 Control (TPC) Algorithm </h2>  
+    
+
+    </div>
+</div>
+<div class="row blowout wide-narrow-v2 visitedlinks">
+    <div id="pageContentDiv" class="col wide-v2 indent-at-xlarge" role="main">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+        
+
+    
+ 
+ 
+
+<div id="chapterToc" class="base-blowout">
+    <button><span></span>Chapter Contents</button>
+    <div>
+    
+<ul>
+<li><a href="#id_14979"> Transmit Power                              	 Control (TPC) Algorithm</a></li>
+<li><a href="#id_15224"> What does TPC do?                              	 </a></li>
+<li><a href="#id_15234"> TPCv1 </a>
+<ul>
+<li><a href="#concept_00C9450C43AA4F0A8C272C0DA65B8CA3"> Calulating                              		Tx_Ideal–Ideal Power </a></li>
+<li><a href="#id_15324"> Evaluating a TPCv1                              	 Change Recommendation </a></li>
+<li><a href="#id_15325"> Implementing a                              	 Recommended Power Change </a></li>
+</ul></li>
+<li><a href="#id_15326"> TPCv2 </a></li>
+<li><a href="#id_15328"> TPC Min/Max                              	 </a></li></ul>
+    <button id="chapterToc-close">Close<span></span></button>
+    </div>
+</div>
+
+ 
+    <div id="chapterContent">
+    
+                  <h1 class="title topictitle1" id="ariaid-title1"> Transmit Power
+                     	 Control (TPC) Algorithm
+                  </h1>
+                  <section class="body conbody">
+                     <p class="p">Choosing an operating channel for an AP with the best SNR (Signal To
+                        		Noise ratio) is important. But since one of the major sources of interference
+                        		in our network is our own clients and AP's - Transmit Power Control is equally
+                        		as important. DCA and TPC work hand in hand to manage the RF in our
+                        		environment. Power largely determines our cell boundaries, there are other
+                        		variables (see 
+                        		<a class="xref" href="http://www.cisco.com/c/en/us/products/collateral/wireless/aironet-1250-series/design_guide_c07-693245.pdf" target="_blank">High Client Density Design Guide</a> ), but
+                        		power is one of the primary determining factors. The goal is to maximize the RF
+                        		coverage in the environment - without causing co-channel interference. It's a
+                        		balancing act of sorts. Since we cannot control the clients TX power (not all
+                        		clients will support DTPC, an optional portion of the CCX specification) we
+                        		only have our AP's to work with. Maximizing the AP's coverage and minimizing
+                        		it's interference potential then is the job of TPC. 
+                        	 
+                     </p>
+                  </section>
+                  <!-- minitoc start -->
+                  <nav role="navigation" class="related-links">
+                     <ul class="ullinks">
+                        <li class="link ulchildlink"><a href="#id_15224">What does TPC do?</a></li>
+                        <li class="link ulchildlink"><a href="#id_15234">TPCv1</a></li>
+                        <li class="link ulchildlink"><a href="#id_15326">TPCv2</a></li>
+                        <li class="link ulchildlink"><a href="#id_15328">TPC Min/Max</a></li>
+                     </ul>
+                  </nav>
+                  <!-- minitoc end -->
+                  <article class="topic concept nested1" aria-labelledby="ariaid-title2" lang="en-US" id="id_15224">
+                     <h2 class="title topictitle2" id="ariaid-title2"> What does TPC do?
+                        	 
+                     </h2>
+                     <section class="body conbody">
+                        <p class="p"> TPC uses the TX
+                           		neighbor and RF Neighbor lists generated by the NDP process. RSSI organized
+                           		lists built on how we hear other AP's (RX Neighbor) and how other AP's hear us
+                           		(TX Neighbor), to form a picture of how every AP is heard by every other AP
+                           		within the RF Neighborhood and RF Group. Based on this information TPC sets the
+                           		transmit power of each AP to maximize the coverage and minimize co-channel
+                           		interference. TPC will adjust the Tx power up or down to meet the required
+                           		coverage level indicated by the TPC Threshold. 
+                           	 
+                        </p>
+                        <p class="p"> Like DCA, TPC runs on
+                           		the RF Group leader and is a global algorithm that can be sub configured in RF
+                           		profiles for groups of AP's in an AP group. 
+                           	 
+                        </p>
+                        <p class="p"> There are two
+                           		versions of this algorithm since version 7.2 known as TPCv1 (or just TPC), and
+                           		TPCv2. The purpose of these two algorithms is essentially the same - the
+                           		calculations and how they are implemented differ greatly. We will discuss each
+                           		below and give their strength's and potential caveats. 
+                           	 
+                        </p>
+                        <figure class="fig fignone" id="id_15224__fig_EA3ECB2575864307884820793B287EBF">
+                           <figcaption><span class="fig--title-label">Figure 1. </span> TPC Maximizes
+                              		  Coverage, Minimizes CCI
+                           </figcaption><br><section class="imageleft"><img class="image imageleft" height="299" src="/c/dam/en/us/td/i/400001-500000/410001-420000/410001-411000/410287.tif/_jcr_content/renditions/410287.jpg" width="691"></section><br></figure>
+                        <p class="p"> TPC algorithms run on
+                           		the RF Group Leader along with DCA. They are configured and run separately from
+                           		DCA. Three modes may be configured: 
+                           	 
+                        </p>
+                        <ul class="ul">
+                           <li class="li" id="id_15224__li_6921AA147FA248A0A4168DB700BA4525"> 
+                              		  
+                              <p class="p">Automatic–Runs
+                                 			 every 10 minutes 
+                                 		  
+                              </p> 
+                              		
+                           </li>
+                           <li class="li" id="id_15224__li_CFC457A4A72C47FAA81A70A3971D8F05"> 
+                              		  
+                              <p class="p">On Demand –invoke
+                                 			 a power level change once, then freeze till the next demand request 
+                                 		  
+                              </p> 
+                              		
+                           </li>
+                           <li class="li" id="id_15224__li_55CB106B0A4C4F0A95E06DB4F0EBF68E"> 
+                              		  
+                              <p class="p">Fixed–allows a
+                                 			 user selected power level to be applied to all AP’s in the RF group 
+                                 		  
+                              </p> 
+                              		
+                           </li>
+                        </ul>
+                     </section>
+                     <!-- minitoc start -->
+                     <nav role="navigation" class="related-links"></nav>
+                     <!-- minitoc end -->
+                  </article>
+                  <article class="topic concept nested1" aria-labelledby="ariaid-title3" lang="en-US" id="id_15234">
+                     <h2 class="title topictitle2" id="ariaid-title3"> TPCv1 </h2>
+                     <section class="body conbody">
+                        <p class="p"> TPCv1 is known as
+                           		coverage optimal mode - and is the default method for power control in RRM. The
+                           		algorithm runs on the RF Group Leader, and calculates Tx power on a per AP per
+                           		radio basis for every member of the RF group. Control over TPCv1 relies on a
+                           		user tunable setting - RRM Power Threshold. This combined with the information
+                           		gathered from the third neighbor in an AP's neighbor list, is used to make
+                           		decisions on an AP's transmit power. 
+                           	 
+                        </p>
+                        <p class="p"> The RF Power
+                           		threshold is used to control the cell boundaries of the AP's and hence the
+                           		coverage behavior of the system. The default value of -65 dBm was in place
+                           		until rel. 4.1.85.0 (4.1 MR1), which changed the default value to -70 dBm.
+                           		Valid entries for this are -50 to -80 dBm. The RF Power Threshold is set on the
+                           		controller and should be the same for every controller in an RF Group. Good
+                           		results are generally observed with values ranging between -68 dBm and -75 dBm.
+                           		However certain scenarios will require higher or lower settings. The RF Power
+                           		threshold determines what an AP does in response to how other AP's hear him. In
+                           		a situation like a high ceiling - the AP's might hear each other fine - but
+                           		down on the floor the clients are having issues. 
+                           	 
+                        </p>
+                        <p class="p"> The Third loudest TX
+                           		neighbor is used because this is the number of non-overlapping channels
+                           		available for 2.4 GHz. As an aside, tests have been done with the 8<sup class="ph sup">th</sup> neighbor and more -while this would seem to make more
+                           		sense in 5 Ghz, there is no real advantage realized. Also, very few regulatory
+                           		domains agree on the number of channels they permit - so 3 is the number. 
+                           	 
+                        </p>
+                     </section>
+                     <!-- minitoc start -->
+                     <nav role="navigation" class="related-links">
+                        <ul class="ullinks">
+                           <li class="link ulchildlink"><a href="#id_15324">Evaluating a TPCv1 Change Recommendation</a></li>
+                           <li class="link ulchildlink"><a href="#id_15325">Implementing a Recommended Power Change</a></li>
+                        </ul>
+                     </nav>
+                     <!-- minitoc end -->
+                     <article class="topic concept nested2" aria-labelledby="ariaid-title4" id="concept_00C9450C43AA4F0A8C272C0DA65B8CA3">
+                        <h3 class="title topictitle3" id="ariaid-title4"> Calulating
+                           		Tx_Ideal–Ideal Power 
+                        </h3>
+                        <section class="body conbody">
+                           <p class="p"> The TPCv1 algorithm
+                              		  runs as a two stage process–first determining what the ideal Tx power for a
+                              		  radio would be (Tx_Ideal). 
+                              		
+                           </p>
+                           <p class="p"> Tx_ideal = Tx_max +
+                              		  (TPCv1_Threshold - RSSI_3rd) 
+                              		
+                           </p>
+                           <ol class="ol">
+                              <li class="li" id="concept_00C9450C43AA4F0A8C272C0DA65B8CA3__li_47D86E93104641D7A3421F9C5532C25C"> 
+                                 			 
+                                 <p class="p">Tx_Max—the
+                                    				maximum supported power for a given radio 
+                                    			 
+                                 </p> 
+                                 		  
+                              </li>
+                              <li class="li" id="concept_00C9450C43AA4F0A8C272C0DA65B8CA3__li_26ED65D891784259ADCD38BAFA1912BB"> 
+                                 			 
+                                 <p class="p">TPCv1_Threshold—User selectable RRM power threshold - default
+                                    				-70 dBm version 4.2 and forward -65 dBm before 
+                                    			 
+                                 </p> 
+                                 		  
+                              </li>
+                              <li class="li" id="concept_00C9450C43AA4F0A8C272C0DA65B8CA3__li_97E070CF500947EBAC808E4D277019A4"> 
+                                 			 
+                                 <p class="p">RSSI_Third—The
+                                    				Third loudest AP in the AP TX Neighbor list 
+                                    			 
+                                 </p> 
+                                 			 
+                                 <table class="olh_note" border="0" role="note">
+                                    <tr>
+                                       <td width="1%" class="olh_note" role="heading" border="0"><img src="https://www.cisco.com/content/dam/en/us/td/i/templates/note.gif"><br><p><b>Note</b></p>
+                                       </td>
+                                       <td border="0" class="olh_note">
+                                          <section class="note__content">
+                                             <hr>
+                                             				
+                                             <p class="p">This is the TX–not the RX neighbor–see above
+                                                				
+                                             </p>
+                                             			 
+                                             <hr>
+                                          </section>
+                                       </td>
+                                    </tr>
+                                 </table>
+                                 		  
+                              </li>
+                           </ol>
+                           <p class="p"> If Tx_Ideal is
+                              		  higher than Tx_current, then a power increase is recommended. 
+                              		
+                           </p>
+                           <p class="p"> If Tx_Ideal is
+                              		  lower than Tx_current, then a power decrease is recommended. 
+                              		
+                           </p>
+                        </section>
+                     </article>
+                     <article class="topic concept nested2" aria-labelledby="ariaid-title5" lang="en-US" id="id_15324">
+                        <h3 class="title topictitle3" id="ariaid-title5"> Evaluating a TPCv1
+                           	 Change Recommendation 
+                        </h3>
+                        <section class="body conbody">
+                           <p class="p"> The second part of the process
+                              		involves evaluating the recomended results of the first part and deciding to
+                              		implement it or not. Since changing the Tx power of an AP also changes the cell
+                              		boundaries - it can be disruptive to clients. To ensure that a change is
+                              		necessary a hysteresis is applied.
+                              	 
+                           </p>
+                           <ul class="ul">
+                              <li class="li" id="id_15324__li_C364F42F890A43C1B0583662DB9E849B">
+                                 		  
+                                 <p class="p">For a TX power
+                                    			 Increase–Hysteresis = 3 dB
+                                    		  
+                                 </p>
+                                 		
+                              </li>
+                              <li class="li" id="id_15324__li_F86A07E00F2F4C6C9EC5F5B90E5BB3A5">
+                                 		  
+                                 <p class="p">For a Tx Power decrease–Hysteresis = 6 dB
+                                    		  
+                                 </p>
+                                 		
+                              </li>
+                           </ul>
+                           <p class="p"> So determining if a Tx change is recommended looks like this:
+                              	 
+                           </p>
+                           <p class="p"> Tx_Curr - Tx_Ideal = N
+                              	 
+                           </p>
+                           <ul class="ul">
+                              <li class="li" id="id_15324__li_4DB349626B3544778A82578AC9284568">
+                                 		  
+                                 <p class="p">If N is =/&lt; Hysteresis - No Change is recommended
+                                    		  
+                                 </p>
+                                 		
+                              </li>
+                              <li class="li" id="id_15324__li_564F3990EE4C4AF5935985C0801F26CE">
+                                 		  
+                                 <p class="p">If N is &gt; Hysteresis a change is recommended
+                                    		  
+                                 </p>
+                                 		
+                              </li>
+                           </ul>
+                        </section>
+                        <!-- minitoc start -->
+                        <nav role="navigation" class="related-links"></nav>
+                        <!-- minitoc end -->
+                     </article>
+                     <article class="topic concept nested2" aria-labelledby="ariaid-title6" lang="en-US" id="id_15325">
+                        <h3 class="title topictitle3" id="ariaid-title6"> Implementing a
+                           	 Recommended Power Change 
+                        </h3>
+                        <section class="body conbody">
+                           <p class="p"> If a power change is recommended it
+                              		will be implemented by the following rules:
+                              	 
+                           </p>
+                           <ul class="ul">
+                              <li class="li" id="id_15325__li_A5C80BD56E4E459881CB7E81780EA58D">
+                                 		  
+                                 <p class="p">Decreasing Power–power is
+                                    			 decreased 1 level (3 dB) at per TPCv1 interval (600 seconds Default) and the
+                                    			 effect would be a gradual reduction and allow for settling in the environment
+                                    		  
+                                 </p>
+                                 		
+                              </li>
+                              <li class="li" id="id_15325__li_44961244C4774BFB89A9357D115AC746">
+                                 		  
+                                 <p class="p">Increasing Power–the power level is set to increase 1 level(3 dB)
+                                    			 per iteration of TPCv1 until Tx_Ideal or hysteresis is reached. 
+                                    		  
+                                 </p>
+                                 		
+                              </li>
+                           </ul>
+                           <p class="p"> Before a power change is recommended- it is sanity checked for validity
+                              		in the RF neighborhood. As an example, we'll use a use case where the AP being
+                              		set does not have a 3<sup class="ph sup">rd</sup> neighbor (classicaly resulted in a power
+                              		level 1 assignment before smoothing was introduced in version 6.1 of the RRM
+                              		algorithms). Before applying the new power level to the AP, a check of the AP's
+                              		neighbors is made to see what they're operating at. In the case where there is
+                              		no 3<sup class="ph sup">rd</sup> neighbor we would look at the two existing neighbors and
+                              		ensure that the recommended power level is in alignment with they're neighbors
+                              		and themselves.
+                              	 
+                           </p>
+                           <figure class="fig fignone" id="id_15325__fig_F91D906EEEC249CEB58163FEAA3BBEC1">
+                              <figcaption><span class="fig--title-label">Figure 2. </span> TPCv1 Smoothing Algorithm function
+                              </figcaption><br><section class="imageleft"><img class="image imageleft" height="296" src="/c/dam/en/us/td/i/400001-500000/410001-420000/410001-411000/410288.tif/_jcr_content/renditions/410288.jpg" width="646"></section><br></figure>
+                           <p class="p"> The recommendation is matched against the power levels being used for
+                              		our neighbors neighbor list of AP's, and an average of averages is developed
+                              		for any neighbor who is on the list at or above the TPCv1 threshold (-70 dBm by
+                              		default).
+                              	 
+                           </p>
+                           <p class="p"> Once the recommendation is validated it is passed to the AP for
+                              		implementation by TPCv1. Let's say the power needs to be decreased by 12 dB to
+                              		match Tx_curent to Tx_ideal. In all cases the power will be decreased by 3 dB
+                              		(one step) during each TPCv1 cycle. Then on the next run of TPCv1, the entire
+                              		process is repeated and if power still needs to be changed- will apply another
+                              		single 3 dB step. The process is the same for a TX increase to be implemented,
+                              		1 power level per iteration will be applied and evaluated.
+                              	 
+                           </p>
+                           <p class="p"> Like DCA, TPCv1 runs on the RF Group leader, changes in DCA - will
+                              		affect changes in TPCv1 and vice versa - so it's good that they work together
+                              		to balance the infrastructure. TPCv1 runs at the same interval as DCA, by
+                              		default every ten minutes. TPCv1 has no knowledge of channel and assumes that a
+                              		neighbor entry could be on the same channel at any time (reasonable since DCA
+                              		runs independently).
+                              	 
+                           </p>
+                           <p class="p"> On Demand mode schedules a TPCv1 run on the next regularly scheduled
+                              		boundary, that is if running in default mode, TPCv1 will run on the next 10
+                              		minute interval - however the calculation will be held then and TPCv1 will not
+                              		run or update until you select On Demand again.
+                              	 
+                           </p>
+                           <table class="olh_note" border="0" role="note">
+                              <tr>
+                                 <td width="1%" class="olh_note" role="heading" border="0"><img src="https://www.cisco.com/content/dam/en/us/td/i/templates/note.gif"><br><p><b>Note</b></p>
+                                 </td>
+                                 <td border="0" class="olh_note">
+                                    <section class="note__content">
+                                       <hr>
+                                       		
+                                       <p class="p"> When all APs boot up for the first time (new out of the box), they
+                                          		  transmit at their maximum power levels (power level 1). When APs are power
+                                          		  cycled or rebooted, they use their last configured power settings. Transmit
+                                          		  Power Control adjustments will subsequently occur as needed.
+                                          		
+                                       </p>
+                                       	 
+                                       <hr>
+                                    </section>
+                                 </td>
+                              </tr>
+                           </table>
+                        </section>
+                        <!-- minitoc start -->
+                        <nav role="navigation" class="related-links"></nav>
+                        <!-- minitoc end -->
+                     </article>
+                  </article>
+                  <article class="topic concept nested1" aria-labelledby="ariaid-title7" lang="en-US" id="id_15326">
+                     <h2 class="title topictitle2" id="ariaid-title7"> TPCv2 </h2>
+                     <section class="body conbody">
+                        <p class="p"> Cosmetically TPCv2 is
+                           		almost invisible to the user, in fact it shares all the same configuration
+                           		parameters on the GUI that are involved in TPCv1. It is however very different
+                           		under the hood. First, it does not use the 3<sup class="ph sup">rd</sup> neighbor method or
+                           		anything else really other than the neighbor lists from TPCv1. The primary
+                           		difference is that TPCv1 is based on a received energy measurement at the
+                           		neighboring AP. TPCv2 calculates a cell boundary between two AP's based on the
+                           		measured RF distance between them, and optimizes the coverage based on that
+                           		calculation. 
+                           	 
+                        </p>
+                        <figure class="fig fignone" id="id_15326__fig_EE2C19673E1542BDB3E29A1A45418C60">
+                           <figcaption><span class="fig--title-label">Figure 3. </span> TPCv2 Two AP
+                              		  example
+                           </figcaption><br><section class="imageleft"><img class="image imageleft" height="293" src="/c/dam/en/us/td/i/400001-500000/410001-420000/410001-411000/410289.tif/_jcr_content/renditions/410289.jpg" width="638"></section><br></figure>
+                        <p class="p"> The problem to be
+                           		solved is similar to filling a box with balls. Larger balls fill the box
+                           		quicker, but leave larger amounts of open space between the balls that still
+                           		could contain more balls. So - add some smaller balls, and fill in those spaces
+                           		as well. This is essentially the same problem to be solved in getting maximum
+                           		cellular coverage - larger balls will fill the space quicker but also leave
+                           		larger open areas, so the equation seeks to optimize the size of all the balls
+                           		in order to maximize the coverage provided. By increasing and decreasing the
+                           		cell size, and minding overlap the solution arranges variable size cells for
+                           		optimum coverage. 
+                           	 
+                        </p>
+                        <figure class="fig fignone" id="id_15326__fig_4D0F4CC86E294485AB6F728D10792E06">
+                           <figcaption><span class="fig--title-label">Figure 4. </span> TPCv2 Multi-ap
+                              		  Result Example
+                           </figcaption><br><section class="imageleft"><img class="image imageleft" height="484" src="/c/dam/en/us/td/i/400001-500000/410001-420000/410001-411000/410290.tif/_jcr_content/renditions/410290.jpg" width="690"></section><br></figure>
+                        <p class="p"> TPCv2 runs to
+                           		completion, and power changes are handled continuously. If a cycle concludes
+                           		that a particular AP's power needs to be raised or lowered the algorithm will
+                           		run continuously adjusting the power and re-checking the results until Ideal_TX
+                           		is reached. TPCv2 runs considering all AP's neighbors as equals regardless of
+                           		channel (default mode), and in channel mode which only considers AP's that are
+                           		on the "SAME" channel as the AP being solved. Channel mode is enabled at the
+                           		command line of the RF group leader only. Channel mode is a good choice for
+                           		High Density Deployments - as this will minimize co-channel interference, while
+                           		Maximizing coverage and signal between 2 AP's on the same channel. Adjacent
+                           		channel interference will be addressed by DCA. 
+                           	 
+                        </p><pre class="pre codeblock"><code>(Cisco Controller) &gt;config advanced 802.11a tpcv2-per-chan enable/disable (disabled by default).</code></pre><p class="p"> Using Channel mode
+                           		increases the power significantly. 
+                           	 
+                        </p>
+                        <p class="p">TPCv2 also adds a
+                           		radio Utility feature. As the algorithm runs, it models different combinations
+                           		of power to reach a solution. As it does this it keeps track of the utility of
+                           		a given radio. TPCv2 will run 10 iterations every TPC Interval (600 seconds) if
+                           		a particular radio is only need for 3 of the 10 solutions – that radio is
+                           		marked as 30% utility. You can see the results of this in the show advanced
+                           		802.11a/b sum command. 
+                           	 
+                        </p><pre class="pre codeblock"><code>(Cisco Controller) &gt;show advanced 802.11b sum
+Leader RRM Information
+----------------------
+AP_1  : [b2:8d:80] Ch  6* TxPower  1dBm (Level 8)* CHDM 0dBm AP Util   0% dBm [22/19/16/13/10/7/4/1]
+        RxNbrs:: total  5[  3:-20][  6:-27][  5:-30][  4:-41][  2:-49]  
+        TxNbrs:: total  5[  3:-23][  6:-23][  5:-28][  4:-44][  2:-46]  
+AP_2  : [43:4d:50] Ch  1* TxPower  7dBm (Level 6)* CHDM 0dBm AP Util  30% dBm [22/19/16/13/10/7/4/.]
+        RxNbrs:: total  5[  6:-46][  1:-46][  4:-47][  3:-52][  5:-59]  
+        TxNbrs:: total  5[  4:-39][  6:-46][  1:-49][  3:-50][  5:-51]  
+AP_3  : [ba:19:40] Ch 11  TxPower  7dBm (Level 6)  CHDM 0dBm AP Util 100% dBm [22/19/16/13/10/7/./.]
+        RxNbrs:: total  5[  1:-23][  6:-26][  5:-30][  2:-50][  4:-52]  
+        TxNbrs:: total  5[  1:-20][  6:-21][  5:-26][  4:-49][  2:-52]  
+AP_4  : [b4:20:60] Ch  6* TxPower 20dBm (Level 2)* CHDM 0dBm AP Util  70% dBm [23/20/17/14/11/8/5/2]
+        RxNbrs:: total  5[  2:-39][  1:-44][  3:-49][  6:-52][  5:-59]  
+        TxNbrs:: total  5[  1:-41][  2:-47][  3:-52][  6:-53][  5:-56]  
+AP_5  : [b4:20: 0] Ch  1  TxPower 20dBm (Level 2)  CHDM 0dBm AP Util 100% dBm [23/20/17/14/11/8/5/2]
+        RxNbrs:: total  5[  3:-26][  1:-28][  6:-34][  2:-51][  4:-56]  
+        TxNbrs:: total  5[  1:-30][  3:-30][  6:-35][  2:-59][  4:-59]  
+AP_6  : [cc:d4:20] Ch  6* TxPower -1dBm (Level 8)* CHDM 0dBm AP Util   0% dBm [20/17/14/11/8/5/2/-1]
+        RxNbrs:: total  5[  3:-21][  1:-23][  5:-35][  2:-46][  4:-53]  
+        TxNbrs:: total  5[  3:-26][  1:-27][  5:-34][  2:-46][  4:-52]  
+</code></pre><p class="p"> Other data in this
+                           		show command includes the last 3 octets of the AP BSSID, and RX neighbor and TX
+                           		neighbor counts and values for each AP. For instance - AP_1 has a total of 5
+                           		RxNbrs - his closest RX neighbor is AP3 at -21 dBm. This is a very useful
+                           		output and can be used to select AP's for shutting off 2.4 Ghz radios in overly
+                           		dense situations - such as this example above. From above - we could get good
+                           		coverage with 3 of the 6 AP's. 
+                           	 
+                        </p>
+                        <table class="olh_note" border="0" role="note">
+                           <tr>
+                              <td width="1%" class="olh_note" role="heading" border="0"><img src="https://www.cisco.com/content/dam/en/us/td/i/templates/note.gif"><br><p><b>Note</b></p>
+                              </td>
+                              <td border="0" class="olh_note">
+                                 <section class="note__content">
+                                    <hr> 
+                                    		
+                                    <p class="p"> It is highly
+                                       		  advisable to look at the AP's position and coverage on the map with a good
+                                       		  understanding of the desired coverage requirements before shutting off radios.
+                                       		  This data should be used only as a guide. 
+                                       		
+                                    </p> 
+                                    	 
+                                    <hr>
+                                 </section>
+                              </td>
+                           </tr>
+                        </table>
+                        <section class="p"> The other show
+                           		command you will want to know is: 
+                           		<pre class="pre codeblock"><code>show advanced 802.11a/b txpower </code></pre> 
+                           	 </section><pre class="pre codeblock"><code>(Cisco Controller) &gt;show advanced 802.11b txpower
+
+Leader Automatic Transmit Power Assignment
+  Transmit Power Assignment Mode................. AUTO
+  Transmit Power Update Interval................. 600 seconds
+  Transmit Power Threshold....................... -70 dBm
+  Transmit Power Neighbor Count.................. 3 APs
+  Min Transmit Power............................. -10 dBm
+  Max Transmit Power............................. 30 dBm
+  Update Contribution
+    Noise........................................ Enable
+    Interference................................. Enable
+    Load......................................... Disable
+    Device Aware................................. Disable
+  Transmit Power Assignment Leader............... Cisco_69:9a:64 (192.168.10.8) (::)
+  Last Run....................................... 539 seconds ago
+  Last Run Time.................................. 0 seconds
+  TPC Mode....................................... Version 2 Per-Channel NO
+  TPCv2 Target RSSI.............................. -67 dBm
+  TPCv2 VoWLAN Guide RSSI........................ -67.0 dBm
+  TPCv2 SOP...................................... -85.0 dBm
+  TPCv2 Default Client Ant Gain..................   0.0 dBi
+  TPCv2 Path Loss Decay Factor...................   3.6
+  TPCv2 Search Intensity......................... 10 Iterations
+
+TPCv2 Plan Quality Index.................. Overall -0.5 Coverage 33.2 CCI 3.0 Ratio   1.0
+TPCv2 Target Plan.............................. To be reached in 7 TPC runs
+
+AP Name                          Channel    TxPower       Allowed Power Levels    
+-------------------------------- ---------- ------------- ------------------------
+upstairs_3602e                   *1         *7/7 ( 4 dBm) [22/19/16/13/10/7/4/4]
+AP_2702E                         *6         *8/8 ( 1 dBm) [22/19/16/13/10/7/4/1]
+downac                            1          2/8 (20 dBm) [23/20/17/14/11/8/5/2]
+upac                             *6         *2/8 (20 dBm) [23/20/17/14/11/8/5/2]
+NOS_3600                          1          6/7 ( 7 dBm) [22/19/16/13/10/7/4/4]
+AP_3502                          *6         *8/8 (-1 dBm) [20/17/14/11/8/5/2/-1]
+1602I_.560e.1b97                  11         6/6 ( 7 dBm) [22/19/16/13/10/7/7/7]
+</code></pre><p class="p">This command shows you
+                           		the configurations for both TPCv1, TPCv2, identifies which is in use (you can
+                           		only use one) as well as where the TPC threshold and the TPCv2 Target RSSI are
+                           		set for the global configuration. TPCv1 Threshold and TPCv2 Target RSSI can
+                           		both be set differently within an RF Profile, and you will not see that in this
+                           		command. The show command also lists all the AP’s WITH their allowed powers as
+                           		well as the current power level. Keep in mind – the allowed powers are for the
+                           		current channel assignment, see this example where that makes a difference in 5
+                           		Ghz 
+                           	 
+                        </p><pre class="pre codeblock"><code>AP Name                          Channel    TxPower       Allowed Power Levels    
+-------------------------------- ---------- ------------- ------------------------
+upstairs_3602e                   *(36,40)   *2/5 (11 dBm) [14/11/8/5/2/2/2/2]
+AP_2702E                         *(64,60,52,56) *1/6 (17 dBm) [17/14/11/8/5/2/2/2]
+downac                           *(149,153,157,161) *1/8 (23 dBm) [23/20/17/14/11/8/5/2]
+upac                             *(149,153,157,161) *4/8 (14 dBm) [23/20/17/14/11/8/5/2]
+NOS_3600                         *36         5/5 ( 2 dBm) [14/11/8/5/2/2/2/2]
+AP_3502                          *(36,40)   *6/7 ( 2 dBm) [17/14/11/8/5/2/-1/0]
+1602I_.560e.1b97                 *(100,104) *1/4 (17 dBm) [17/14/11/8/8/8/8/8]
+</code></pre></section>
+                     <!-- minitoc start -->
+                     <nav role="navigation" class="related-links"></nav>
+                     <!-- minitoc end -->
+                  </article>
+                  <article class="topic concept nested1" aria-labelledby="ariaid-title8" lang="en-US" id="id_15328">
+                     <h2 class="title topictitle2" id="ariaid-title8"> TPC Min/Max
+                        	 
+                     </h2>
+                     <section class="body conbody">
+                        <p class="p"> Regardless of the TPC method you
+                           		choose you will have the option to limit either the maximum or minimum power
+                           		settings allowed. TPC Min/Max is a setting that unlike TPC, runs on every
+                           		controller. It is designed as a safety to prevent going too low or too high in
+                           		power. The effect is that no matter what TPC sends to the radio, if it is above
+                           		the Max or below the minimum, the TPC Max or Minimum Value overrides the global
+                           		assignment.
+                           	 
+                        </p>
+                        <p class="p"> Why would you want to do this you may ask? Well, we don't always get
+                           		the AP where we would like it in an installation. The classic use case for
+                           		which this feature was created is all the AP's being mounted in a central
+                           		hallway with the intended coverage being on either side of the hall. Because
+                           		the AP's can see one another quite well in the hallway - power will be reduced
+                           		to meet the criteria between the AP's and may not be loud enough to reach the
+                           		edges of the rooms on either side of the hall. Moving the AP's into the rooms -
+                           		and staggering them down the hall would be better solution - but also may not
+                           		be possible for a number of reasons. In this case you could use TPC min to
+                           		ensure that the power levels required to reach the users was indeed honored.
+                           		Now, this will increase co-channel interference in the hallway itself - however
+                           		very few of the users will be in the hallway.
+                           	 
+                        </p>
+                        <p class="p"> Another good example of where to use this would be a lecture hall or
+                           		classroom that is configured for High Density. People absorb RF, and when the
+                           		room is full of people - the amount of RF energy you see at the floor could be
+                           		attenuated by 5 or as much as 10 dB in extremely dense cases. When the room is
+                           		empty, the power levels of the AP's will drop because the propagation has
+                           		improved and when it is full, you will need more power (5-10 dB more). If you
+                           		let TPC manage this without any guidelines, it will eventually apply enough
+                           		power, but that could be 30 minutes into the class that lasts 1 hour. Setting
+                           		TPC minimum at the required full class level will ensure that they have plenty
+                           		of signal at the beginning of class. Yes, the AP's will be louder for all other
+                           		times, however the unused AP's will only be sending beacons during those times
+                           		- so not a concern really as the interference will be minimal.
+                           	 
+                        </p>
+                        <p class="p">TPC Min and Max settings are entered in dBm NOT Power level index. For
+                           		this you will want to know the allowed powers for the AP model you are
+                           		configuring. Power level index is a scale 1-8 from (1)Max to (8) Minimum power
+                           		for the AP. Not all AP’s support 8 Power Levels. The max power an AP can
+                           		transmit differs by band, and in 5 GHz will be lowest in the UNii1 band
+                           		(channels 36-48), higher in Unii2 and Unii2e (52-64, 100-140) and highest in
+                           		Unii3 (149-165). The advantage to entering this in dBm is that all AP’s
+                           		regardless of channel will exhibit the same power assuming the selection is
+                           		supported in all 3 ranges, else the AP will be set to the power level it
+                           		supports in the band closest to the dBm value entered. An AP’s allowed powers
+                           		list is just that – the power levels that the AP can support. To see the
+                           		allowed powers for the AP’s on your network, from the controller CLI - show
+                           		advanced 802.11a/b summary. Both the channel and the allowed powers for the AP
+                           		are displayed. From the AP CLI show controller d0/d1 (d0=2.4 and d1=5 GHz). 
+                           	 
+                        </p>
+                        <p class="p"> An AP 2702e -A this list looks like this:
+                           	 
+                        </p>
+                        <p class="p">UNii1–15,12,9,6,3 dBm (5 levels 1-5 supported)
+                           	 
+                        </p>
+                        <p class="p">UNii2/e–17,14,11,8,5,2 dBm (6 levels 1-6 supported)
+                           	 
+                        </p>
+                        <p class="p">UNii3–17,14,11,8,5,2 dBm (6 levels 1-6 supported)
+                           	 
+                        </p>
+                        <p class="p"> And a 3702e looks like this:
+                           	 
+                        </p>
+                        <p class="p">UNii1–15,12,9,6,3 dBm (5 levels 1-5 supported)
+                           	 
+                        </p>
+                        <p class="p">UNii2/e–17,14,11,8,5,2 dBm (6 levels 1-6 supported)
+                           	 
+                        </p>
+                        <p class="p">UNii3–23,20,17,14,11,8,5,2 dBm (8 levels 1-8 supported)
+                           	 
+                        </p>
+                        <p class="p"> Power level 1 always relates to the max power that can be made at 6
+                           		Mbps - Non-BF (Beam Formed).
+                           	 
+                        </p>
+                        <p class="p"> Entry of TCP Min/Max values can be done at the GUI - 
+                           		<strong class="ph b">Wireless&gt; 802.11a &gt; RRM &gt; Tx Power Control(TPC)</strong> 
+                           	 
+                        </p>
+                        <figure class="fig fignone" id="id_15328__fig_DC36075B5F444EEDB346B4D9A92159BB">
+                           <figcaption><span class="fig--title-label">Figure 5. </span> TPC configuration dialogue WLC GUI
+                           </figcaption><br><section class="imageleft"><img class="image imageleft" height="351" src="/c/dam/en/us/td/i/400001-500000/410001-420000/410001-411000/410291.tif/_jcr_content/renditions/410291.jpg" width="612"></section><br></figure>
+                        <p class="p"> It is also supported within RF profiles under RRM.
+                           	 
+                        </p>
+                        <figure class="fig fignone" id="id_15328__fig_FF6A3C74BAAC469EB35501DA61070879">
+                           <figcaption><span class="fig--title-label">Figure 6. </span> RF Profile - RRM config dialogue - WLC
+                           </figcaption><br><section class="imageleft"><img class="image imageleft" height="224" src="/c/dam/en/us/td/i/400001-500000/410001-420000/410001-411000/410292.tif/_jcr_content/renditions/410292.jpg" width="692"></section><br></figure>
+                        <p class="p"> TPC Min/Max Values apply regardless of TPC version in use. Note in the
+                           		examples above - the default values are - Max =30 dBm and Min = -10 dBm which
+                           		is effectively off - as AP's do not support these power levels.
+                           	 
+                        </p>
+                        <p class="p"> Again, this is a per controller/RF profile setting and does not apply
+                           		to all AP's in the RF Group but only to ones local to the controller where the
+                           		setting is made.
+                           	 
+                        </p>
+                     </section>
+                     <!-- minitoc start -->
+                     <nav role="navigation" class="related-links"></nav>
+                     <!-- minitoc end -->
+                  </article>
+               </article>
+            </article>
+         </main>
+      
+
+</div> 
+ 
+    </div>
+    <div class="col narrow-v2">
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="rightRailComponent noprint base-blowout">
+    <div class="eotPersonalization">
+        <section id="eotTDCampaign"></section>
+    </div>    
+    <div class="eot-feedback-container">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-feedback">
+  <h3>Was this Document Helpful?</h3>
+  <span class="eot-feedback-btnwrap">
+    <button class="eot-feedback-btn eot-feedback-btn-yes" aria-label="Was this Document Helpful?? Yes">Yes</button>
+    <button class="eot-feedback-btn eot-feedback-btn-no" aria-label="Was this Document Helpful?? No">No</button>
+  </span>
+  <span lang="en" class="eot-feedback-olwrap">
+    
+      <a href="javascript: void(0);" class="eot-feedback-ol" onclick="window.open('https://ciscocx.qualtrics.com/jfe/form/SV_be0fHnqDoKM7sto?Ref=' + location.href + '&resize=false', 'feedback', 'width=650, height=460, scrollbars=1, menubar=1, resizable=1'); return false;">
+      <img id="feedback_img" border="0" style="cursor: pointer;" title="Feedback" src="//www.cisco.com/c/dam/cdc/i/Feedback_OceanBlue.png" alt="Feedback">Feedback</a>
+    
+  </span>
+</div>
+
+
+</div>
+			
+    <div class="showComponent">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eot-vav">
+  <ul>
+  </ul>
+</div>
+    </div>
+			
+    <div class="letUsHelp">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="eotLetUsHelp">
+    <h3>Contact Cisco</h3>
+    <ul>
+         <li><a id="eotLetUsHelpProdDocUrl" href="https://mycase.cloudapps.cisco.com/start?prodDocUrl=">Open a Support Case</a><img src="/etc/designs/cdc/fw/i/icon_lock_small.png" alt="login required"/></li>
+        <li>(Requires a <a href="//www.cisco.com/c/en/us/services/order-services.html">Cisco Service Contract</a>)</li>
+    </ul>
+</div>
+
+
+<script>
+    jQuery(document).ready(function() {
+        var getURL=jQuery("#eotLetUsHelpProdDocUrl").attr("href"), 
+            domInd = location.href.indexOf('cisco.com') ;
+        if ( domInd > -1 && domInd < location.href.search(/\w\/\w/) ) {
+            getURL += encodeURI(location.href);
+        }
+		jQuery("#eotLetUsHelpProdDocUrl").attr("href",getURL);
+    });
+</script>
+
+
+    </div>
+
+    <div id="eotRightRailMBox"><!--MBox-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- IT:components/mbox/banner-mbox:V0.0.0 -->
+
+
+
+<div>
+    <div class="mboxDefault"></div>   
+    <script type="text/javascript">
+        var test="";
+        if(test!=undefined && test.trim().length>0){
+           mboxCreate('en-us_dg_support_bookchapters','type=default','');
+        }else{
+           mboxCreate('en-us_dg_support_bookchapters','type=default');
+        }
+       
+    </script>
+</div>
+<!--MBox--></div>
+			
+    <div class="showComponent">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+	<script type="text/javascript">
+			    var eottdatp = document.getElementsByClassName('eot-tdatp');
+			    if (eottdatp && eottdatp.style) {
+        			eottdatp.style.display="none";
+			    }
+        		  </script>
+  	
+
+
+    </div>
+			
+    <div></div>
+
+</div>
+
+
+    </div>
+</div>
+
+     <!--googleoff: index--><!--googleoff: snippet-->
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- end: responsive fat footer re-use wrapper-->
+
+</div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        <script type="module" src="/site/web-components/us/en/cdc-footer.js"></script>
+        <cdc-footer></cdc-footer>
+    
+
+<script type="text/javascript">
+    if(document.querySelector('#privacy-manager')!=null){
+        document.querySelector('#privacy-manager').href='#cookies';
+    }
+  </script>   
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="fw-overlay"></div>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script src="/etc/designs/cdc/clientlibs/responsive/js/books.min.js"></script>
+
+<script src="/etc/designs/cdc/fw/m/books_metricsrule.js" type="text/javascript" async></script>
+    
+    
+
+    <!-- SiteCatalyst code version: H.24.4. -->
+    <noscript><img src="//cisco.112.2o7.net/b/ss/cisco-mobile/5/12345" width="2" height="2" border="0" alt=""/></noscript>
+
+</body>
+</html>

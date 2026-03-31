@@ -1,0 +1,119 @@
+{
+  "generated_on": "2026-03-25",
+  "purpose": "Mainline method/data provenance registry for the UAV paper project. Entries explicitly distinguish literature-backed model forms from scenario priors and disabled source types.",
+  "method_models": {
+    "a2g_los_path_loss": {
+      "status": "supported",
+      "basis_type": "primary_paper",
+      "title": "Optimal LAP Altitude for Maximum Coverage",
+      "notes": "Used for the A2G LoS/NLoS path-loss form and sigmoid LoS probability parameters.",
+      "web_url": "https://ieeexplore.ieee.org/document/6863654",
+      "local_reference_hint": "参考文献/论文文献/key reference/通信评估公式方法_底层变量的影响思路"
+    },
+    "morphology_fit": {
+      "status": "supported",
+      "basis_type": "primary_standard_like_report",
+      "title": "3GPP TR 38.901",
+      "notes": "Used as the defended morphology/layout prior source for cellular layout assumptions and urban scenario parameterization.",
+      "web_url": "https://www.etsi.org/deliver/etsi_tr/138900_138999/138901/19.02.00_60/tr_138901v190200p.pdf"
+    },
+    "ue_ul_fpc": {
+      "status": "supported",
+      "basis_type": "primary_standard",
+      "title": "3GPP TS 36.213",
+      "notes": "Used for LTE uplink fractional power control semantics. The project keeps a simplified, parameterized interface instead of a full scheduler loop.",
+      "web_url": "https://www.etsi.org/deliver/etsi_ts/136200_136299/136213/16.02.00_60/ts_136213v160200p.pdf"
+    },
+    "ap_bs_slow_clpc": {
+      "status": "supported_with_scope_limit",
+      "basis_type": "official_vendor_doc",
+      "title": "Cisco Radio Resource Management / Transmit Power Control",
+      "notes": "Used only as a slow-timescale AP/BS power-control approximation, not as packet-level or scheduler-level closed-loop control.",
+      "web_url": "https://www.cisco.com/c/en/us/td/docs/wireless/controller/technotes/8-0/b_RRM_White_Paper/b_RRM_White_Paper_chapter_010.html",
+      "local_reference_hint": "Cisco_RRM_TPC_Guide_17_18.pdf"
+    },
+    "nakagami_gamma_sum": {
+      "status": "supported",
+      "basis_type": "primary_paper",
+      "title": "New Results on the Sum of Gamma Random Variates with Application to the Performance of Wireless Communication Systems",
+      "notes": "Used for the aggregate-interference Gamma/Nakagami approximation, not to claim every single interferer is permanently modeled as a Nakagami channel object.",
+      "web_url": "https://arxiv.org/pdf/1202.2576.pdf"
+    },
+    "rotary_wing_energy": {
+      "status": "supported",
+      "basis_type": "primary_paper",
+      "title": "Energy-Efficient UAV Communication With Trajectory Optimization",
+      "notes": "Used for the rotary-wing propulsion power model.",
+      "web_url": "https://ieeexplore.ieee.org/document/8648498",
+      "local_reference_hint": "参考文献/论文文献/key reference/A survey of energy efficient methods for UAV communication.pdf"
+    }
+  },
+  "open_data_sources": {
+    "aerpaw_dataset_18": {
+      "status": "supported",
+      "title": "Dataset-18: Ericsson 5G NSA network RF and throughput measurements on AERPAW network",
+      "web_url": "https://aerpaw.org/dataset/aerpaw-ericsson-5g-uav-experiment/",
+      "local_zip_filename": "aerpaw-dataset-24.zip",
+      "notes": "Project uses the measured trajectory bundle and does not infer a fictional full BS/interferer map from it in the measured-map branch."
+    },
+    "dryad_wh70rxx06": {
+      "status": "supported",
+      "title": "Ericsson 5G NSA network RF and throughput measurements on AERPAW network",
+      "web_url": "https://datadryad.org/dataset/doi%3A10.5061/dryad.wh70rxx06",
+      "doi": "10.5061/dryad.wh70rxx06",
+      "local_zip_filename": "doi_10_5061_dryad_wh70rxx06__v20250521.zip"
+    }
+  },
+  "interference_types": {
+    "wifi_2_4g": {
+      "default_enabled": true,
+      "basis_type": "official_regulation_plus_project_prior",
+      "frequency_power_source": "https://www.law.cornell.edu/cfr/text/47/15.247",
+      "density_basis": "project_floor_area_prior",
+      "notes": "Frequency/power semantics are regulation-backed; AP density remains an explicit floor-area/adoption prior that must not be written as a measured city fact."
+    },
+    "wifi_5_8g": {
+      "default_enabled": true,
+      "basis_type": "official_regulation_plus_project_prior",
+      "frequency_power_source": "https://www.law.cornell.edu/cfr/text/47/15.247",
+      "density_basis": "project_floor_area_prior",
+      "notes": "Same scope limit as WiFi 2.4G."
+    },
+    "cellular_4g": {
+      "default_enabled": true,
+      "basis_type": "3gpp_layout_prior",
+      "frequency_power_source": "https://www.etsi.org/deliver/etsi_ts/136100_136199/136101/16.16.00_60/ts_136101v161600p.pdf",
+      "density_basis": "3gpp_uma_isd_500m",
+      "notes": "Mainline default PPP prior is derived from a UMa-like inter-site distance rather than an undocumented hardcoded density."
+    },
+    "cellular_5g": {
+      "default_enabled": true,
+      "basis_type": "3gpp_layout_prior",
+      "frequency_power_source": "https://www.etsi.org/deliver/etsi_ts/138100_138199/138104/17.09.00_60/ts_138104v170900p.pdf",
+      "density_basis": "3gpp_umi_isd_200m",
+      "notes": "Mainline default PPP prior is derived from a UMi-like small-cell layout prior."
+    },
+    "cellular_ue_ul": {
+      "default_enabled": true,
+      "basis_type": "primary_standard",
+      "frequency_power_source": "https://www.etsi.org/deliver/etsi_ts/136200_136299/136213/16.02.00_60/ts_136213v160200p.pdf",
+      "density_basis": "disabled_by_default_for_background",
+      "notes": "Used as a controlled/source-profile type via simplified FPC semantics; background UE PPP remains opt-in."
+    },
+    "gnss_jammer": {
+      "default_enabled": false,
+      "basis_type": "disabled_by_default",
+      "notes": "Kept in code for explicit what-if studies only. It is not part of the defended mainline because deployment prior and power semantics still require tighter scenario scoping."
+    },
+    "industrial_device": {
+      "default_enabled": false,
+      "basis_type": "disabled_by_default",
+      "notes": "Kept for explicit ISM what-if studies only. Not used in the defended mainline until a narrower device class and density prior are chosen."
+    },
+    "satellite_ground": {
+      "default_enabled": false,
+      "basis_type": "disabled_by_default",
+      "notes": "Disabled in the defended mainline because the generic Ku terminal class needs tighter product/antenna assumptions."
+    }
+  }
+}

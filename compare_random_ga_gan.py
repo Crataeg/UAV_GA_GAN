@@ -11,11 +11,17 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 
 from UAV_GA import DroneCommProblem, EnhancedVisualizer
+from compare_measured_map_search import (
+    DEFAULT_AERPAW_ZIP,
+    DEFAULT_DRYAD_ZIP,
+    run_comparison as run_measured_map_comparison,
+)
 from evaluate import evaluate_groups_from_samples, EvaluateConfig
+from project_defaults import apply_project_defaults
 
 
 def default_user_params() -> Dict:
-    return {
+    return apply_project_defaults({
         "num_drones": 6,
         "num_stations": 4,
         "area_size": 1200,
@@ -27,7 +33,7 @@ def default_user_params() -> Dict:
         "itu_gamma": 40.0,
         "drone_speed_max": 18,
         "num_controlled_interference": 8
-    }
+    })
 
 
 def load_user_params(path: str) -> Dict:
@@ -249,6 +255,15 @@ def main():
     parser.add_argument("--viz_count", type=int, default=5)
     parser.add_argument("--random_n", type=int, default=50)
     parser.add_argument("--random_seed", type=int, default=2024)
+    parser.add_argument("--skip_measured_corner_compare", action="store_true")
+    parser.add_argument("--aerpaw_zip", default=DEFAULT_AERPAW_ZIP)
+    parser.add_argument("--dryad_zip", default=DEFAULT_DRYAD_ZIP)
+    parser.add_argument("--corner_random_points", type=int, default=120)
+    parser.add_argument("--corner_worst_top_k", type=int, default=25)
+    parser.add_argument("--corner_grid_size", type=int, default=55)
+    parser.add_argument("--corner_tx_power_dbm", type=float, default=43.0)
+    parser.add_argument("--corner_bandwidth_hz", type=float, default=100e6)
+    parser.add_argument("--corner_disable_hotspots", action="store_true")
     args = parser.parse_args()
 
     run_id = args.run_id.strip() or find_latest_run_id()
@@ -327,6 +342,46 @@ def main():
     except Exception as e:
         print(f"[WARN] KPI evaluation failed (non-fatal): {e}")
 
+    datasets_ready = os.path.isfile(str(args.aerpaw_zip)) and os.path.isfile(str(args.dryad_zip))
+    if not bool(args.skip_measured_corner_compare) and datasets_ready:
+        measured_out = os.path.join(base_output, "measured_map_compare")
+        try:
+            run_measured_map_comparison(
+                aerpaw_zip=str(args.aerpaw_zip),
+                dryad_zip=str(args.dryad_zip),
+                out_dir=measured_out,
+                random_points=int(args.corner_random_points),
+                worst_top_k=int(args.corner_worst_top_k),
+                grid_size=int(args.corner_grid_size),
+                tx_power_dbm=float(args.corner_tx_power_dbm),
+                bandwidth_hz=float(args.corner_bandwidth_hz),
+                use_empirical_hotspots=not bool(args.corner_disable_hotspots),
+                seed=int(args.random_seed),
+            )
+        except Exception as e:
+            print(f"[WARN] measured map comparison failed (non-fatal): {e}")
+    elif not datasets_ready:
+        print("[INFO] measured map comparison skipped: dataset zip(s) not found")
+
+    final_report = {
+        "synthetic_compare_summary_json": os.path.join(base_output, "comparison_summary.json"),
+        "kpi_report_json": os.path.join(base_output, "kpi", "kpi_report.json"),
+        "measured_map_summary_json": os.path.join(base_output, "measured_map_compare", "measured_map_summary.json"),
+        "model_source_registry_json": str(user_params.get("model_source_registry_json", "model_source_registry.json")),
+        "enabled_interference_type_ids": list(user_params.get("enabled_interference_type_ids", [])),
+        "synthetic_summary": report,
+    }
+    measured_summary_path = final_report["measured_map_summary_json"]
+    if os.path.isfile(measured_summary_path):
+        try:
+            with open(measured_summary_path, "r", encoding="utf-8") as handle:
+                measured_summary = json.load(handle)
+            final_report["measured_map_summary"] = measured_summary.get("datasets", {})
+        except Exception as e:
+            final_report["measured_map_summary_error"] = str(e)
+    with open(os.path.join(base_output, "final_integrated_report.json"), "w", encoding="utf-8") as handle:
+        json.dump(final_report, handle, ensure_ascii=False, indent=2)
+
     viz_count = int(max(args.viz_count, 0))
     if viz_count > 0:
         viz_count = min(viz_count, len(ga_samples), len(gan_samples), len(rnd_samples))
@@ -354,6 +409,8 @@ def main():
           os.path.join(base_output, "comparison_total_deg_overview.png"),
           os.path.join(base_output, "comparison_total_deg_density.png"))
     print("KPI outputs:", os.path.join(base_output, "kpi"))
+    if not bool(args.skip_measured_corner_compare) and datasets_ready:
+        print("Measured map outputs:", os.path.join(base_output, "measured_map_compare"))
     if viz_count > 0:
         print("Scenario visualizations:",
               os.path.join(visuals_output, "ga"),

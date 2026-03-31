@@ -651,6 +651,20 @@ class DroneCommProblem(ea.Problem):
         self.include_bs_energy_in_ee = bool(user_params.get('include_bs_energy_in_ee', True))
         self.bs_traffic_profile_hourly = user_params.get('bs_traffic_profile_hourly', None)
         self.bs_traffic_profile_points = user_params.get('bs_traffic_profile_points', None)
+        # CLPC（时段-负载闭环发射功率）：
+        # 用于 WiFi/AP/蜂窝基站类干扰源的静态场景近似，不作用于 UE UL（UE UL 仍走 FPC 接口）。
+        self.clpc_enabled = bool(user_params.get('clpc_enabled', False))
+        self.clpc_hour_of_day = float(user_params.get('clpc_hour_of_day', 18.0))
+        self.clpc_blend_alpha = float(user_params.get('clpc_blend_alpha', 0.5))
+        self.clpc_sleep_threshold = float(user_params.get('clpc_sleep_threshold', 0.10))
+        self.clpc_full_threshold = float(user_params.get('clpc_full_threshold', 0.90))
+        self.clpc_users_by_type = dict(user_params.get('clpc_users_by_type', {}))
+        self.clpc_capacity_by_type = dict(user_params.get('clpc_capacity_by_type', {}))
+        self.clpc_pmin_frac_by_type = dict(user_params.get('clpc_pmin_frac_by_type', {}))
+        self.clpc_apply_types = set(user_params.get(
+            'clpc_apply_types',
+            ['wifi_2_4g', 'wifi_5_8g', 'cellular_4g', 'cellular_5g']
+        ))
         # 无人机水平位置约束（避免落入建筑内部）
         self.drone_xy_avoid_buildings = bool(user_params.get('drone_xy_avoid_buildings', True))
         self.drone_xy_snap_eps_m = float(user_params.get('drone_xy_snap_eps_m', 0.5))
@@ -712,6 +726,21 @@ class DroneCommProblem(ea.Problem):
         # 统一“强度/损耗”劣化指标选择：'power_ratio'(默认，原逻辑) 或 'cdi'（强度/损耗合成）
         # 干扰源配置（必须在生成固定场景元素/背景PPP前就绪）
         self.interference_config = INTERFERENCE_SOURCE_CONFIG
+        default_enabled_types = [0, 1, 2, 3, 7]
+        raw_enabled_types = user_params.get('enabled_interference_type_ids', default_enabled_types)
+        try:
+            enabled_types = sorted({int(t) for t in raw_enabled_types})
+        except Exception:
+            enabled_types = list(default_enabled_types)
+        valid_type_ids = {int(k) for k in self.interference_config.type_mapping.keys()}
+        self.enabled_interference_type_ids = [int(t) for t in enabled_types if int(t) in valid_type_ids]
+        if not self.enabled_interference_type_ids:
+            self.enabled_interference_type_ids = list(default_enabled_types)
+        self._enabled_interference_type_set = set(self.enabled_interference_type_ids)
+        self.model_source_registry_json = str(user_params.get(
+            'model_source_registry_json',
+            os.path.join(os.path.dirname(os.path.abspath(__file__)), 'model_source_registry.json'),
+        ))
 
         # 生成固定场景元素
         np.random.seed(42)  # 固定随机种子确保可重复性
@@ -1301,6 +1330,8 @@ class DroneCommProblem(ea.Problem):
 
         sources = []
         for type_id, lam in base_lambda_per_km2.items():
+            if int(type_id) not in getattr(self, '_enabled_interference_type_set', set(base_lambda_per_km2.keys())):
+                continue
             density_mode = str(getattr(self, 'background_interference_density_mode', '2d')).strip().lower()
             scale = float(getattr(self, 'background_interference_density_scale', 1.0))
             if density_mode == '3d':
@@ -1450,6 +1481,15 @@ class DroneCommProblem(ea.Problem):
             self.background_interference_sources_viz = viz_sources[:viz_n]
         else:
             self.background_interference_sources_viz = []
+
+    def _resolve_enabled_interference_type_id(self, raw_type_id: int) -> int:
+        raw = int(np.clip(int(raw_type_id), 0, 7))
+        enabled = list(getattr(self, 'enabled_interference_type_ids', [0, 1, 2, 3, 7]))
+        if raw in getattr(self, '_enabled_interference_type_set', set(enabled)):
+            return raw
+        if not enabled:
+            return raw
+        return min(enabled, key=lambda item: (abs(int(item) - raw), int(item)))
 
     def _build_building_spatial_index(self):
         """构建建筑物空间索引（网格），加速点落楼与线段遮挡判断。"""
@@ -1840,7 +1880,8 @@ class DroneCommProblem(ea.Problem):
         # 生成“受控干扰源”（由染色体控制）
         controlled_sources = []
         for i in range(self.num_interference):
-            type_id = interference_types[i]
+            raw_type_id = int(interference_types[i])
+            type_id = self._resolve_enabled_interference_type_id(raw_type_id)
             power = interference_powers[i]
             location_type = interference_location_types[i]
 
@@ -1876,6 +1917,7 @@ class DroneCommProblem(ea.Problem):
                 source = InterferenceSource(pos_x, pos_y, height, type_id, power, None, is_ground=True, building_idx=None)
 
             source = self._apply_scene_constraints_to_controlled_source(int(i), source)
+            source.requested_type_id = int(raw_type_id)
             # 基于“可追溯 profile”对功率做标定（不改变染色体维度，只改变解释/映射）
             self._calibrate_source_profile_and_power(int(i), source, float(power))
             if not hasattr(source, 'semantic'):
@@ -1906,7 +1948,9 @@ class DroneCommProblem(ea.Problem):
             'building_density': self.building_density,
             'drone_speed_max': self.drone_speed_max,
             'drone_height_max': self.drone_height_max,
-            'building_height_max': self.building_height_max
+            'building_height_max': self.building_height_max,
+            'enabled_interference_type_ids': list(getattr(self, 'enabled_interference_type_ids', [])),
+            'model_source_registry_json': str(getattr(self, 'model_source_registry_json', ''))
         }
 
         # 预计算：每架无人机处的总干扰功率（mW），避免在每条 A2G 链路上重复计算
@@ -2092,6 +2136,7 @@ class DroneCommProblem(ea.Problem):
             source.profile_key = 'ue_ul_fpc'
             profile_meta.update(ue_meta)
 
+        self._apply_clpc_power_control(int(source_index), source, str(type_key), profile_meta)
         source.profile_meta = profile_meta
 
     def _stable_exp_fading_gain(self, drone_idx: int, source_idx: int, source: 'InterferenceSource') -> float:
@@ -3189,6 +3234,86 @@ class DroneCommProblem(ea.Problem):
             0.85, 0.80, 0.75, 0.70, 0.80, 0.95,
             1.00, 0.90, 0.70, 0.50, 0.35, 0.25,
         ])), 0.0, 1.0))
+
+    def _clpc_lookup_by_type(self, mapping: Dict, type_key: str, default_value: float) -> float:
+        if not isinstance(mapping, dict):
+            return float(default_value)
+        if type_key in mapping:
+            return float(mapping[type_key])
+        if str(type_key) in mapping:
+            return float(mapping[str(type_key)])
+        return float(default_value)
+
+    def _apply_clpc_power_control(self,
+                                  source_index: int,
+                                  source: 'InterferenceSource',
+                                  type_key: str,
+                                  profile_meta: Dict) -> None:
+        """
+        对 WiFi/AP/蜂窝基站类干扰源应用“时段-负载闭环发射功率”近似。
+        说明：
+        - 这里的闭环功控面向 AP/BS 发射端功率，而非 UE UL 的 FPC；
+        - 采用静态场景下的 hour + users/capacity 近似，不声称为完整动态时序闭环。
+        """
+        if not bool(getattr(self, 'clpc_enabled', False)):
+            return
+        if str(type_key) not in set(getattr(self, 'clpc_apply_types', set())):
+            return
+
+        hour = float(getattr(self, 'clpc_hour_of_day', 18.0)) % 24.0
+        base_load = float(self._traffic_profile_alpha(hour * 3600.0))
+        blend = float(np.clip(getattr(self, 'clpc_blend_alpha', 0.5), 0.0, 1.0))
+
+        default_users = float(self.bs_users_per_station) if str(type_key).startswith('cellular_') else 8.0
+        default_capacity = float(self.bs_capacity_max) if str(type_key).startswith('cellular_') else 16.0
+        users = self._clpc_lookup_by_type(getattr(self, 'clpc_users_by_type', {}), str(type_key), default_users)
+        capacity = max(self._clpc_lookup_by_type(getattr(self, 'clpc_capacity_by_type', {}), str(type_key), default_capacity), 1e-9)
+        user_load = float(np.clip(users / capacity, 0.0, 1.0))
+        effective_load = float(np.clip((1.0 - blend) * base_load + blend * user_load, 0.0, 1.0))
+
+        pmax_dbm = float(source.power)
+        pmin_frac = float(np.clip(
+            self._clpc_lookup_by_type(
+                getattr(self, 'clpc_pmin_frac_by_type', {}),
+                str(type_key),
+                0.30 if str(type_key).startswith('cellular_') else 0.20
+            ),
+            1e-4,
+            1.0,
+        ))
+        pmin_dbm = float(pmax_dbm + 10.0 * np.log10(pmin_frac))
+        sleep_thr = float(np.clip(getattr(self, 'clpc_sleep_threshold', 0.10), 0.0, 1.0))
+        full_thr = float(np.clip(getattr(self, 'clpc_full_threshold', 0.90), sleep_thr + 1e-6, 1.0))
+
+        if effective_load <= sleep_thr:
+            tx_dbm = float(pmin_dbm)
+            state = 'deep_sleep'
+        elif effective_load >= full_thr:
+            tx_dbm = float(pmax_dbm)
+            state = 'full_power'
+        else:
+            frac = float((effective_load - sleep_thr) / max(full_thr - sleep_thr, 1e-9))
+            tx_dbm = float(pmin_dbm + frac * (pmax_dbm - pmin_dbm))
+            state = 'dynamic_adjust'
+
+        source.power = float(tx_dbm)
+        profile_meta.update({
+            'clpc': {
+                'enabled': True,
+                'hour_of_day': float(hour),
+                'base_load': float(base_load),
+                'user_load': float(user_load),
+                'effective_load': float(effective_load),
+                'blend_alpha': float(blend),
+                'users': float(users),
+                'capacity': float(capacity),
+                'pmax_dbm_before_clpc': float(pmax_dbm),
+                'pmin_dbm': float(pmin_dbm),
+                'tx_dbm_after_clpc': float(tx_dbm),
+                'state': str(state),
+                'source_index': int(source_index),
+            }
+        })
 
     def _resolve_users_per_station(self, scenario: Dict, t_idx: int, t_s: float) -> List[float]:
         n = int(getattr(self, 'num_stations', 1))
@@ -5030,12 +5155,15 @@ def save_scenario_data(scenario: Dict, filename: str):
                 'drone_speed_max': float(scenario['drone_speed_max']),
                 'drone_height_max': float(scenario['drone_height_max']),
                 'building_height_max': float(scenario['building_height_max']),
-                'floor_height_m': float(scenario.get('floor_height_m', 0.0))
+                'floor_height_m': float(scenario.get('floor_height_m', 0.0)),
+                'enabled_interference_type_ids': list(scenario.get('enabled_interference_type_ids', [])),
             },
             'semantic_layers': scenario.get('semantic_layers', {}),
             'analysis': scenario.get('analysis', {}),
             'building_observables': scenario.get('building_observables', {}),
             'wifi_density': scenario.get('wifi_density', {}),
+            'model_source_registry_json': str(scenario.get('model_source_registry_json', '')),
+            'model_provenance': {},
             'drones': [],
             'stations': [],
             'buildings': [],
@@ -5087,6 +5215,7 @@ def save_scenario_data(scenario: Dict, filename: str):
                 'id': i,
                 'name': info['name'],
                 'type_id': info['type_id'],
+                'requested_type_id': int(getattr(source, 'requested_type_id', info['type_id'])),
                 'position': info['position'],
                 'power_dbm': info['power_dbm'],
                 'raw_power_dbm': info.get('raw_power_dbm', info['power_dbm']),
@@ -5102,6 +5231,14 @@ def save_scenario_data(scenario: Dict, filename: str):
                 'activity': info.get('activity', 1.0),
                 'color': info['color']
             })
+
+        registry_path = str(scenario.get('model_source_registry_json', ''))
+        if registry_path and os.path.isfile(registry_path):
+            try:
+                with open(registry_path, 'r', encoding='utf-8') as handle:
+                    data['model_provenance'] = json.load(handle)
+            except Exception:
+                data['model_provenance'] = {'load_error': registry_path}
 
         # 保存到文件
         with open(filepath, 'w', encoding='utf-8') as f:

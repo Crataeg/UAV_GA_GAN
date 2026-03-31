@@ -1,0 +1,24 @@
+{
+  "python": "D:\\UAV_GA\\12\\.venv\\Scripts\\python.exe",
+  "profiles": [
+    "paper_mainline",
+    "optional_all_controlled"
+  ],
+  "seeds": [
+    2026,
+    2027
+  ],
+  "ga_runs": 3,
+  "ga_maxgen": 3,
+  "ga_nind": 16,
+  "gan_epochs": 6,
+  "gan_samples": 10,
+  "gan_batch": 8,
+  "gan_latent": 16,
+  "random_n": 24,
+  "viz_count": 0,
+  "corner_random_points": 40,
+  "corner_worst_top_k": 20,
+  "corner_grid_size": 40,
+  "out_dir": ".\\产出文件夹\\20260326_算法优越性迭代基准"
+}
