@@ -6,6 +6,9 @@
 - `gan_uav_pipeline.py`：GAN 训练与样本生成
 - `compare_random_ga_gan.py`：正式主流程；输出 `GA vs GAN vs Random` 对比、KPI、可视化，并在本地有测量数据时自动追加测量 corner-case 对比
 - `evaluate.py`：独立 KPI/BLER/吞吐评估入口；可选追加测量 corner-case 对比
+- `full_simulation_pipeline.py`：非交互一键总控；串起 `gan_uav_pipeline.py -> compare_random_ga_gan.py -> 可选 evaluate.py(BLER_B)`，统一输出到 `output/<run_id>/`
+- `setup_env.ps1`：用本机 `Python 3.8` 重建 `.venv` 并安装主流程依赖
+- `requirements-pipeline-py38.txt`：一键流程依赖版本锁定
 - `kpi.py`：`outage / rate / EE / tail risk` 统计
 - `bler_mc.py`：BLER_A（Monte Carlo）
 - `bler_sionna.py`：BLER_B（Sionna LUT）
@@ -23,6 +26,7 @@
 
 1. **主环境**
    - 日常运行：`.\.venv\Scripts\python.exe`
+   - 首次建环境：`powershell -ExecutionPolicy Bypass -File .\setup_env.ps1`
    - Sionna 仅用于 `BLER_B`：`.\.venv_sionna\Scripts\python.exe`
 
 2. **生成 GA / GAN 样本**
@@ -42,12 +46,18 @@
    - 用 `evaluate.py`
    - 适合在不重跑 GA/GAN 的情况下补 `BLER_A / BLER_B / measured corner-case`
 
+5. **一键跑完整链**
+   - 推荐入口：`full_simulation_pipeline.py`
+   - 适合一次完成样本生成、正式对比、KPI 输出，以及可选 `BLER_B`
+   - 输出目录：`output/<run_id>/`
+
 ## Output Layout
 
 - `output/<run_id>/gan/arrays/`：样本数组
 - `output/<run_id>/compare/`：主对比输出
 - `output/<run_id>/compare/kpi/`：独立 KPI / BLER / 吞吐
 - `output/<run_id>/compare/measured_cornercases/`：AERPAW / Dryad 测量对照
+- `output/<run_id>/pipeline/`：一键脚本配置与执行清单
   - `selected_points_with_source.csv`
   - `trajectory_points_modeled.csv`
   - `grid_map.csv`
@@ -57,8 +67,22 @@
 
 ## Common Commands
 
+- Recommended smoke test:
+  - `& .\.venv\Scripts\python.exe .\full_simulation_pipeline.py --profile quick --run_id smoke_quick`
+- Recommended normal one-click run:
+  - `& .\.venv\Scripts\python.exe .\full_simulation_pipeline.py --profile balanced --run_id run_balanced_YYYYMMDD`
+- Heavy formal run:
+  - `& .\.venv\Scripts\python.exe .\full_simulation_pipeline.py --profile full --run_id run_full_YYYYMMDD`
+
 - 正式主流程：
   - `& .\.venv\Scripts\python.exe .\compare_random_ga_gan.py --run_id <run_id>`
+- 一键全流程：
+  - `& .\.venv\Scripts\python.exe .\full_simulation_pipeline.py --run_id <run_id>`
+- 一键全流程 + Sionna BLER_B：
+  - `& .\.venv\Scripts\python.exe .\full_simulation_pipeline.py --run_id <run_id> --gen_bler_b --sionna_python .\.venv_sionna\Scripts\python.exe`
+- 如果入口本身是外部 Python：
+  - `full_simulation_pipeline.py` 会优先把子流程切到 `.\.venv\Scripts\python.exe`
+  - 也可显式指定 `--python .\.venv\Scripts\python.exe`
 - 正式主流程 + 禁用测量对照：
   - `& .\.venv\Scripts\python.exe .\compare_random_ga_gan.py --run_id <run_id> --skip_measured_corner_compare`
 - 独立 KPI：
@@ -82,6 +106,7 @@
   - `bler_sionna.py`
   - `evaluate.py`
 - 测量数据 zip 保持在外部路径，不要拷进仓库
+- `compare_measured_cornercases.py` 会优先从当前用户的 `Downloads` 自动查找 `aerpaw-dataset-24.zip` 和 `doi_10_5061_dryad_wh70rxx06__v20250521.zip`
 - 清理临时输出可运行：
   - `powershell -ExecutionPolicy Bypass -File .\clean_outputs.ps1`
 
@@ -90,3 +115,13 @@
 - 保留：上面 `Active Files`、`.venv`、`.venv_sionna`、`output/<run_id>/`
 - 可清理：`output/*smoke*`、`output/__tmp_*`、临时 BLER csv、`__pycache__/`
 - 仅归档：`__backup_before_*`、`__upstream_*`
+## Sionna BLER_B Environment
+
+- Create or refresh the dedicated BLER_B environment with:
+  - `powershell -ExecutionPolicy Bypass -File .\setup_sionna_env.ps1`
+- The dedicated requirements file is:
+  - `requirements-sionna-py311.txt`
+- The expected interpreter is:
+  - `.\.venv_sionna\Scripts\python.exe`
+- Minimal smoke test:
+  - `& .\.venv_sionna\Scripts\python.exe .\bler_sionna.py --out .\output\smoke_sionna\BLER_B.csv --blocks 4 --sinr_db 0,5`

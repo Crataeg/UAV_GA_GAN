@@ -76,14 +76,18 @@ def postprocess_x(x: np.ndarray, lb: np.ndarray, ub: np.ndarray,
 
 
 def run_ga_samples(problem: DroneCommProblem, runs: int, maxgen: int,
-                   nind: int, seed_base: int) -> np.ndarray:
+                   nind: int, seed_base: int, partial_save_path: str = "") -> np.ndarray:
     try:
         import geatpy as ea
     except Exception as exc:
         raise RuntimeError("geatpy is required to run GA sampling") from exc
 
     samples: List[np.ndarray] = []
+    total_runs = int(runs)
+    print(f"[GA] Starting GA sampling: runs={total_runs}, maxgen={int(maxgen)}, nind={int(nind)}")
     for i in range(int(runs)):
+        t0 = time.time()
+        print(f"[GA] Run {i + 1}/{total_runs} started (seed={int(seed_base) + i})", flush=True)
         np.random.seed(int(seed_base) + i)
         pop = ea.Population(Encoding="RI", NIND=int(nind))
         algorithm = ea.soea_SEGA_templet(
@@ -104,6 +108,9 @@ def run_ga_samples(problem: DroneCommProblem, runs: int, maxgen: int,
         )
         best_x = np.asarray(res["Vars"][0], dtype=float)
         samples.append(best_x)
+        if partial_save_path:
+            np.save(partial_save_path, np.asarray(samples, dtype=float))
+        print(f"[GA] Run {i + 1}/{total_runs} completed in {time.time() - t0:.1f}s", flush=True)
     return np.asarray(samples, dtype=float)
 
 
@@ -158,7 +165,9 @@ def train_gan(samples: np.ndarray, lb: np.ndarray, ub: np.ndarray,
 
     log = {"epochs": int(epochs), "batch_size": int(batch_size), "latent_dim": int(latent_dim)}
 
-    for _ in range(int(epochs)):
+    total_epochs = int(epochs)
+    print(f"[GAN] Starting GAN training: epochs={total_epochs}, batch={int(batch_size)}, latent={int(latent_dim)}", flush=True)
+    for epoch in range(total_epochs):
         for batch in loader:
             real = batch[0].to(device)
             bsz = real.size(0)
@@ -181,6 +190,8 @@ def train_gan(samples: np.ndarray, lb: np.ndarray, ub: np.ndarray,
             loss_g = criterion(pred, torch.ones_like(pred))
             loss_g.backward()
             opt_g.step()
+        if (epoch + 1) == total_epochs or (epoch + 1) % max(1, total_epochs // 5) == 0:
+            print(f"[GAN] Epoch {epoch + 1}/{total_epochs} completed", flush=True)
 
     return gen, log
 
@@ -316,8 +327,18 @@ def main():
     user_params = load_user_params(args.params)
     problem = DroneCommProblem(user_params)
 
-    ga_samples = run_ga_samples(problem, args.ga_runs, args.ga_maxgen, args.ga_nind, args.ga_seed)
+    print(f"[PIPELINE] run_id={run_id}", flush=True)
+    print(f"[PIPELINE] Output root: output/{run_id}/gan", flush=True)
+    ga_samples = run_ga_samples(
+        problem,
+        args.ga_runs,
+        args.ga_maxgen,
+        args.ga_nind,
+        args.ga_seed,
+        partial_save_path=os.path.join(arrays_output, "ga_samples.partial.npy"),
+    )
     np.save(os.path.join(arrays_output, "ga_samples.npy"), ga_samples)
+    print("[GA] Saved final GA samples", flush=True)
 
     lb = np.asarray(problem.lb, dtype=float)
     ub = np.asarray(problem.ub, dtype=float)
@@ -335,6 +356,7 @@ def main():
         gen, args.gan_samples, args.gan_latent, lb, ub, type_idx, loc_idx, device
     )
     np.save(os.path.join(arrays_output, "gan_samples.npy"), gan_samples)
+    print("[GAN] Saved GAN samples", flush=True)
 
     metrics = []
     height_ratios: List[float] = []

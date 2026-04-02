@@ -23,8 +23,31 @@ import gan_uav_pipeline as gan_pipeline
 from kpi import outage_probability, summarize_distribution, tail_mean
 
 
-DEFAULT_AERPAW_ZIP = r"d:\Downloads\aerpaw-dataset-24.zip"
-DEFAULT_DRYAD_ZIP = r"d:\Downloads\doi_10_5061_dryad_wh70rxx06__v20250521.zip"
+def _default_zip_candidates(filename: str) -> Tuple[str, ...]:
+    home = str(Path.home())
+    return (
+        os.path.join(home, "Downloads", filename),
+        os.path.join("C:\\Users\\52834\\Downloads", filename),
+        os.path.join("D:\\", "Downloads", filename),
+        os.path.join("D:\\", "下载", filename),
+    )
+
+
+def _pick_existing_path(candidates: Sequence[str], fallback: str) -> str:
+    for path in candidates:
+        if path and os.path.isfile(path):
+            return path
+    return fallback
+
+
+DEFAULT_AERPAW_ZIP = _pick_existing_path(
+    _default_zip_candidates("aerpaw-dataset-24.zip"),
+    r"d:\Downloads\aerpaw-dataset-24.zip",
+)
+DEFAULT_DRYAD_ZIP = _pick_existing_path(
+    _default_zip_candidates("doi_10_5061_dryad_wh70rxx06__v20250521.zip"),
+    r"d:\Downloads\doi_10_5061_dryad_wh70rxx06__v20250521.zip",
+)
 DEFAULT_REF_PDF = r"d:\UAV_Communication_GA\key reference\Aerial_RF_and_Throughput_Measurements_on_a_Non-Standalone_5G_Wireless_Network.pdf"
 
 AERPAW_NR_FILES = (

@@ -25,7 +25,7 @@ def _require_sionna():
         import sionna  # noqa: F401
     except Exception as e:  # pragma: no cover
         raise ImportError(
-            "Sionna/TensorFlow not available. Install tensorflow + sionna first, "
+            "Sionna/TensorFlow not available. Install tensorflow + sionna-no-rt first, "
             "or provide an existing BLER_B.csv LUT."
         ) from e
 
